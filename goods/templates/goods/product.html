@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/product.css' %}">
+{% endblock %}
+
+{% block model_cart %}
+    {% include 'includes/cart_button.html' %}
+{% endblock %}
+
+
+
+
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card mb-4 custom-shadow position-relative product-card">
+            <!-- Кнопка закриття -->
+            <button type="button"
+                    class="close-button position-absolute top-0 end-0 m-2"
+                    aria-label="Close"></button>
+
+
+            <div class="row">
+                <!-- Ліва частина картки (зображення та id) -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Зображення -->
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}"
+                                     class="img-thumbnail"
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#imageModal1">
+                            {% else %}
+                                <p>{% translate "Зображення відсутнє" %}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-12">
+                            <p class="product_id mt-3">
+                                id: {{ product.display_id }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Права частина картки (назва, ціна, опис) -->
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">{% translate "Ціна" %}:
+                            <strong>{{ product.sell_price }} ₴
+                                / {{ product.price_in_usd }} $</strong></p>
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="button-container">
+                            <a href="{% url 'cart:cart_add' %}"
+                               class="btn btn-dark add-to-cart"
+                               data-product-id="{{ product.id }}">
+                                {% csrf_token %}
+                                {% translate "Додати до кошика" %}</a>
+                            {#                    <button#}
+                            {#    class="btn toggle-favorite"#}
+                            {#    data-product-id="{{ product.id }}"#}
+                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
+                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
+                            {#    data-url-remove="{% url 'favorites:remove_favorite' %}"#}
+                            {#>#}
+                            {#    <img#}
+                            {#        src="{% static 'deps/images/heart.svg' %}"#}
+                            {#        alt="Heart Icon"#}
+                            {#        class="favorite-icon {% if product.is_favorited %}filled{% endif %}"#}
+                            {#        width="32" height="32">#}
+                            {#</button>#}
+                            {#                    <button#}
+                            {#    class="btn toggle-favorite"#}
+                            {#    data-product-id="{{ product.id }}"#}
+                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
+                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
+                            {#    data-url-remove="{% url 'favorites:remove_favorite' %}"#}
+                            {#>#}
+                            {#    <img#}
+                            {#        src="{% static 'deps/images/heart.svg' %}"#}
+                            {#        alt="Heart Icon"#}
+                            {#        class="favorite-icon {% if product.is_favorited %}filled{% endif %}"#}
+                            {#        width="32" height="32">#}
+                            {#</button>#}
+                            {# <button#}
+                            {#    class="btn toggle-favorite"#}
+                            {#    data-product-id="{{ product.id }}"#}
+                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
+                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
+                            {#>#}
+                            {#    <span class="heart {% if product.is_favorited %}filled{% endif %}"></span>#}
+                            {#</button>#}
+                            {#                             <button#}
+                            {#                                class="heart-btn"#}
+                            {#                                data-product-id="{{ product.id }}"#}
+                            {#                                data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
+                            {#                                data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
+                            {#                            >#}
+                            {#                                <span class="heart {% if product.is_favorited %}filled{% endif %}">&#10084;</span>#}
+                            {#                            </button>#}
+                            {#                                                        <a href="{% url 'favorites:toggle_favorite' %}"#}
+                            {#                                                           class="add-to-favorites"#}
+                            {#                                                           data-product-id="{{ product.id }}">#}
+                            {#                                                            Додати в обрані#}
+                            {#                                                        </a>#}
+                            {#                            <button type="button"#}
+                            {#                                    class="add-to-favorites"#}
+                            {#                                    data-product-id="{{ product.id }}"#}
+                            {#                                    data-url="{% url 'favorites:toggle_favorite' %}">#}
+                            {#                                Додати в обрані#}
+                            {#                            </button>#}
+
+
+                        </div>
+                    </div>
+                    <!-- Характеристики -->
+                    <div class="card-footer">
+                        <h5>{% translate "Характеристики" %}</h5>
+                        <ul>
+                            {% for attribute in product.attributes.all %}
+                                <li>
+                                    <strong>{{ attribute.key }}:</strong> {{ attribute.value }}
+                                </li>
+                            {% empty %}
+                                <li>{% translate "Характеристики відсутні" %}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Модальне вікно для зображення -->
+    <div class="modal fade" id="imageModal1" tabindex="-1"
+         aria-labelledby="imageModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                        id="imageModal1Label">{{ product.name }}</h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Закрити"></button>
+                </div>
+                <div class="modal-body">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="img-fluid"
+                             alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

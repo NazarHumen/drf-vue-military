@@ -1,0 +1,824 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-20 12:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\carts\templates\carts\includes\included_carts.html:60
+msgid "Разом"
+msgstr "Total"
+
+#: .\carts\templates\carts\includes\included_carts.html:61
+msgid "товар(а) у суммі"
+msgstr "product(s) in total"
+
+#: .\carts\templates\carts\includes\included_carts.html:68
+#: .\orders\templates\orders\create_order.html:152
+msgid "Оформити замовлення"
+msgstr "Place an order"
+
+#: .\carts\views.py:48
+msgid "Товар доданий до кошика"
+msgstr "Product added to cart"
+
+#: .\carts\views.py:71
+msgid "Кількість змінено"
+msgstr "Quantity changed"
+
+#: .\carts\views.py:92
+msgid "Товар видалено"
+msgstr "Product removed"
+
+#: .\goods\templates\goods\catalog.html:58
+msgid "Результати пошуку за запитом"
+msgstr "Search results for the query"
+
+#: .\goods\templates\goods\catalog.html:62
+msgid "За запитом нічого не знайдено"
+msgstr "Nothing found for the query"
+
+#: .\goods\templates\goods\catalog.html:112
+msgid "Знижка"
+msgstr "Discount"
+
+#: .\goods\templates\goods\product.html:37
+msgid "Зображення відсутнє"
+msgstr "Image is missing"
+
+#: .\goods\templates\goods\product.html:50
+#: .\users\templates\users\profile.html:156
+msgid "Ціна"
+msgstr "Price"
+
+#: .\goods\templates\goods\product.html:60
+msgid "Додати до кошика"
+msgstr "Product added to cart"
+
+#: .\goods\templates\goods\product.html:120
+msgid "Характеристики"
+msgstr "Characteristics"
+
+#: .\goods\templates\goods\product.html:127
+msgid "Характеристики відсутні"
+msgstr "Characteristics are missing"
+
+#: .\goods\views.py:93
+msgid "Home - Каталог"
+msgstr "Home - Catalog"
+
+#: .\main\templates\main\about.html:28 .\templates\base.html:119
+msgid "Про нас"
+msgstr "About us"
+
+#: .\main\templates\main\about.html:29
+msgid "Привіт усім!"
+msgstr "Hello everyone!"
+
+#: .\main\templates\main\about.html:30
+msgid ""
+"Ми − команда, яка пропонує якісне військове спорядження, елементи захисту та "
+"полігонне обладнання власного виробництва. Ми захищаємо життя тих, хто "
+"захищає нашу країну, та підходимо до своєї справи максимально відповідально."
+msgstr ""
+"We are a team that offers quality military equipment, protective elements, "
+"and range equipment of our own production. We protect the lives of those who "
+"protect our country and approach our work as responsibly as possible."
+
+#: .\main\templates\main\about.html:31
+msgid "Маємо чітку місію − надавати захисникам якісний та перевірений товар!"
+msgstr ""
+"We have a clear mission - to provide defenders with quality and tested "
+"products!"
+
+#: .\main\templates\main\about.html:32
+msgid ""
+"Ми знаємо, що на полі бою кожен стібок, кожен розріз мають значення. Ось "
+"чому ми не йдемо на компроміси в проектуванні, тестуванні та виробництві "
+"нашого тактичного обладнання і працюємо, чітко дотримуючись міжнародних "
+"стандартів, щоб дати вам найкраще."
+msgstr ""
+"We know that every stitch, every cut matters on the battlefield. That's why "
+"we don't compromise on the design, testing, and production of our tactical "
+"equipment and work strictly adhering to international standards to give you "
+"the best."
+
+#: .\main\templates\main\about.html:34
+msgid "Асортимент тактичного спорядження"
+msgstr "Assortment of tactical equipment"
+
+#: .\main\templates\main\about.html:35
+msgid ""
+"Комплект тактичного спорядження призначений для максимальної зручності та "
+"захисту військовослужбовця, а також для носіння зброї та боєприпасів, "
+"зберігання додаткових інструментів, необхідних у польових умовах та під час "
+"військових дій."
+msgstr ""
+"The tactical equipment set is designed for maximum comfort and protection of "
+"the serviceman, as well as for carrying weapons and ammunition, storing "
+"additional tools needed in the field and during military operations."
+
+#: .\main\templates\main\about.html:36
+msgid ""
+"Придбати якісну амуніцію за доступною ціною ви можете у нашому інтернет-"
+"магазині. Асортимент військової продукції включає:"
+msgstr ""
+"You can buy quality ammunition at an affordable price in our online store. "
+"The range of military products includes:"
+
+#: .\main\templates\main\about.html:38
+msgid "плитоноски"
+msgstr "plate carriers"
+
+#: .\main\templates\main\about.html:39
+msgid "бронежилети"
+msgstr "bulletproof vests"
+
+#: .\main\templates\main\about.html:40
+msgid "бронеплити"
+msgstr "armor plates"
+
+#: .\main\templates\main\about.html:41
+msgid "військові шоломи"
+msgstr "military helmets"
+
+#: .\main\templates\main\about.html:42
+msgid "балістичні пакети"
+msgstr "ballistic packages"
+
+#: .\main\templates\main\about.html:43
+msgid "сумки-напашники"
+msgstr "shoulder bags"
+
+#: .\main\templates\main\about.html:44
+msgid "тактичні пояси та плечові ремені"
+msgstr "tactical belts and shoulder straps"
+
+#: .\main\templates\main\about.html:45
+msgid "підсумки"
+msgstr "pouches"
+
+#: .\main\templates\main\about.html:46
+msgid "тактичні рюкзаки та сумки"
+msgstr "tactical backpacks and bags"
+
+#: .\main\templates\main\about.html:47
+msgid "активні навушники"
+msgstr "active headphones"
+
+#: .\main\templates\main\about.html:48
+msgid "тактичні наколінники"
+msgstr "tactical knee pads"
+
+#: .\main\templates\main\about.html:49
+msgid "тактичне взуття"
+msgstr "tactical footwear"
+
+#: .\main\templates\main\about.html:50
+msgid "одяг та аксесуари для військовослужбовців"
+msgstr "clothing and accessories for servicemen"
+
+#: .\main\templates\main\about.html:52
+msgid ""
+"Ми не тільки продаємо військову амуніцію, але й займаємося її виробництвом, "
+"суворо контролюючи рівень якості та орієнтуючись на реальні потреби бійців. "
+"Наші фахівці постійно вдосконалюють продукцію та займаються розробкою "
+"новинок, що дозволяє регулярно поповнювати та розширювати асортимент."
+msgstr ""
+"We not only sell military ammunition but also manufacture it, strictly "
+"controlling the quality level and focusing on the real needs of fighters. "
+"Our specialists constantly improve the products and develop new items, which "
+"allows us to regularly replenish and expand the assortment."
+
+#: .\main\templates\main\about.html:54
+msgid "Кому підійде продукція "
+msgstr "Who is the product suitable for"
+
+#: .\main\templates\main\about.html:55
+msgid ""
+"Військове спорядження від нашої компанії розраховане на наступні категорії "
+"покупців: "
+msgstr ""
+"Military equipment from our company is designed for the following categories "
+"of buyers:"
+
+#: .\main\templates\main\about.html:57
+msgid "військовослужбовці − основна цільова аудиторія магазину "
+msgstr "servicemen - the main target audience of the store"
+
+#: .\main\templates\main\about.html:58
+msgid "туристи та мандрівники "
+msgstr "tourists and travelers "
+
+#: .\main\templates\main\about.html:59
+msgid "рибалки та мисливці "
+msgstr "fishermen and hunters "
+
+#: .\main\templates\main\about.html:60
+msgid "дослідники, які працюють у польових умовах "
+msgstr "researchers working in the field "
+
+#: .\main\templates\main\about.html:61
+msgid "шанувальники спортивних військових ігор "
+msgstr "fans of military sports games "
+
+#: .\main\templates\main\about.html:62
+msgid "любителі практичного та функціонального одягу в стилі мілітарі "
+msgstr "lovers of practical and functional clothing in military style "
+
+#: .\main\templates\main\about.html:64
+msgid ""
+"Крім того, армійське спорядження може використовуватися для зйомок фільмів і "
+"серіалів, постановок вистав, проведення фотосесій. Оскільки військове "
+"екіпірування дуже практичне, зручне і функціональне, цивільні особи часто "
+"використовують його для важкої роботи, поїздок, походів та іншої фізичної "
+"активності. "
+msgstr ""
+"In addition, army equipment can be used for filming movies and series, "
+"staging performances, and conducting photo shoots. Since military equipment "
+"is very practical, comfortable, and functional, civilians often use it for "
+"heavy work, trips, hikes, and other physical activities."
+
+#: .\main\templates\main\about.html:66
+msgid "Інтернет-магазин військового спорядження "
+msgstr "Assortment of tactical equipment"
+
+#: .\main\templates\main\about.html:67
+msgid ""
+"Військове екіпірування являє собою широку групу виробів − від бронежилета до "
+"тактичних навушників та окулярів. Переглядати та вибирати продукцію зручно в "
+"онлайн-каталозі, розділеному на категорії та підкатегорії. Зручна система "
+"пошуку допоможе відфільтрувати товари за кольором, ціною та іншими "
+"характеристиками. "
+msgstr ""
+"Military equipment is a wide group of products - from bulletproof vests to "
+"tactical headphones and glasses. It is convenient to browse and select "
+"products in the online catalog, divided into categories and subcategories. "
+"The convenient search system will help filter products by color, price, and "
+"other characteristics."
+
+#: .\main\templates\main\about.html:68
+msgid ""
+"Кожна позиція супроводжується детальним описом та характеристиками, а також "
+"якісними фотографіями. Також на нашому сайті можна почитати відгуки покупців "
+"про товари. Щоб отримати додаткову інформацію або проконсультуватися щодо "
+"вибору, зв`яжіться з нашими менеджерами за телефоном. "
+msgstr ""
+"Each position is accompanied by a detailed description and characteristics, "
+"as well as quality photos. You can also read customer reviews about the "
+"products on our website. To get additional information or consult about the "
+"choice, contact our managers by phone."
+
+#: .\main\templates\main\about.html:70
+msgid "Переваги покупки спорядження "
+msgstr "Assortment of tactical equipment"
+
+#: .\main\templates\main\about.html:72
+msgid "Більше 10 000 відгуків від військових. "
+msgstr "More than 10,000 reviews from military personnel."
+
+#: .\main\templates\main\about.html:73
+msgid "Якісне спорядження власного виробництва. "
+msgstr "Quality equipment of our own production."
+
+#: .\main\templates\main\about.html:74
+msgid ""
+"Швидко оформляємо замовлення та забезпечуємо оперативну доставку в будь-який "
+"куточок України. "
+msgstr ""
+"We quickly process orders and ensure prompt delivery to any corner of "
+"Ukraine."
+
+#: .\main\templates\main\about.html:75
+msgid ""
+"Пропонуємо зручні способи оплати та можливість повернути товар протягом двох "
+"тижнів (якщо на ньому відсутні сліди експлуатації). "
+msgstr ""
+"We offer convenient payment methods and the possibility to return the "
+"product within two weeks (if there are no signs of use)."
+
+#: .\main\templates\main\about.html:76
+msgid ""
+"Дотримуємося інтересів наших клієнтів, оскільки зацікавлені у тривалій та "
+"плідній співпраці! "
+msgstr ""
+"We adhere to the interests of our clients, as we are interested in long-term "
+"and fruitful cooperation!"
+
+#: .\main\templates\main\about.html:79
+msgid "Інформація про компанію "
+msgstr "Information"
+
+#: .\main\templates\main\about.html:80
+msgid "Назва: магазин військового спорядження "
+msgstr "Name: military equipment store"
+
+#: .\main\templates\main\about.html:81
+msgid "Тип компанії: Компанія, що надає послуги, Виробник "
+msgstr "Company providing services, Manufacturer"
+
+#: .\main\templates\main\contact.html:9
+msgid "Контакти"
+msgstr "Contacts"
+
+#: .\main\templates\main\contact.html:14
+msgid "Наші менеджери завжди на зв'язку!"
+msgstr "Our managers are always in touch!"
+
+#: .\main\templates\main\contact.html:15
+msgid "Дзвоніть, пишіть, відправляйте голосові повідомлення."
+msgstr "Call, write, send voice messages."
+
+#: .\main\templates\main\contact.html:17
+msgid ""
+"Спілкуємось у будь-яких зручних для вас месенджерах. А також із задоволенням "
+"надамо консультацію по телефону."
+msgstr ""
+"We communicate in any convenient messenger for you. And we will be happy to "
+"provide consultation by phone."
+
+#: .\main\templates\main\contact.html:19
+
+#| msgid "Додати до кошика"
+msgid "Контакти для зв'язку:"
+msgstr "Contacts for communication:"
+
+#: .\main\templates\main\contact.html:21
+msgid "Пишіть:"
+msgstr "Write:"
+
+#: .\main\templates\main\contact.html:23
+msgid "Дзвоніть:"
+msgstr "Call:"
+
+#: .\main\templates\main\contact.html:43
+msgid "А якщо ви знаходитеся в Києві і хочете забрати замовлення особисто"
+msgstr "And if you are in Kyiv and want to pick up your order in person "
+
+#: .\main\templates\main\contact.html:44
+msgid ""
+"*Можна приміряти його або подивитися у дзеркалі наскільки ви круті в броніку"
+msgstr ""
+"*You can try it on or look in the mirror to see how cool you look in armor "
+
+#: .\main\templates\main\contact.html:45
+msgid "Це можна зробити за адресою:"
+msgstr "This can be done at the address:"
+
+#: .\main\templates\main\contact.html:46
+msgid "Київ, м.Вокзальна (пл.Вокзальна, 2, Food Plaza)."
+msgstr " Kyiv, Vokzalna (Vokzalna Square, 2, Food Plaza)."
+
+#: .\main\templates\main\contact.html:47
+msgid "Київ, м.Лівобережна (вул.Раїси Окіпної, 8)."
+msgstr "Kyiv, Lviv region (Rais Okipnoy St., 8)."
+
+#: .\main\templates\main\contact.html:63
+msgid "Форма зворотного зв'язку"
+msgstr "Feedback form"
+
+#: .\main\templates\main\contact.html:72
+#: .\orders\templates\orders\create_order.html:43
+#: .\users\templates\users\profile.html:62
+#: .\users\templates\users\registration.html:29
+msgid "Прізвище*"
+msgstr "Surname*"
+
+#: .\main\templates\main\contact.html:80
+#: .\orders\templates\orders\create_order.html:30
+#: .\users\templates\users\profile.html:49
+#: .\users\templates\users\registration.html:18
+msgid "Ім'я*"
+msgstr "Name*"
+
+#: .\main\templates\main\contact.html:98
+msgid "Телефон*"
+msgstr "Phone*"
+
+#: .\main\templates\main\contact.html:104
+#: .\orders\templates\orders\create_order.html:89
+msgid "Невірний формат номера. Приклад: +380931234567 або +46701234567"
+msgstr "Invalid phone format. Example: +380931234567 or +46701234567"
+
+#: .\main\templates\main\contact.html:109
+msgid "E-mail*"
+msgstr "E-mail*"
+
+#: .\main\templates\main\contact.html:119
+msgid "Коментар*"
+msgstr "Comment*"
+
+#: .\main\templates\main\contact.html:127
+msgid "Відправити"
+msgstr "Send"
+
+#: .\main\templates\main\delivery.html:14
+msgid "Доставка"
+msgstr "Delivery"
+
+#: .\main\templates\main\delivery.html:15
+msgid "Обробка та відправка замовлень відбувається без вихідних (24 на 7)."
+msgstr "Processing and shipping of orders is done without weekends (24/7)."
+
+#: .\main\templates\main\delivery.html:17
+msgid ""
+"Шановні клієнти! У зв'язку з відключенням світла по всій території України "
+"терміни доставки товарів можуть бути змінені."
+msgstr ""
+"Dear customers! Due to power outages throughout Ukraine, delivery times may "
+"change."
+
+#: .\main\templates\main\delivery.html:22
+msgid "Укрпошта"
+msgstr "Ukrposhta"
+
+#: .\main\templates\main\delivery.html:26
+msgid "Нова Пошта"
+msgstr "Nova Poshta"
+
+#: .\main\templates\main\delivery.html:29
+msgid "Термін доставки"
+msgstr "Delivery time"
+
+#: .\main\templates\main\delivery.html:30
+msgid ""
+"Здійснюємо відправлення щодня з 14:00 до 18:00 (так, ми відправляємо двічі "
+"на день), у вихідні дні до 17:00 (у вихідні пошта закривається раніше)."
+msgstr ""
+"We ship every day from 14:00 to 18:00 (yes, we ship twice a day), on "
+"weekends until 17:00 (on weekends the post closes earlier)."
+
+#: .\main\templates\main\delivery.html:35
+msgid "Оплата"
+msgstr "Payment"
+
+#: .\main\templates\main\delivery.html:36
+msgid "Купуй без передоплати та жодних прихованих платежів."
+msgstr "Buy without prepayment and no hidden fees."
+
+#: .\main\templates\main\delivery.html:38
+msgid ""
+"Шановні клієнти! Ми надсилаємо замовлення післяплатою, без будь-яких "
+"передоплат."
+msgstr ""
+"Dear customers! We send orders by cash on delivery, without any prepayments."
+
+#: .\main\templates\main\delivery.html:43
+msgid "Платіжні картки (Visa, MasterCard, Google Pay, Apple Pay)"
+msgstr "Payment cards (Visa, MasterCard, Google Pay, Apple Pay)"
+
+#: .\main\templates\main\delivery.html:47
+msgid "Післяплата"
+msgstr "Cash on delivery"
+
+#: .\main\templates\main\delivery.html:51
+msgid "Оплата за реквізитами"
+msgstr "Payment by details"
+
+#: .\main\templates\main\delivery.html:58
+msgid "Повернення"
+msgstr "Return"
+
+#: .\main\templates\main\delivery.html:59
+msgid ""
+"Можливий протягом 14 днів із дня покупки, якщо не було зовнішніх слідів "
+"експлуатації."
+msgstr ""
+"Possible within 14 days from the date of purchase, if there are no external "
+"signs of use."
+
+#: .\main\templates\main\delivery.html:60
+msgid "*Однак є винятки, вони вказані у ЗУ 'Про захист прав споживачів'."
+msgstr ""
+"*However, there are exceptions, they are indicated in the Law of Ukraine"
+
+#: .\main\views.py:21
+msgid "Home - Головна"
+msgstr "Home - Main"
+
+#: .\main\views.py:31
+msgid "Home - Про нас"
+msgstr "Home - About us"
+
+#: .\main\views.py:42
+msgid "Home - Доставка та оплата"
+msgstr "Home - Delivery and payment"
+
+#: .\main\views.py:57
+msgid "Ви повинні увійти в систему, щоб надіслати відгук."
+msgstr "You must be logged in to send feedback."
+
+#: .\main\views.py:69
+msgid "Дякуємо за ваш відгук! Ваше повідомлення було успішно надіслано."
+msgstr "Thank you for your feedback! Your message has been successfully sent."
+
+#: .\main\views.py:82
+msgid "Home - Зв'яжіться з нами"
+msgstr "Home - Contact us"
+
+#: .\orders\models.py:20
+msgid "В обробці"
+msgstr "In processing"
+
+#: .\orders\models.py:21
+msgid "Відправлено"
+msgstr "Sent"
+
+#: .\orders\models.py:22
+msgid "Доставлено"
+msgstr "Delivered"
+
+#: .\orders\templates\orders\create_order.html:9
+msgid "Вибрані товари"
+msgstr "Selected products"
+
+#: .\orders\templates\orders\create_order.html:21
+msgid "Деталі замовлення"
+msgstr "Place an order"
+
+#: .\orders\templates\orders\create_order.html:68
+msgid "Номер телефона*"
+msgstr "Phone*"
+
+#: .\orders\templates\orders\create_order.html:95
+msgid "Спосіб доставки"
+msgstr "Delivery time"
+
+#: .\orders\templates\orders\create_order.html:103
+msgid "Потрібна доставка"
+msgstr "Delivery required"
+
+#: .\orders\templates\orders\create_order.html:111
+msgid "Самовивіз"
+msgstr "Self-pickup"
+
+#: .\orders\templates\orders\create_order.html:116
+msgid "Адреса доставки*"
+msgstr "Delivery address*"
+
+#: .\orders\templates\orders\create_order.html:129
+msgid "Спосіб оплати"
+msgstr "Payment method"
+
+#: .\orders\templates\orders\create_order.html:136
+msgid "Оплата карткою"
+msgstr "Payment by details"
+
+#: .\orders\templates\orders\create_order.html:143
+msgid "Готівкою/карткою при отриманні"
+msgstr "Cash/card on delivery"
+
+#: .\orders\views.py:57
+#, python-format
+msgid ""
+"Недостатня кількість товару %(name)s на складі. В наявності — %(quantity)d"
+msgstr "Not enough product %(name)s in stock. Available - %(quantity)d"
+
+#: .\orders\views.py:78
+msgid "Замовлення оформлено!"
+msgstr "Order placed!"
+
+#: .\orders\views.py:85
+msgid "Заповніть всі обов'язкові поля!"
+msgstr "Fill in all required fields!"
+
+#: .\orders\views.py:90
+msgid "Оформлення замовлення"
+msgstr "Place an order"
+
+#: .\templates\base.html:109
+msgid "Інформація"
+msgstr "Information"
+
+#: .\templates\base.html:113
+msgid "Доставка і оплата"
+msgstr "Delivery and payment"
+
+#: .\templates\base.html:116
+msgid "Контактна інформація"
+msgstr "Contact information"
+
+#: .\templates\base.html:132 .\users\templates\users\login.html:60
+msgid "Вхід"
+msgstr "Login"
+
+#: .\templates\base.html:139
+msgid "Мій профіль"
+msgstr "My profile"
+
+#: .\templates\base.html:143 .\templates\includes\cart_button.html:25
+#: .\users\templates\users\profile.html:111
+#: .\users\templates\users\users_cart.html:11
+msgid "Кошик"
+msgstr "Basket"
+
+#: .\templates\base.html:146
+msgid "Особистий кабінет"
+msgstr "Personal account"
+
+#: .\templates\base.html:150
+msgid "Адмін панель"
+msgstr "Admin panel"
+
+#: .\templates\base.html:158
+msgid "Вихід"
+msgstr "Logout"
+
+#: .\templates\base.html:169 .\templates\base.html:172
+msgid "Search"
+msgstr "Search"
+
+#: .\templates\base.html:195
+msgid "Каталог"
+msgstr "Catalog"
+
+#: .\templates\base.html:216
+msgid "Фільтри"
+msgstr "Filters"
+
+#: .\templates\base.html:242
+msgid "Товари зі знижками"
+msgstr "Discounted products"
+
+#: .\templates\base.html:245
+msgid "Сортувати:"
+msgstr "Sort by:"
+
+#: .\templates\base.html:253
+msgid "За замовчуванням"
+msgstr "Default"
+
+#: .\templates\base.html:263
+msgid "Від дешевих до дорогих"
+msgstr "From cheap to expensive"
+
+#: .\templates\base.html:273
+msgid "Від дорогих до дешевих"
+msgstr "From expensive to cheap"
+
+#: .\templates\base.html:277
+msgid "Застосувати"
+msgstr "Apply"
+
+#: .\users\templates\users\login.html:13
+msgid "Авторизація"
+msgstr "Authorization"
+
+#: .\users\templates\users\login.html:23
+#: .\users\templates\users\registration.html:44
+msgid "Ім'я користувача"
+msgstr "Username"
+
+#: .\users\templates\users\login.html:24
+msgid "Введіть ім'я користувача"
+msgstr "Enter username"
+
+#: .\users\templates\users\login.html:27
+msgid "Пароль"
+msgstr "Password"
+
+#: .\users\templates\users\login.html:28
+msgid "Введіть ваш пароль"
+msgstr "Enter your password"
+
+#: .\users\templates\users\login.html:63
+msgid "Забули пароль?"
+msgstr "Forgot password?"
+
+#: .\users\templates\users\login.html:63
+msgid "Створити акаунт"
+msgstr "Create an account"
+
+#: .\users\templates\users\login.html:67
+msgid "Або авторизуйтесь через:"
+msgstr "Or log in via:"
+
+#: .\users\templates\users\profile.html:18
+msgid "Профіль користувача"
+msgstr "Username"
+
+#: .\users\templates\users\profile.html:53
+#: .\users\templates\users\registration.html:22
+msgid "Введіть ваше ім'я"
+msgstr "Enter your name"
+
+#: .\users\templates\users\profile.html:66
+#: .\users\templates\users\registration.html:33
+msgid "Введіть ваше прізвище"
+msgstr "Enter your surname"
+
+#: .\users\templates\users\profile.html:75
+#: .\users\templates\users\registration.html:40
+msgid "Ім'я користувача*"
+msgstr "Username*"
+
+#: .\users\templates\users\profile.html:79
+msgid "Введіть ваше ім'я користувача"
+msgstr "Enter your username"
+
+#: .\users\templates\users\profile.html:89
+#: .\users\templates\users\registration.html:52
+msgid "Email*"
+msgstr "E-mail*"
+
+#: .\users\templates\users\profile.html:93
+#, fuzzy
+#| msgid "Введіть ваш email"
+msgid "Введіть ваш email *youremail@example.com"
+msgstr "Enter your email"
+
+#: .\users\templates\users\profile.html:102
+msgid "Зберегти"
+msgstr "Save"
+
+#: .\users\templates\users\profile.html:125
+msgid "Мої замовлення"
+msgstr "My orders"
+
+#: .\users\templates\users\profile.html:139
+msgid "Замовлення № "
+msgstr "Order № "
+
+#: .\users\templates\users\profile.html:141
+msgid "Статус:"
+msgstr "Status:"
+
+#: .\users\templates\users\profile.html:154
+msgid "Товар"
+msgstr "Product"
+
+#: .\users\templates\users\profile.html:155
+msgid "Кількість"
+msgstr "Quantity"
+
+#: .\users\templates\users\profile.html:157
+msgid "Загальна вартість"
+msgstr "Total cost"
+
+#: .\users\templates\users\registration.html:12
+msgid "Реєстрація"
+msgstr "Registration"
+
+#: .\users\templates\users\registration.html:56
+msgid "Введіть ваш email"
+msgstr "Enter your email"
+
+#: .\users\templates\users\registration.html:63
+msgid "Пароль*"
+msgstr "Password*"
+
+#: .\users\templates\users\registration.html:67
+msgid "Введіть пароль"
+msgstr "Enter your password"
+
+#: .\users\templates\users\registration.html:74
+msgid "Підтвердження пароля*"
+msgstr "Confirm password*"
+
+#: .\users\templates\users\registration.html:78
+msgid "Підтвердіть пароль"
+msgstr "Confirm password"
+
+#: .\users\templates\users\registration.html:86
+msgid "Зареєструватись"
+msgstr "Register"
+
+#: .\users\views.py:56
+#, python-format
+msgid "%(username)s, Ви увійшли до облікового запису"
+msgstr "%(username)s, you have logged into your account"
+
+#: .\users\views.py:92
+#, python-format
+msgid "%(username)s, Ви успішно зареєстровані та увійшли до облікового запису"
+msgstr ""
+"%(username)s, you have successfully registered and logged into your account"
+
+#: .\users\views.py:113
+msgid "Профіль успішно оновлено"
+msgstr "Profile updated successfully"
+
+#: .\users\views.py:117
+msgid "Сталася помилка"
+msgstr "An error occurred"
+
+#: .\users\views.py:282
+msgid "Пароль успішно змінено!"
+msgstr "Password changed successfully!"
+
+#: .\users\views.py:297
+msgid "Перевірте вашу пошту. Ми надіслали інструкції для скидання пароля."
+msgstr "Check your email. We have sent instructions to reset your password."

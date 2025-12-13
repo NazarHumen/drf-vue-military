@@ -1,0 +1,331 @@
+/*h1 {*/
+/*    color: white; !* Білий колір для тексту *!*/
+/*    font-size: 3rem; !* Розмір шрифту *!*/
+/*    text-align: center; !* Вирівнювання по центру *!*/
+/*    text-transform: uppercase; !* Перетворення тексту в верхній регістр *!*/
+/*    letter-spacing: 2px; !* Відстань між літерами *!*/
+/*    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); !* Тінь для тексту *!*/
+/*    background: linear-gradient(45deg, #ff6b6b, #f7b733); !* Градієнтний фон *!*/
+/*    -webkit-background-clip: text; !* Для браузерів WebKit *!*/
+/*    -webkit-text-fill-color: transparent; !* Прозорий колір для заповнення тексту *!*/
+/*    animation: fadeIn 1s ease; !* Анімація появи *!*/
+/*}*/
+
+/*@keyframes fadeIn {*/
+/*    from {*/
+/*        opacity: 0;*/
+/*        transform: translateY(-20px); !* Зсув тексту вверх *!*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1;*/
+/*        transform: translateY(0); !* Повернення в початкове положення *!*/
+/*    }*/
+/*}*/
+
+body {
+  background-image: url("../images/sporiad.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.custom-shadow {
+  box-shadow: 5px 5px 25px 19px #000000;
+}
+
+.product_id {
+  color: gray;
+  font-size: 15px;
+}
+
+.badge.bg-warning.text-dark {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 1rem;
+  box-shadow: 2px 2px 15px 9px #000000;
+}
+
+.badge-banner {
+  top: 80%;
+  border-radius: 15px;
+  font-size: 0.7rem;
+}
+
+.product-image {
+    width: 100%;
+    height: 350px; /* Задайте висоту, яка підходить під ваш дизайн */
+    object-fit: cover; /* Це дозволить зображенню заповнити елемент зберігаючи пропорції */
+}
+/*Карусель/*
+
+/*.carousel-container {*/
+/*    display: flex; !* Встановлює гнучкий контейнер *!*/
+/*    justify-content: center; !* Вирівнює карусель по горизонталі *!*/
+/*    align-items: center; !* Вирівнює по вертикалі, якщо потрібно *!*/
+/*    min-height: 500px; !* Мінімальна висота для центрування *!*/
+/*    width: 100%;*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 130%; !* Зображення розтягується по ширині контейнера *!*/
+/*    height: 500px; !* Фіксована висота *!*/
+/*    object-fit: cover; !* Адаптує зображення, зберігаючи пропорції *!*/
+/*    border-radius: 8px; !* (Необов'язково) Округлення кутів зображення *!*/
+/*}*/
+
+/*.carousel-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 500px;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 120%; !* Збільшуємо ширину зображення *!*/
+/*    height: auto; !* Висота автоматично підлаштовується під ширину *!*/
+/*    object-fit: cover;*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*.carousel-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 700px; !* Збільшуємо висоту каруселі *!*/
+/*    width: 100%;*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 150%; !* Збільшуємо ширину зображення ще більше *!*/
+/*    height: 100%; !* Висота зображення буде на всю висоту контейнера *!*/
+/*    object-fit: cover; !* Обрізаємо зображення, щоб воно відповідало розмірам *!*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*.carousel-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 500px;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.carousel-inner {*/
+/*    width: 100%; !* Забезпечуємо, що карусель використовує всю доступну ширину *!*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 100%; !* Зображення займає всю ширину каруселі *!*/
+/*    height: auto; !* Висота підлаштовується під ширину *!*/
+/*    object-fit: cover; !* або "contain", залежно від того, як потрібно адаптувати зображення *!*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*Correct variant*/
+
+
+
+/*.carousel-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 500px; !* Мінімальна висота каруселі *!*/
+/*    width: 100%; !* Контейнер займає всю ширину *!*/
+/*}*/
+
+/*.carousel-inner {*/
+/*    width: 100%; !* Забезпечуємо адаптацію по ширині *!*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 100%; !* Зображення займає всю ширину контейнера *!*/
+/*    height: auto; !* Пропорційно адаптується по висоті *!*/
+/*    object-fit: cover; !* Робимо зображення адаптивним без спотворень *!*/
+/*    border-radius: 8px;*/
+/*}*/
+
+
+/*Correct variant*/
+/*.carousel-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 500px; !* Мінімальна висота каруселі *!*/
+/*    width: 100%; !* Контейнер займає всю ширину *!*/
+/*}*/
+
+/*.carousel-inner {*/
+/*    width: 100%; !* Забезпечуємо адаптацію по ширині *!*/
+/*}*/
+
+/*.carousel-inner img {*/
+/*    width: 100%; !* Зображення займає всю ширину контейнера *!*/
+/*    height: auto; !* Пропорційно адаптується по висоті *!*/
+/*    object-fit: cover; !* Робимо зображення адаптивним без спотворень *!*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*!* Медіа-запит для екранів шириною від 425px *!*/
+/*@media (min-width: 425px) {*/
+/*    .carousel-inner img {*/
+/*        width: 500%; !* Збільшуємо розмір зображення *!*/
+/*        object-position: center center; !* Центруємо зображення *!*/
+/*    }*/
+/*}*/
+
+
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px; /* Мінімальна висота каруселі */
+    width: 100%; /* Контейнер займає всю ширину */
+    margin: 0 auto;
+}
+
+.carousel {
+    width: 80%; /* Базова ширина */
+    max-width: 900px; /* Максимальна ширина каруселі */
+}
+
+/* Для ширини екрана до 450px */
+@media (max-width: 450px) {
+    .carousel {
+        width: 98%; /* Ширина для вузьких екранів */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  margin-top: 50px; /* Додає відступ між футером і контентом */
+}
+
+/*.search-results {*/
+/*    background: linear-gradient(to right, #ffffff, #3b4d3e);*/
+/*    -webkit-background-clip: text;*/
+/*    color: transparent;*/
+/*    font-weight: bold;*/
+/*    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); !* Легка тінь для кращого читання *!*/
+/*}*/
+
+/*.search-results{*/
+/*    background: #0a3622;*/
+/*    color: yellow;*/
+/*}*/
+.search-results {
+    background: #637247; /* Темно-зелений фон */
+    color: white; /* Жовтий колір для тексту */
+    font-size: 2rem; /* Розмір шрифту */
+    font-weight: bold; /* Жирний текст */
+    text-align: center; /* Центрування тексту */
+    padding: 20px; /* Відступи для додавання простору */
+    border-radius: 8px; /* Закруглені краї для м'якшого вигляду */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Легка тінь для чіткості тексту */
+    letter-spacing: 1px; /* Відстань між літерами */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Тінь навколо елемента для глибини */
+    transition: all 0.3s ease; /* Плавний перехід для інтерактивності */
+}
+
+/* Псевдоклас для при наведенні курсору */
+.search-results:hover {
+    background: #164c2b; /* Темніший зелений при наведенні */
+    color: #fff; /* Білий колір тексту при наведенні */
+    transform: scale(1.05); /* Легке збільшення елемента при наведенні */
+}
+
+
+
+/*.pagination {*/
+/*    position: relative;*/
+/*    z-index: 1;  !* Зробить пагінацію вище інших елементів *!*/
+/*    margin-bottom: 20px;  !* Додасть відступ перед футером *!*/
+/*}*/
+
+/*.custom-shadow {*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*}*/
+
+
+
+.price {
+    font-weight: bold; /* Задаємо жирний шрифт для всього елементу <strong> */
+    font-family: inherit; /* Наслідуємо шрифт */
+    font-size: 18px;
+}
+
+.price-usd {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg') no-repeat center;
+    background-size: cover;
+    color: transparent;
+    -webkit-background-clip: text; /* Цей стиль дозволяє показати фон тільки на тексті */
+    display: inline-block;
+    font-size: inherit; /* Наслідуємо розмір шрифта від батьківського елементу */
+    font-family: inherit; /* Наслідуємо шрифт від батьківського елементу */
+}
+
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px;
+    }
+    th, td {
+        padding: 8px;
+    }
+    .accordion-body {
+        overflow-x: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

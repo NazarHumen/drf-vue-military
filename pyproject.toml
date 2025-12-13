@@ -1,0 +1,32 @@
+[tool.black]
+line-length=79
+exclude = '''
+ (
+    /(
+          \.direnv
+        | \.eggs
+        | \.git
+        | \.hg
+        | \.mypy_cache
+        | \.nox
+        | \.tox
+        | \.venv
+        | \.svn
+        | venv
+        |_build
+        |buck-out
+        |build
+        |migrations
+        |dist
+        |__pypackages__
+        |.venv
+        |settings.py
+
+    )/
+ )
+
+'''
+[tool.isort]
+profile = "black"
+line_length=79
+skip = ["migrations", "venv", ".venv"]

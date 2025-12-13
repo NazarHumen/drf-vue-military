@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{##}
+{#{% block content %}#}
+{#<div class="container mt-5">#}
+{#    <h3>Обрані товари</h3>#}
+{#    <div class="row">#}
+{#        {% for favorite in favorites %}#}
+{#        <div class="col-md-4">#}
+{#            <div class="card">#}
+{#                <img src="{{ favorite.product.image.url }}" class="card-img-top" alt="{{ favorite.product.name }}">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">{{ favorite.product.name }}</h5>#}
+{#                    <p class="card-text">Ціна: {{ favorite.product.sell_price }} $</p>#}
+{#                    <button class="btn toggle-favorite" data-product-id="{{ favorite.product.id }}" data-favorited="true">#}
+{#                        <img src="{% static "deps/images/heart.svg" %}" class="favorite-icon filled" alt="Heart Icon">#}
+{#                    </button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% empty %}#}
+{#        <p>У вас немає обраних товарів.</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</div>#}
+{#{% endblock %}#}
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <h2>Обрані товари</h2>#}
+{##}
+{#    <div class="row">#}
+{#        {% for favorite in favorites %}#}
+{#            <div class="col-md-4">#}
+{#                <div class="card">#}
+{#                    <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" class="card-img-top">#}
+{#                    <div class="card-body">#}
+{#                        <h5 class="card-title">{{ favorite.product.name }}</h5>#}
+{#                        <p class="card-text">{{ favorite.product.description }}</p>#}
+{#                        <button class="toggle-favorite" data-product-id="{{ favorite.product.id }}"#}
+{#                            data-favorited="true" data-url-remove="{% url 'favorites:remove_favorite' %}">#}
+{#                            <i class="favorite-icon {% if favorite.product in request.user.favorites.all %}filled{% endif %}"></i>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% empty %}#}
+{#            <p>У вас немає обраних товарів.</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#{% endblock %}#}
+
+{#{% for favorite in favorites %}#}
+{#<div class="col-lg-4 col-md-6 p-4">#}
+{#    <div class="card border-0 rounded custom-shadow product-card bg-dark text-light">#}
+{#        {% if favorite.product.image %}#}
+{#            <img src="{{ favorite.product.image.url }}" class="card-img-top product-image" alt="{{ favorite.product.name }}">#}
+{#        {% else %}#}
+{#            <img src="{% static "deps/images/Not found image.png" %}" class="card-img-top product-image" alt="...">#}
+{#        {% endif %}#}
+{##}
+{#        <div class="card-body">#}
+{#            <a href="{% url "catalog:product" favorite.product.slug %}" class="text-decoration-none text-light">#}
+{#                <h5 class="card-title font-weight-bold">{{ favorite.product.name }}</h5>#}
+{#            </a>#}
+{#            <p class="card-text">{{ favorite.product.description|truncatechars:50 }}</p>#}
+{#            <p class="product-id small text-secondary">ID: {{ favorite.product.display_id }}</p>#}
+{##}
+{#            <div class="d-flex justify-content-between align-items-center">#}
+{#                <p class="mb-0"><strong>{{ favorite.product.price }} $</strong></p>#}
+{#                <button class="btn remove-from-favorites" data-product-id="{{ favorite.product.id }}">#}
+{#                    <img src="{% static "deps/images/heart.svg" %}" alt="Remove Favorite" width="32" height="32">#}
+{#                </button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#{% empty %}#}
+{#<p>У вас немає обраних товарів.</p>#}
+{#{% endfor %}#}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="text-light">Обрані товари</h3>
+    <div class="row">
+        {% for favorite in favorites %}
+        <div class="col-lg-4 col-md-6 p-4">
+            <div class="card border-0 rounded custom-shadow product-card bg-dark text-light">
+                {% if favorite.product.image %}
+                    <img src="{{ favorite.product.image.url }}" class="card-img-top product-image" alt="{{ favorite.product.name }}">
+                {% else %}
+                    <img src="{% static 'deps/images/Not found image.png' %}" class="card-img-top product-image" alt="Not Found">
+                {% endif %}
+
+                <div class="card-body">
+                    <a href="{% url 'catalog:product' favorite.product.slug %}" class="text-decoration-none text-light">
+                        <h5 class="card-title font-weight-bold">{{ favorite.product.name }}</h5>
+                    </a>
+                    <p class="card-text">{{ favorite.product.description|truncatechars:50 }}</p>
+                    <p class="product-id small text-secondary">ID: {{ favorite.product.display_id }}</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0"><strong>{{ favorite.product.price }} $</strong></p>
+{#                        <button#}
+{#                            class="btn remove-from-favorites"#}
+{#                            data-product-id="{{ favorite.product.id }}"#}
+{#                            data-url-remove="{% url 'favorites:remove_favorite' %}"#}
+{#                        >#}
+{#                            <img src="{% static 'deps/images/heart.svg' %}" alt="Remove Favorite" width="32" height="32">#}
+{#                        </button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-light">У вас немає обраних товарів.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+

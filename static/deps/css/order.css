@@ -1,0 +1,14 @@
+.input-group input[type="text"],
+.input-group input[type="number"] {
+    width: 50px;
+    height: 32px;
+    padding: 4px 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.input-group-btn .btn {
+    height: 32px;
+    padding: 4px 10px;
+    font-size: 14px;
+}

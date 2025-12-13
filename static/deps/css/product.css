@@ -1,0 +1,240 @@
+/*!* styles/product.css *!*/
+
+/* Загальні стилі для сторінки продукту */
+.container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Картка продукту */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/*.custom-shadow {*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+/*}*/
+
+/*.custom-shadow:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+/* Зображення продукту */
+.img-thumbnail {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Текст id продукту */
+.product_id {
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+}
+
+/* Назва продукту */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ціна продукту */
+.card-text strong {
+    color: green; /* Червоний колір для акценту */
+}
+
+
+/* Кнопка додавання до кошика */
+.add-to-cart {
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #495057;
+}
+
+/* Список характеристик */
+.card-footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.card-footer li {
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.card-footer li:last-child {
+    border-bottom: none;
+}
+
+/* Модальне вікно */
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-body img {
+    border-radius: 4px;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .product_id {
+        text-align: center;
+    }
+
+    .add-to-cart {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/*Характеристика*/
+.close-button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-button::before, .close-button::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-button::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/*.favorite-icon {*/
+/*    fill: none;*/
+/*    stroke: #ccc;*/
+/*    transition: stroke 0.3s ease;*/
+/*}*/
+
+/*.favorite-icon.filled {*/
+/*    fill: #ff0000;  !* Змінюємо колір на червоний при додаванні в обрані *!*/
+/*    stroke: #ff0000;*/
+/*}*/
+
+/*.heart-btn {*/
+/*    background: none;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.heart {*/
+/*    font-size: 30px;*/
+/*    color: gray; !* Сірий колір для стандартного стану *!*/
+/*    transition: color 0.3s ease;*/
+/*}*/
+
+/*.heart.filled {*/
+/*    color: red; !* Червоний колір для "додано до обраного" *!*/
+/*}*/
+
+/*.button-container {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 10px; !* Відстань між кнопками *!*/
+/*}*/
+
+/*.heart-btn {*/
+/*    background: none;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    padding: 0;*/
+/*    display: inline-flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.heart {*/
+/*    font-size: 40px; !* Збільшений розмір серця *!*/
+/*    color: gray; !* Колір для стандартного стану *!*/
+/*    transition: color 0.3s ease;*/
+/*}*/
+
+/*.heart.filled {*/
+/*    color: red; !* Колір для "додано до обраного" *!*/
+/*}*/
+
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Відстань між кнопками */
+}
+
+.heart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.heart {
+    font-size: 40px; /* Збільшений розмір серця */
+    color: gray; /* Колір для стандартного стану */
+    transition: color 0.3s ease;
+    vertical-align: middle; /* Вирівнює серце по центру */
+    margin-top: 2px; /* Додає невеликий відступ зверху */
+}
+
+.heart.filled {
+    color: black; /* Колір для "додано до обраного" */
+}
+
+.add-to-favorites {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0ad4e;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-to-favorites:hover {
+    background-color: #ec971f;
+}
+
+.add-to-favorites.favorited {
+    background-color: #5bc0de;
+}
+
+.add-to-favorites.favorited:hover {
+    background-color: #31b0d5;
+}
+
+
+
+

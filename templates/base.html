@@ -1,0 +1,317 @@
+{% load static %}
+{% load goods_tags %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="{% static "deps/css/bootstrap/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet">
+    <!-- Стиль footer-a для главної сторінки -->
+    {% block css %}
+    {% endblock %}
+    <!-- Favicons for different platforms -->
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static "deps/favicon/gun.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static "deps/favicon/gun.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static "deps/favicon/gun.png" %}">
+    <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main:index' %}">Military</a>
+        <div class="d-flex align-items-center">
+
+            <form class="d-inline-flex me-auto "
+                  action="{% url 'set_language' %}"
+                  method="post" id="languageForm">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select class="form-control " name="language"
+                        id="languageSelect">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %}
+                                selected{% endif %}>
+                            {{ language.code|upper }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {#                {% load i18n %}#}
+
+            {#<form class="d-inline-flex" action="{% url 'set_language' %}" method="post">{% csrf_token %}#}
+            {#    <input name="next" type="hidden" value="{{ redirect_to }}">#}
+            {#    <select class="form-control" name="language">#}
+            {#        {% get_current_language as LANGUAGE_CODE %}#}
+            {#        {% get_available_languages as LANGUAGES %}#}
+            {#        {% get_language_info_list for LANGUAGES as languages %}#}
+            {#        {% for language in languages %}#}
+            {#            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
+            {#                {{ language.name_local }} {{ language.code }}#}
+            {#            </option>#}
+            {#        {% endfor %}#}
+            {#    </select>#}
+            {#    <input type="submit" value="Go">#}
+            {#</form>#}
+
+            {#            <form class="d-inline-flex" action="{% url 'set_language' %}" method="post" id="languageForm">#}
+            {#    {% csrf_token %}#}
+            {#    <input name="next" type="hidden" value="{{ redirect_to }}">#}
+            {#    <select class="form-control" name="language" id="languageSelect">#}
+            {#        {% get_current_language as LANGUAGE_CODE %}#}
+            {#        {% get_available_languages as LANGUAGES %}#}
+            {#        {% get_language_info_list for LANGUAGES as languages %}#}
+            {#        {% for language in languages %}#}
+            {#            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
+            {#                {{ language.name_local }} {{ language.code }}#}
+            {#            </option>#}
+            {#        {% endfor %}#}
+            {#    </select>#}
+            {#</form>#}
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle text-white" href="#"
+                           role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {% translate "Інформація" %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item  text-white"
+                                   href="{% url "main:delivery_and_payment" %}"> {% translate "Доставка і оплата" %}</a>
+                            </li>
+                            <li><a class="dropdown-item  text-white"
+                                   href="{% url "main:contact" %}">{% translate "Контактна інформація" %}</a>
+                            </li>
+                            <li><a class="dropdown-item  text-white"
+                                   href="{% url "main:about" %}">{% translate "Про нас" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {#                        <li class="nav-item">#}
+                    {#                            <a class="nav-link  text-white" href="{% url "user:users_cart" %}">Кошик</a>#}
+                    {#                        </li>#}
+
+
+
+                    {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link  text-white"
+                               href="{% url "login" %}">{% translate "Вхід" %}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-white"
+                               href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                {% translate "Мій профіль" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item  text-white"
+                                       href="{% url "users_cart" %}">{% translate "Кошик" %}</a>
+                                </li>
+                                <li><a class="dropdown-item  text-white"
+                                       href="{% url "profile" %}">{% translate "Особистий кабінет" %}</a>
+                                </li>
+                                {% if user.is_admin or user.is_staff %}
+                                    <li><a class="dropdown-item  text-white"
+                                           href="{% url "admin:index" %}">{% translate "Адмін панель" %}</a>
+                                    </li>
+                                {% endif %}
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item  text-white"
+                                       href="{% url "logout" %}">{% translate "Вихід" %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+
+
+                <form class="d-flex" role="search"
+                      action="{% url "catalog:search" %}" method="get">
+                    <input class="form-control me-2" type="search" name="q"
+                           placeholder="{% translate "Search" %}"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success text-white"
+                            type="submit">{% translate "Search" %}</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<section>
+    <div class="container">
+
+        <!-- Каталог и корзина с фиксированным расположением на странице -->
+
+
+        {#        <div class="d-flex justify-content-start align-items-center mt-1 position-fixed z-3">#}
+        {#    <div class="d-flex justify-content-start align-items-center fixed-top-buttons">#}
+        <div class="d-flex justify-content-start align-items-center fixed-top-buttons"
+             style="margin-top: 6px;">
+
+
+            <!-- Каталог -->
+            <div class="dropdown  mb-2 me-2">
+                <button class="btn btn-secondary dropdown-toggle btn-dark"
+                        type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    {% translate "Каталог" %}
+                    <img class="mx-1"
+                         src="{% static "deps/icons/grid-fill.svg" %}"
+                         alt="Catalog Icon" width="16"
+                         height="16">
+                </button>
+                <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
+                    {% tag_categories as categories %}
+                    {% for category in categories %}
+                        <li><a class="dropdown-item text-white"
+                               href="{% url "catalog:index" category.slug %}">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            {% if show_filters %}
+                <div class="dropdown mb-2 me-2">
+                    <button class="btn btn-secondary dropdown-toggle btn-dark"
+                            type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        {% translate "Фільтри" %}
+                    </button>
+
+                    {#    <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">#}
+                    <form action="
+
+
+                            {% if request.GET.q %}{% url 'catalog:search' %}{% elif slug_url %}{% url 'catalog:index' slug_url %}{% else %}#{% endif %}"
+                          method="get"
+                          class="dropdown-menu bg-dark"
+                          data-bs-theme="dark">
+
+
+                        <div class="form-check text-white mx-3">
+                            <input class="form-check-input" type="checkbox"
+                                   name="on_sale" id="flexCheckDefault"
+                                   value="on"
+                                   {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+                            {% if request.GET.q %}
+                                <input type="hidden" name="q"
+                                       value="{{ request.GET.q }}">
+
+                            {% endif %}
+
+                            <label class="form-check-label"
+                                   for="flexCheckDefault">
+                                {% translate "Товари зі знижками" %}
+                            </label>
+                        </div>
+                        <p class="text-white mx-3 mt-3">{% translate "Сортувати:" %}</p>
+                        <div class="form-check text-white mx-3">
+                            <input class="form-check-input" type="radio"
+                                   name="order_by" id="flexRadioDefault1"
+                                   value="default"
+                                   {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked {% endif %}>
+                            <label class="form-check-label"
+                                   for="flexRadioDefault1">
+                                {% translate "За замовчуванням" %}
+                            </label>
+                        </div>
+                        <div class="form-check text-white mx-3">
+                            <input class="form-check-input" type="radio"
+                                   name="order_by" id="flexRadioDefault2"
+                                   value="price"
+                                   {% if request.GET.order_by == 'price' %}checked{% endif %}>
+                            <label class="form-check-label"
+                                   for="flexRadioDefault2">
+                                {% translate "Від дешевих до дорогих" %}
+                            </label>
+                        </div>
+                        <div class="form-check text-white mx-3">
+                            <input class="form-check-input" type="radio"
+                                   name="order_by" id="flexRadioDefault3"
+                                   value="-price"
+                                   {% if request.GET.order_by == '-price' %}checked{% endif %}>
+                            <label class="form-check-label"
+                                   for="flexRadioDefault3">
+                                {% translate "Від дорогих до дешевих" %}
+                            </label>
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary mx-3 mt-3">{% translate "Застосувати" %}
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+
+
+
+            <!-- Значек корзины, вызывает модальное окно -->
+            {% block model_cart %}{% endblock %}
+            <!-- Закончилась разметка модального окна -->
+
+            {#                            {% include 'includes/favorites_button.html' %}#}
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Контент -->
+    <div class="container">
+        <div class="row mt-1">
+            <div class="col-lg-2">
+                <!-- Пустой блок на Ваше усмотрение -->
+            </div>
+            <div class="col-lg-10">
+                <!-- Контент на странице -->
+                {% include "includes/notifications.html" %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+{% block footer %}
+{% endblock %}
+
+<script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
+<script src="{% static "deps/js/jquery-ajax.js" %}"></script>
+<script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js " %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
+
+{% endblock %}
+
+{% block model_cart %}
+    {% include 'includes/cart_button.html' %}
+{% endblock %}
+
+{#{% block content %}#}
+{#    <h1 class="mt-5 pt-5" ><strong>{{ content }}</strong></h1>#}
+{#{% endblock %}#}
+{% block content %}
+{#    <div class="carousel-container mt-5">#}
+{#        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" style="width: 80%; max-width: 900px; margin: 0 auto;">#}
+{#            <div class="carousel-inner">#}
+{#                <div class="carousel-item active">#}
+{#                    <img src="{% static 'deps/images/p2.jpeg' %}" class="d-block w-100" alt="Зображення 1">#}
+{#                </div>#}
+{#                <div class="carousel-item">#}
+{#                    <img src="{% static 'deps/images/p3.jpeg' %}" class="d-block w-100" alt="Зображення 2">#}
+{#                </div>#}
+{#                <div class="carousel-item">#}
+{#                    <img src="{% static 'deps/images/p4.jpeg' %}" class="d-block w-100" alt="Зображення 3">#}
+{#                </div>#}
+{#            </div>#}
+{#            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">#}
+{#                <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#                <span class="visually-hidden">Попередній</span>#}
+{#            </button>#}
+{#            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">#}
+{#                <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#                <span class="visually-hidden">Наступний</span>#}
+{#            </button>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="carousel-container mt-5">
+    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'deps/images/p2.jpeg' %}" class="d-block w-100" alt="Зображення 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'deps/images/p3.jpeg' %}" class="d-block w-100" alt="Зображення 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'deps/images/p4.jpeg' %}" class="d-block w-100" alt="Зображення 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Попередній</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Наступний</span>
+        </button>
+    </div>
+</div>
+
+    <h1 class="mt-5 pt-5"><strong>{{ content }}</strong></h1>
+{% endblock %}
+
+{% block footer %}
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Nazarii Humen 2024</p>
+        </div>
+    </footer>
+{% endblock %}
+
+
+

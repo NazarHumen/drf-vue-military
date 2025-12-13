@@ -1,0 +1,632 @@
+[
+{
+  "model": "goods.productattribute",
+  "pk": 4,
+  "fields": {
+    "product": 26,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 5,
+  "fields": {
+    "product": 26,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 6,
+  "fields": {
+    "product": 26,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 7,
+  "fields": {
+    "product": 26,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 8,
+  "fields": {
+    "product": 26,
+    "key": "Колір",
+    "value": "Хакі"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 9,
+  "fields": {
+    "product": 27,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 10,
+  "fields": {
+    "product": 27,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 11,
+  "fields": {
+    "product": 27,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 12,
+  "fields": {
+    "product": 27,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 13,
+  "fields": {
+    "product": 27,
+    "key": "Колір",
+    "value": "Мультикам"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 14,
+  "fields": {
+    "product": 28,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 15,
+  "fields": {
+    "product": 28,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 16,
+  "fields": {
+    "product": 28,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 17,
+  "fields": {
+    "product": 28,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 18,
+  "fields": {
+    "product": 28,
+    "key": "Колір",
+    "value": "Койот"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 19,
+  "fields": {
+    "product": 29,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 20,
+  "fields": {
+    "product": 29,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 21,
+  "fields": {
+    "product": 29,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 22,
+  "fields": {
+    "product": 29,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 23,
+  "fields": {
+    "product": 29,
+    "key": "Колір",
+    "value": "Олива"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 24,
+  "fields": {
+    "product": 30,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 25,
+  "fields": {
+    "product": 30,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 26,
+  "fields": {
+    "product": 30,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 27,
+  "fields": {
+    "product": 30,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 28,
+  "fields": {
+    "product": 30,
+    "key": "Колір",
+    "value": "Чорний"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 29,
+  "fields": {
+    "product": 31,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 30,
+  "fields": {
+    "product": 31,
+    "key": "Стан",
+    "value": "Новий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 31,
+  "fields": {
+    "product": 31,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 32,
+  "fields": {
+    "product": 31,
+    "key": "Колір",
+    "value": "Олива"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 33,
+  "fields": {
+    "product": 31,
+    "key": "Система кріплення спорядження",
+    "value": "MOLLE"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 39,
+  "fields": {
+    "product": 33,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 40,
+  "fields": {
+    "product": 33,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 41,
+  "fields": {
+    "product": 33,
+    "key": "Тип",
+    "value": "Бронеплита"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 42,
+  "fields": {
+    "product": 33,
+    "key": "Місце захисту",
+    "value": "Груди, Живіт"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 43,
+  "fields": {
+    "product": 33,
+    "key": "Клас захисту",
+    "value": "3"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 44,
+  "fields": {
+    "product": 34,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 45,
+  "fields": {
+    "product": 34,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 46,
+  "fields": {
+    "product": 34,
+    "key": "Тип",
+    "value": "Бронеплита"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 47,
+  "fields": {
+    "product": 34,
+    "key": "Місце захисту",
+    "value": "Груди, Живіт"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 48,
+  "fields": {
+    "product": 34,
+    "key": "Клас захисту",
+    "value": "3"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 49,
+  "fields": {
+    "product": 36,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 50,
+  "fields": {
+    "product": 36,
+    "key": "Тип",
+    "value": "Бронешлем"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 51,
+  "fields": {
+    "product": 36,
+    "key": "Клас захисту",
+    "value": "3А"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 52,
+  "fields": {
+    "product": 36,
+    "key": "Матеріал",
+    "value": "Кевлар"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 53,
+  "fields": {
+    "product": 36,
+    "key": "Колір",
+    "value": "Оливковий"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 54,
+  "fields": {
+    "product": 37,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 55,
+  "fields": {
+    "product": 37,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 56,
+  "fields": {
+    "product": 37,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 57,
+  "fields": {
+    "product": 37,
+    "key": "Міжнародний розмір",
+    "value": "Універсальний"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 58,
+  "fields": {
+    "product": 37,
+    "key": "Візерунки і принти",
+    "value": "Піксель"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 59,
+  "fields": {
+    "product": 38,
+    "key": "Виробник",
+    "value": "UkrArmor"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 60,
+  "fields": {
+    "product": 38,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 61,
+  "fields": {
+    "product": 38,
+    "key": "Матеріал",
+    "value": "Cordura"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 62,
+  "fields": {
+    "product": 38,
+    "key": "Міжнародний розмір",
+    "value": "Універсальний"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 63,
+  "fields": {
+    "product": 38,
+    "key": "Візерунки і принти",
+    "value": "Мультикам"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 64,
+  "fields": {
+    "product": 39,
+    "key": "Колір",
+    "value": "Койот"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 65,
+  "fields": {
+    "product": 39,
+    "key": "Міжнародний розмір",
+    "value": "M/L"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 66,
+  "fields": {
+    "product": 39,
+    "key": "Матеріал",
+    "value": "Поліетиленові пластини"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 67,
+  "fields": {
+    "product": 39,
+    "key": "Тип",
+    "value": "Броньошолом"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 68,
+  "fields": {
+    "product": 39,
+    "key": "Вага",
+    "value": "1.5"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 69,
+  "fields": {
+    "product": 40,
+    "key": "Колір",
+    "value": "Койот"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 70,
+  "fields": {
+    "product": 40,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 71,
+  "fields": {
+    "product": 40,
+    "key": "Виробник",
+    "value": "Ranger"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 72,
+  "fields": {
+    "product": 40,
+    "key": "Розмір",
+    "value": "XL"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 73,
+  "fields": {
+    "product": 40,
+    "key": "Матеріал",
+    "value": "Кевлар"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 74,
+  "fields": {
+    "product": 41,
+    "key": "Країна виробник",
+    "value": "Україна"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 75,
+  "fields": {
+    "product": 41,
+    "key": "Колір",
+    "value": "Зелений"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 76,
+  "fields": {
+    "product": 41,
+    "key": "Виробник",
+    "value": "Ranger"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 77,
+  "fields": {
+    "product": 41,
+    "key": "Розмір",
+    "value": "XL"
+  }
+},
+{
+  "model": "goods.productattribute",
+  "pk": 78,
+  "fields": {
+    "product": 41,
+    "key": "Матеріал",
+    "value": "Кевлар"
+  }
+}
+]

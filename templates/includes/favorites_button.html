@@ -1,0 +1,77 @@
+{#{% load static %}#}
+{##}
+{#<div>#}
+{#    <!-- Кнопка обраних товарів -->#}
+{#    <button type="button" class="btn btn-dark btn-secondary d-flex" id="favoritesModalButton" aria-expanded="false">#}
+{#        <img class="mx-1" src="{% static 'deps/images/heart.svg' %}" alt="Favorites Icon" width="24" height="24">#}
+{#        <span id="goods-in-favorites-count">{{ favorites_count }}</span>#}
+{#    </button>#}
+{#</div>#}
+{##}
+{#<!-- Модальне вікно для обраних товарів -->#}
+{#<div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">#}
+{#    <div class="modal-dialog modal-dialog-scrollable">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <h3 class="text-center mb-4">Обрані товари</h3>#}
+{#                <div class="container" id="favorites-items-container">#}
+{#                    <!-- Виведення обраних товарів -->#}
+{#                    {% for favorite in favorites %}#}
+{#                        <div class="favorite-item">#}
+{#                            <p>{{ favorite.product.name }}</p>#}
+{#                            <p>{{ favorite.product.price }} грн</p>#}
+{#                            <!-- Додаткові деталі товару -->#}
+{#                        </div>#}
+{#                    {% empty %}#}
+{#                        <p>У вас немає обраних товарів.</p>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+{% load static %}
+
+<div>
+    {#    <button type="button" class="btn btn-dark btn-secondary d-flex" id="favoritesModalButton" data-favorites-url="{% url 'favorites:list' %}" aria-expanded="false">#}
+    {#        <img class="mx-1" src="{% static 'deps/images/heart.svg' %}" alt="Favorites Icon" width="24" height="24">#}
+    {#        <span id="goods-in-favorites-count">{{ favorites_count }}</span>#}
+    {#    </button>#}
+    <div>
+        {#    <a href="{% url 'favorites:list' %}" class="btn btn-dark btn-secondary d-flex">#}
+        {#        <img class="mx-1" src="{% static 'deps/images/heart.svg' %}" alt="Favorites Icon" width="24" height="24">#}
+        {#        <span id="goods-in-favorites-count">{{ favorites_count }}</span>#}
+        {#    </a>#}
+        <a href="{% url 'favorites:list' %}"
+           class="btn btn-dark btn-secondary d-flex">
+            <img class="mx-1" src="{% static 'deps/images/heart.svg' %}"
+                 alt="Favorites Icon" width="24" height="24">
+            <span class="favorites-count">{{ favorites_count }}</span>
+        </a>
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="favoritesModal" tabindex="-1"
+     aria-labelledby="favoritesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center mb-4">Обрані товари</h3>
+                <div class="container" id="favorites-items-container">
+                    <!-- AJAX-відповідь із товарами -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

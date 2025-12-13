@@ -1,0 +1,186 @@
+/* styles.css */
+/*.container {*/
+/*    background-color: #ffffff;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    border-radius: 10px;*/
+/*    padding: 30px;*/
+/*}*/
+
+h2, h3 {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+.home-sci {
+    margin-top: 30px;
+}
+
+.home-sci a {
+    font-size: 24px;
+    color: #333;
+    margin-right: 15px;
+    transition: color 0.3s;
+
+}
+
+.home-sci a:hover {
+    color: #007bff;
+}
+
+.custom-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.pt-5 {
+    padding-top: 3rem;
+}
+
+/*delivery*/
+/* Основні стилі секцій */
+.section {
+    margin-bottom: 40px;
+}
+
+.section h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+
+
+
+}
+
+.section p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Інформаційні бокси */
+.info-box.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-left: 5px solid #ffeeba;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Стилі для методів доставки та оплати */
+.delivery-methods,
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.delivery-methods div,
+.payment-methods div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-methods img,
+.payment-methods img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.icon-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Повернення */
+.section:last-child p {
+    margin-bottom: 0;
+}
+h3 {
+    margin-top: 10px; /* або інше значення для коригування відступу */
+}
+
+
+/*контакт*/
+/* Загальний стиль для секції */
+.section {
+  padding: 20px;
+  background-color: #f9f9f9;
+
+}
+
+/* Заголовки */
+.section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.section h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #34495e;
+}
+
+/* Текст */
+.section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Іконки */
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Зображення */
+.custom-image {
+  max-height: 300px;
+  object-fit: cover;
+}
+/*.btn-block {*/
+/*    width: 40%;*/
+/*    margin: 0 auto; !* Центрування по горизонталі *!*/
+/*    display: block; !* Забезпечує блоковий контекст *!*/
+/*}*/
+
+.btn-block {
+    width: 40%;
+    margin: 0 auto; /* Центрування кнопки */
+    display: block; /* Забезпечує блоковий контекст */
+    margin-bottom: 20px; /* Відступ від футера */
+}
+
+footer {
+  margin-top: 50px; /* Додає відступ між футером і контентом */
+}
+
+
+

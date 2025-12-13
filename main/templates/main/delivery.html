@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+{#    <link rel="stylesheet" href="{% static 'deps/css/my_footer_css.css' %}">#}
+    <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5 bg-white custom-shadow rounded">
+    <!-- Доставка -->
+    <div class="section">
+        <h2>{% translate "Доставка" %}</h2>
+        <p>{% translate "Обробка та відправка замовлень відбувається без вихідних (24 на 7)." %}</p>
+        <div class="info-box warning">
+            {% translate "Шановні клієнти! У зв'язку з відключенням світла по всій території України терміни доставки товарів можуть бути змінені." %}
+        </div>
+        <div class="delivery-methods">
+            <div>
+                <img src="{% static 'deps/images/ukrposhta.png' %}" alt="Укрпошта">
+                <span class="icon-text">{% translate "Укрпошта" %}</span>
+            </div>
+            <div>
+                <img src="{% static 'deps/images/nova.png' %}" alt="Нова Пошта">
+                <span class="icon-text">{% translate "Нова Пошта" %}</span>
+            </div>
+        </div>
+        <h3>{% translate "Термін доставки" %}</h3>
+        <p>{% translate "Здійснюємо відправлення щодня з 14:00 до 18:00 (так, ми відправляємо двічі на день), у вихідні дні до 17:00 (у вихідні пошта закривається раніше)." %}</p>
+    </div>
+
+    <!-- Оплата -->
+    <div class="section">
+        <h2>{% translate "Оплата" %}</h2>
+        <p>{% translate "Купуй без передоплати та жодних прихованих платежів." %}</p>
+        <div class="info-box warning">
+            {% translate "Шановні клієнти! Ми надсилаємо замовлення післяплатою, без будь-яких передоплат." %}
+        </div>
+        <div class="payment-methods">
+            <div>
+                <img src="{% static 'deps/images/платіжні карти.png' %}" alt="Платіжні картки">
+                <span class="icon-text">{% translate "Платіжні картки (Visa, MasterCard, Google Pay, Apple Pay)" %}</span>
+            </div>
+            <div>
+                <img src="{% static 'deps/images/післяплати.png' %}" alt="Післяплата">
+                <span class="icon-text">{% translate "Післяплата" %}</span>
+            </div>
+            <div>
+                <img src="{% static 'deps/images/оплата за реквізитами.png' %}" alt="Оплата за реквізитами">
+                <span class="icon-text">{% translate "Оплата за реквізитами" %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Повернення -->
+    <div class="section">
+        <h2>{% translate "Повернення" %}</h2>
+        <p>{% translate "Можливий протягом 14 днів із дня покупки, якщо не було зовнішніх слідів експлуатації." %}</p>
+        <p>{% translate "*Однак є винятки, вони вказані у ЗУ 'Про захист прав споживачів'." %}</p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+{% block footer %}
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Nazarii Humen 2024</p>
+        </div>
+    </footer>
+{% endblock %}

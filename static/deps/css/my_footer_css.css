@@ -1,0 +1,53 @@
+/*footer {*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    background-color: #343a40;*/
+/*    padding: 20px 0;*/
+/*    margin-top: 50px;*/
+/*  }*/
+/*!* Основний контейнер сторінки *!*/
+/*body {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    min-height: 100vh;*/
+/*    margin: 0;*/
+/*}*/
+
+/*!* Основний контент *!*/
+/*main {*/
+/*    flex: 1;*/
+/*}*/
+
+/*!* Футер *!*/
+/*footer {*/
+/*    background-color: #343a40;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 20px 0;*/
+/*}*/
+
+/* Основний стиль сторінки */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Висота на весь екран */
+    margin: 0;
+}
+
+/* Головний контент */
+main {
+    flex: 1; /* Контент займає весь доступний простір */
+    padding: 20px; /* Відступ для зручності */
+}
+
+/* Футер */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Зміщує футер вниз */
+}
+
+

@@ -1,0 +1,26 @@
+[
+{
+  "model": "goods.categories",
+  "pk": 13,
+  "fields": {
+    "name": "Бронеплити",
+    "slug": "bronepliti"
+  }
+},
+{
+  "model": "goods.categories",
+  "pk": 15,
+  "fields": {
+    "name": "Тактичні плитоноски",
+    "slug": "taktichni-plitonoski"
+  }
+},
+{
+  "model": "goods.categories",
+  "pk": 16,
+  "fields": {
+    "name": "Шоломи військові",
+    "slug": "sholomi-vijskovi"
+  }
+}
+]
