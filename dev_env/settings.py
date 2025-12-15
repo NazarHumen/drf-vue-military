@@ -13,12 +13,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import json
-from django.utils.translation import gettext_lazy as _
 
+from allauth.headless.contrib import rest_framework
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -28,7 +28,6 @@ DEBUG = os.getenv("DEBUG", False) == "true"
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALLOWED_HOSTS = json.loads(os.getenv("ALLOWED_HOSTS", "[]"))
-
 
 # Application definition
 
@@ -47,7 +46,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django.contrib.sites",  # +
+
+    # Third party apps
     "debug_toolbar",
+    "rest_framework",
+
+    # Local apps
+    "apps.api",
     "main",
     "goods",
     "users",
@@ -91,9 +96,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = "dev_env.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -129,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -142,7 +144,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 LANGUAGES = [
     ("en", "English"),
     ("uk", "Ukrainian"),
@@ -152,7 +153,6 @@ LOCALE_PATHS = [
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = "uk"
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -169,7 +169,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

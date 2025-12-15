@@ -13,3 +13,4 @@ exclude =
     rabbitmq.py,
     .venv,
     settings.py
+ignore = W391
