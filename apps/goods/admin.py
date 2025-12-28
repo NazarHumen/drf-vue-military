@@ -1,40 +1,12 @@
-# from django.contrib import admin
-#
-# # Register your models here.
-# from goods.models import Categories, Products, ProductAttribute
-#
-#
-# # admin.site.register(Products)
-#
-#
-# @admin.register(Categories)
-# class CategoriesAdmin(admin.ModelAdmin):
-#     prepopulated_fields = {"slug": ("name",)}
-#
-#
-# @admin.register(Products)
-# class ProductsAdmin(admin.ModelAdmin):
-#     prepopulated_fields = {"slug": ("name",)}
-#
-# class ProductAttributeInline(admin.TabularInline):
-#     model = ProductAttribute  # Додаємо модель характеристик у вигляді інлайн-форми
-#     extra = 1  # Кількість порожніх рядків для додавання
-#     verbose_name = "Характеристика"
-#     verbose_name_plural = "Характеристики"
-#
-# @admin.register(Products)
-# class ProductsAdmin(admin.ModelAdmin):
-#     prepopulated_fields = {"slug": ("name",)}
-#     inlines = [ProductAttributeInline]
-from modeltranslation.admin import TranslationAdmin
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
-from goods.models import (
+from apps.goods.models import (  # Додано ProductAttribute
     Categories,
-    Products,
-    ProductAttribute,
     ExchangeRate,
-)  # Додано ProductAttribute
+    ProductAttribute,
+    Products,
+)
 
 
 class ProductAttributeInline(admin.TabularInline):
@@ -89,14 +61,6 @@ class ProductsAdmin(TranslationAdmin):
         "exchange_rate",
     ]
     readonly_fields = ["price_in_usd", "price_in_uah"]
-
-
-# class ExchangeRateAdmin(admin.ModelAdmin):
-#     list_display = ('base_currency', 'target_currency', 'rate', 'updated_at')  # Показуємо ці поля в списку
-#     list_filter = ('base_currency', 'target_currency')  # Додаємо фільтри по валютам
-#     search_fields = ('base_currency', 'target_currency')  # Додаємо пошук по валютам
-#
-# admin.site.register(ExchangeRate, ExchangeRateAdmin)
 
 
 @admin.register(ExchangeRate)

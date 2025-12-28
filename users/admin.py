@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from carts.admin import CartTabAdmin
-from goods.models import Categories
+from apps.goods.models import Categories
 from orders.admin import OrderTabulareAdmin
 from users.models import User
 

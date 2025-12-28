@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import (
     settings,
 )  # Використовується для доступу до AUTH_USER_MODEL
-from goods.models import (
+from apps.goods.models import (
     Products,
 )  # Припускаємо, що ваша модель товарів називається Products
 
@@ -28,4 +28,3 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.product}"
-

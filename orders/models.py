@@ -1,5 +1,5 @@
 from django.db import models
-from goods.models import Products
+from apps.goods.models import Products
 
 from users.models import User
 from django.utils.translation import gettext_lazy as _
