@@ -1,14 +1,8 @@
 from decimal import Decimal
 
-from django.urls import reverse
-from django.db import models
 import requests
-
-from django.core.cache import cache
-from django.utils.timezone import now, timedelta
-
-from django.forms import CharField
-
+from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -166,12 +160,16 @@ class Products(models.Model):
 
     # def get_exchange_rate(self, base_currency='USD', target_currency='UAH'):
     #     """Отримуємо курс валют або використовуємо вручну заданий курс."""
-    #     if self.exchange_rate and self.currency == base_currency and target_currency != base_currency:
+    #     if self.exchange_rate and self.currency ==
+    #     base_currency and target_currency != base_currency:
     #         return self.exchange_rate
     #     return None  # Не викликаємо API
 
     def get_exchange_rate(self, base_currency="USD", target_currency="UAH"):
-        """Отримуємо курс валют з БД або через API, якщо він не знайдений."""
+        """
+        Отримуємо курс валют з БД або через API,
+        якщо він не знайдений.
+        """
         try:
             rate = ExchangeRate.objects.get(
                 base_currency=base_currency, target_currency=target_currency

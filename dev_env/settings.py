@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     # Local apps
     "apps.api",
     "main",
-    "goods",
+    "apps.goods",
     "users",
     "carts",
     "orders",

@@ -1,8 +1,7 @@
+from django import template
 from django.utils.http import urlencode
 
-from goods.models import Categories
-
-from django import template
+from apps.goods.models import Categories
 
 register = template.Library()
 
