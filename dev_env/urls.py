@@ -42,7 +42,7 @@ urlpatterns = [
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
     path("", include("main.urls", namespace="main")),
-    path("catalog/", include("goods.urls", namespace="catalog")),
+    # path("catalog/", include("apps.goods.urls", namespace="catalog")),
     path("users/", include("users.urls")),
     path("cart/", include("carts.urls", namespace="cart")),
     path("orders/", include("orders.urls", namespace="orders")),
