@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView
 from django.http import JsonResponse
-from goods.models import Categories
+from apps.goods.models import Categories
 from main.models import Feedback
 from main.forms import FeedbackForm
 from django.urls import reverse
