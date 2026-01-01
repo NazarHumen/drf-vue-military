@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views import View
 from .models import Favorite
-from goods.models import Products
+from apps.goods.models import Products
 from django.views.generic.list import ListView
 
 
