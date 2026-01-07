@@ -44,7 +44,7 @@ urlpatterns = [
     path("", include("main.urls", namespace="main")),
     # path("catalog/", include("apps.goods.urls", namespace="catalog")),
     path("users/", include("users.urls")),
-    path("cart/", include("carts.urls", namespace="cart")),
+    # path("cart/", include("apps.carts.urls", namespace="cart")),
     path("orders/", include("orders.urls", namespace="orders")),
     path("favorites/", include("favorites.urls")),
     path("accounts/", include("allauth.urls")),
