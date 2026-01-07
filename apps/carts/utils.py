@@ -1,4 +1,4 @@
-from carts.models import Cart
+from apps.carts.models import Cart
 
 
 def get_user_carts(request):

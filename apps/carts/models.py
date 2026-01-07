@@ -1,6 +1,7 @@
 from django.db import models
-from users.models import User
+
 from apps.goods.models import Products
+from users.models import User
 
 
 # Create your models here.
@@ -15,7 +16,8 @@ class CartQueryset(models.QuerySet):
 
     # def total_price_usd(self):
     #     return sum(
-    #         cart.product.convert_currency("USD") * cart.quantity for cart in self)
+    #         cart.product.convert_currency("USD") *
+    #         cart.quantity for cart in self)
 
     def total_price_usd(self):
         return sum(cart.products_price_usd() for cart in self)
@@ -60,6 +62,14 @@ class Cart(models.Model):
         user_info = self.user.username if self.user else "Anonymous user"
         product_info = self.product.name if self.product else "Unknown product"
         # if self.user:
-        #     return f"Кошик {self.user.username} | Товар {self.product.name} | Кількість {self.quantity}"
-        # return f"Кошик {self.user.username} | Товар {self.product.name} | Кількість {self.quantity}"
-        return f"Кошик {user_info} | Товар {product_info} | Кількість {self.quantity}"
+        #     return f"Кошик {self.user.username}
+        #     | Товар {self.product.name}
+        #     | Кількість {self.quantity}"
+        # return f"Кошик {self.user.username}
+        # | Товар {self.product.name}
+        # | Кількість {self.quantity}"
+        return (
+            f"Кошик {user_info} "
+            f"| Товар {product_info} "
+            f"| Кількість {self.quantity}"
+        )
