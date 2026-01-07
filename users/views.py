@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from carts.models import Cart
+from apps.carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 from django.db.models import Prefetch
 from orders.models import Order, OrderItem
