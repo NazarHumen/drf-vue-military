@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.carts.models import Cart
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 from django.db.models import Prefetch
-from orders.models import Order, OrderItem
+from apps.orders.models import Order, OrderItem
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.views import PasswordResetView
