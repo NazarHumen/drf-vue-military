@@ -3,7 +3,7 @@ from django.contrib import admin
 from apps.carts.admin import CartTabAdmin
 from apps.goods.models import Categories
 from apps.orders.admin import OrderTabulareAdmin
-from users.models import User
+from apps.users.models import User
 
 
 # Register your models here.

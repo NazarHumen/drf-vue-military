@@ -5,7 +5,7 @@ from django.contrib.auth.forms import (
     UserChangeForm,
 )
 
-from users.models import User
+from apps.users.models import User
 
 
 class UserLoginForm(AuthenticationForm):
@@ -15,21 +15,6 @@ class UserLoginForm(AuthenticationForm):
 
     username = forms.CharField()
     password = forms.CharField()
-
-    # username = forms.CharField(
-    #     label= "Ім'я",
-    #
-    #     widget=forms.TextInput(attrs={"autofocus": True,
-    #                                   "class": "form-control",
-    #                                   "placeholder": "Введіть ім'я користувача"})
-    # )
-    # password = forms.CharField(
-    #     label = "Пароль",
-    #
-    #     widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
-    #                                       "class": "form-control",
-    #                                       "placeholder": "Введіть ваш пароль"})
-    # )
 
 
 class UserRegistrationForm(UserCreationForm):
