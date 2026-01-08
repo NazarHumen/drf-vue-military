@@ -45,7 +45,7 @@ urlpatterns = [
     # path("catalog/", include("apps.goods.urls", namespace="catalog")),
     path("users/", include("users.urls")),
     # path("cart/", include("apps.carts.urls", namespace="cart")),
-    path("orders/", include("orders.urls", namespace="orders")),
+    # path("orders/", include("apps.orders.urls", namespace="orders")),
     path("favorites/", include("favorites.urls")),
     path("accounts/", include("allauth.urls")),
     prefix_default_language=False,
