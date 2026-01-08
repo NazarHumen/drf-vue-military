@@ -1,8 +1,8 @@
 from django.db import models
-from apps.goods.models import Products
-
-from users.models import User
 from django.utils.translation import gettext_lazy as _
+
+from apps.goods.models import Products
+from users.models import User
 
 
 class OrderitemQueryset(models.QuerySet):
@@ -17,9 +17,10 @@ class OrderitemQueryset(models.QuerySet):
 
 
 class OrderStatus(models.TextChoices):
-    PROCESSING = 'processing', _("В обробці")
-    SHIPPED = 'shipped', _("Відправлено")
-    DELIVERED = 'delivered', _("Доставлено")
+    PROCESSING = "processing", _("В обробці")
+    SHIPPED = "shipped", _("Відправлено")
+    DELIVERED = "delivered", _("Доставлено")
+
 
 class Order(models.Model):
     user = models.ForeignKey(
@@ -36,7 +37,7 @@ class Order(models.Model):
     phone_number = models.CharField(
         max_length=20, verbose_name="Номер телефона"
     )
-    email = models.EmailField( null=True, blank=True, verbose_name="Email")
+    email = models.EmailField(null=True, blank=True, verbose_name="Email")
     requires_delivery = models.BooleanField(
         default=False, verbose_name="Потрібна доставка"
     )
@@ -48,9 +49,10 @@ class Order(models.Model):
     )
     is_paid = models.BooleanField(default=False, verbose_name="Сплачено")
     status = models.CharField(
-        max_length=50, choices=OrderStatus.choices,
+        max_length=50,
+        choices=OrderStatus.choices,
         default=OrderStatus.PROCESSING,
-        verbose_name="Статус замовлення"
+        verbose_name="Статус замовлення",
     )
 
     class Meta:
@@ -60,10 +62,11 @@ class Order(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return f"Замовлення № {self.pk} | Покупець {self.user.first_name} {self.user.last_name}"
-        # if self.user:
-        #     return f"Замовлення № {self.pk} | Покупець {self.user.first_name} {self.user.last_name}"
-        # return f"Замовлення № {self.pk} | Покупець не вказаний"
+        return (
+            f"Замовлення № {self.pk} | "
+            f"Покупець {self.user.first_name} "
+            f"{self.user.last_name}"
+        )
 
 
 class OrderItem(models.Model):
