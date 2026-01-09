@@ -50,12 +50,13 @@ INSTALLED_APPS = [
     # Third party apps
     "debug_toolbar",
     "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
 
     # Local apps
     "apps.api",
     "main",
     "apps.goods",
-    "users",
+    "apps.users",
     "apps.carts",
     "apps.orders",
     "favorites",
@@ -64,6 +65,11 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
     "django.contrib.auth.backends.ModelBackend",  # +
 ]
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
