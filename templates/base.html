@@ -124,7 +124,7 @@
                     {% if not user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link  text-white"
-                               href="{% url "login" %}">{% translate "Вхід" %}</a>
+                               href="{% url "users:login" %}">{% translate "Вхід" %}</a>
                         </li>
                     {% else %}
                         <li class="nav-item dropdown ">
@@ -134,11 +134,11 @@
                                 {% translate "Мій профіль" %}
                             </a>
                             <ul class="dropdown-menu">
+{#                                <li><a class="dropdown-item  text-white"#}
+{#                                       href="{% url "users_cart" %}">{% translate "Кошик" %}</a>#}
+{#                                </li>#}
                                 <li><a class="dropdown-item  text-white"
-                                       href="{% url "users_cart" %}">{% translate "Кошик" %}</a>
-                                </li>
-                                <li><a class="dropdown-item  text-white"
-                                       href="{% url "profile" %}">{% translate "Особистий кабінет" %}</a>
+                                       href="{% url "users:profile" %}">{% translate "Особистий кабінет" %}</a>
                                 </li>
                                 {% if user.is_admin or user.is_staff %}
                                     <li><a class="dropdown-item  text-white"
@@ -150,7 +150,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item  text-white"
-                                       href="{% url "logout" %}">{% translate "Вихід" %}</a>
+                                       href="{% url "users:logout" %}">{% translate "Вихід" %}</a>
                                 </li>
                             </ul>
                         </li>
