@@ -43,11 +43,11 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path("", include("main.urls", namespace="main")),
     # path("catalog/", include("apps.goods.urls", namespace="catalog")),
-    path("users/", include("users.urls")),
+    # path("users/", include("apps.users.urls")),
     # path("cart/", include("apps.carts.urls", namespace="cart")),
     # path("orders/", include("apps.orders.urls", namespace="orders")),
     path("favorites/", include("favorites.urls")),
-    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("allauth.urls")),
     prefix_default_language=False,
 )
 
