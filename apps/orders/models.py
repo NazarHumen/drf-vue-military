@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from apps.goods.models import Products
-from users.models import User
+from apps.users.models import User
 
 
 class OrderitemQueryset(models.QuerySet):
