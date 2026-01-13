@@ -1,76 +1,102 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block css %}
-    <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
-
+    <link rel="stylesheet" href="{% static 'deps/css/hero.css' %}">
 {% endblock %}
 
-{% block model_cart %}
-    {% include 'includes/cart_button.html' %}
-{% endblock %}
-
-{#{% block content %}#}
-{#    <h1 class="mt-5 pt-5" ><strong>{{ content }}</strong></h1>#}
-{#{% endblock %}#}
 {% block content %}
-{#    <div class="carousel-container mt-5">#}
-{#        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" style="width: 80%; max-width: 900px; margin: 0 auto;">#}
-{#            <div class="carousel-inner">#}
-{#                <div class="carousel-item active">#}
-{#                    <img src="{% static 'deps/images/p2.jpeg' %}" class="d-block w-100" alt="Зображення 1">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="{% static 'deps/images/p3.jpeg' %}" class="d-block w-100" alt="Зображення 2">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="{% static 'deps/images/p4.jpeg' %}" class="d-block w-100" alt="Зображення 3">#}
-{#                </div>#}
-{#            </div>#}
-{#            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">#}
-{#                <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                <span class="visually-hidden">Попередній</span>#}
-{#            </button>#}
-{#            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">#}
-{#                <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                <span class="visually-hidden">Наступний</span>#}
-{#            </button>#}
-{#        </div>#}
-{#    </div>#}
-
-    <div class="carousel-container mt-5">
-    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{% static 'deps/images/p2.jpeg' %}" class="d-block w-100" alt="Зображення 1">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'deps/images/p3.jpeg' %}" class="d-block w-100" alt="Зображення 2">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'deps/images/p4.jpeg' %}" class="d-block w-100" alt="Зображення 3">
+<div id="hero-app">
+    <section class="hero-section">
+        <!-- Carousel Background -->
+        <div class="hero-carousel">
+            <div v-for="(slide, index) in slides"
+                 :key="index"
+                 class="carousel-slide"
+                 :class="{ active: index === currentSlide }">
+                <img :src="slide.image" :alt="slide.title">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Попередній</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Наступний</span>
-        </button>
-    </div>
-</div>
 
-    <h1 class="mt-5 pt-5"><strong>{{ content }}</strong></h1>
+        <!-- Overlays -->
+        <div class="hero-overlay hero-overlay-gradient"></div>
+        <div class="hero-overlay hero-overlay-bottom"></div>
+        <div class="hero-grid-pattern"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-subtitle" :key="'subtitle-' + currentSlide">
+                <div class="hero-subtitle-line"></div>
+                <span class="hero-subtitle-text">[[ currentSubtitle ]]</span>
+            </div>
+
+            <h1 class="hero-title" :key="'title-' + currentSlide">
+                [[ currentTitleFirst ]]<br>
+                <span class="hero-title-accent">[[ currentTitleSecond ]]</span>
+            </h1>
+
+            <p class="hero-description">
+                {% translate "Тактичне спорядження преміум класу для професіоналів. Надійне обладнання, коли невдача неприпустима." %}
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/api/v1/catalog/all/" class="btn-hero-primary">
+                    <i class='bx bx-shopping-bag'></i>
+                    {% translate "Купити зараз" %}
+                </a>
+                <a href="/api/v1/catalog/all/" class="btn-hero-secondary">
+                    {% translate "Переглянути каталог" %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div class="hero-indicators">
+            <button v-for="(slide, index) in slides"
+                    :key="index"
+                    class="indicator"
+                    :class="{ active: index === currentSlide }"
+                    @click="goToSlide(index)">
+            </button>
+        </div>
+
+    </section>
+</div>
 {% endblock %}
 
 {% block footer %}
-    <footer class="py-4 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Nazarii Humen 2024</p>
-        </div>
-    </footer>
+<footer class="footer-hero">
+    <p>Copyright &copy; Nazarii Humen 2024</p>
+</footer>
 {% endblock %}
 
+{% block scripts %}
+<script>
+    document.body.classList.add('hero-page');
 
-
+    window.HERO_SLIDES = [
+        {
+            image: "{% static 'deps/images/carousel/tactical_plate_carrier_vest.png' %}",
+            title: "{% translate 'ТАКТИЧНИЙ ЖИЛЕТ' %}",
+            subtitle: "{% translate 'ПРОФЕСІЙНИЙ КЛАС' %}"
+        },
+        {
+            image: "{% static 'deps/images/carousel/tactical_backpack.png' %}",
+            title: "{% translate 'ТАКТИЧНИЙ РЮКЗАК' %}",
+            subtitle: "{% translate 'МАКСИМАЛЬНА МІСТКІСТЬ' %}"
+        },
+        {
+            image: "{% static 'deps/images/carousel/tactical_combat_boots.png' %}",
+            title: "{% translate 'БОЙОВІ ЧЕРЕВИКИ' %}",
+            subtitle: "{% translate 'НАДІЙНІСТЬ У БОЮ' %}"
+        },
+        {
+            image: "{% static 'deps/images/carousel/ballistic_helmet.png' %}",
+            title: "{% translate 'БАЛІСТИЧНИЙ ШОЛОМ' %}",
+            subtitle: "{% translate 'СЕРТИФІКОВАНИЙ ЗАХИСТ' %}"
+        }
+    ];
+</script>
+<script src="{% static 'deps/js/hero.js' %}"></script>
+{% endblock %}
