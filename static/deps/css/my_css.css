@@ -23,7 +23,8 @@
 /*}*/
 
 body {
-  background-image: url("../images/sporiad.png");
+  /*background-image: url("../images/sporiad.png");*/
+  background-color: gray;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -297,35 +298,3 @@ footer {
         overflow-x: auto;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
