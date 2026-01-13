@@ -23,33 +23,29 @@ from django.shortcuts import redirect
 
 from dev_env import settings
 from django.conf.urls.static import static
-from django.conf.urls.i18n import i18n_patterns
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="My API",
+        default_version='v1',
+        description="Test API",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
-# urlpatterns = [
-#     path("admin/", admin.site.urls),
-#     path("", include("main.urls", namespace="main")),
-#     path("catalog/", include("goods.urls", namespace="catalog")),
-#     path("user/", include("users.urls", namespace="user")),
-#     path("cart/", include("carts.urls", namespace="cart")),
-#     path("orders/", include("orders.urls", namespace="orders")),
-#     path('favorites/', include('favorites.urls')),
-#
-# ] + i18n_patterns()
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("apps.api.urls")),
-] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
-    path("", include("main.urls", namespace="main")),
-    # path("catalog/", include("apps.goods.urls", namespace="catalog")),
-    # path("users/", include("apps.users.urls")),
-    # path("cart/", include("apps.carts.urls", namespace="cart")),
-    # path("orders/", include("apps.orders.urls", namespace="orders")),
     path("favorites/", include("favorites.urls")),
-    # path("accounts/", include("allauth.urls")),
-    prefix_default_language=False,
-)
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
+    path("", include("main.urls", namespace="main")),
+]
 
 if settings.DEBUG:
     urlpatterns += [
