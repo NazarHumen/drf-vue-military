@@ -8,15 +8,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts - Military Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet"
           href="{% static "deps/css/bootstrap/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+{#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
+    <link rel="stylesheet" href="{% static "deps/css/navbar.css" %}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet">
-    <!-- Стиль footer-a для главної сторінки -->
     {% block css %}
     {% endblock %}
-    <!-- Favicons for different platforms -->
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180"
           href="{% static "deps/favicon/gun.png" %}">
     <link rel="icon" type="image/png" sizes="32x32"
@@ -29,289 +33,112 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'main:index' %}">Military</a>
-        <div class="d-flex align-items-center">
+    <nav class="navbar-main">
+        <div class="navbar-container">
+            <!-- Left side: Logo and navigation -->
+            <div class="navbar-left">
+                <a href="{% url 'main:index' %}" class="navbar-logo">MILITARY</a>
+                <a href="/api/v1/catalog/all/" class="navbar-link">{% translate "Каталог" %}</a>
+                <a href="{% url 'main:contact' %}" class="navbar-link">{% translate "Контакти" %}</a>
+                {% if user.is_authenticated %}
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">{% translate "Профіль" %}</a>
+                        <div class="dropdown-menu">
+                            <a href="{% url 'users:profile' %}" class="dropdown-item">{% translate "Мій акаунт" %}</a>
+                            {% if user.is_admin or user.is_staff %}
+                                <a href="{% url 'admin:index' %}" class="dropdown-item">{% translate "Адмін панель" %}</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a href="{% url 'users:logout' %}" class="dropdown-item">{% translate "Вийти" %}</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="navbar-link">{% translate "Увійти" %}</a>
+                {% endif %}
+            </div>
 
-            <form class="d-inline-flex me-auto "
-                  action="{% url 'set_language' %}"
-                  method="post" id="languageForm">
-                {% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select class="form-control " name="language"
-                        id="languageSelect">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option value="{{ language.code }}"
-                                {% if language.code == LANGUAGE_CODE %}
-                                selected{% endif %}>
-                            {{ language.code|upper }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </form>
-        </div>
-
-            <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {#                {% load i18n %}#}
-
-            {#<form class="d-inline-flex" action="{% url 'set_language' %}" method="post">{% csrf_token %}#}
-            {#    <input name="next" type="hidden" value="{{ redirect_to }}">#}
-            {#    <select class="form-control" name="language">#}
-            {#        {% get_current_language as LANGUAGE_CODE %}#}
-            {#        {% get_available_languages as LANGUAGES %}#}
-            {#        {% get_language_info_list for LANGUAGES as languages %}#}
-            {#        {% for language in languages %}#}
-            {#            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
-            {#                {{ language.name_local }} {{ language.code }}#}
-            {#            </option>#}
-            {#        {% endfor %}#}
-            {#    </select>#}
-            {#    <input type="submit" value="Go">#}
-            {#</form>#}
-
-            {#            <form class="d-inline-flex" action="{% url 'set_language' %}" method="post" id="languageForm">#}
-            {#    {% csrf_token %}#}
-            {#    <input name="next" type="hidden" value="{{ redirect_to }}">#}
-            {#    <select class="form-control" name="language" id="languageSelect">#}
-            {#        {% get_current_language as LANGUAGE_CODE %}#}
-            {#        {% get_available_languages as LANGUAGES %}#}
-            {#        {% get_language_info_list for LANGUAGES as languages %}#}
-            {#        {% for language in languages %}#}
-            {#            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
-            {#                {{ language.name_local }} {{ language.code }}#}
-            {#            </option>#}
-            {#        {% endfor %}#}
-            {#    </select>#}
-            {#</form>#}
-
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle text-white" href="#"
-                           role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            {% translate "Інформація" %}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item  text-white"
-                                   href="{% url "main:delivery_and_payment" %}"> {% translate "Доставка і оплата" %}</a>
-                            </li>
-                            <li><a class="dropdown-item  text-white"
-                                   href="{% url "main:contact" %}">{% translate "Контактна інформація" %}</a>
-                            </li>
-                            <li><a class="dropdown-item  text-white"
-                                   href="{% url "main:about" %}">{% translate "Про нас" %}</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {#                        <li class="nav-item">#}
-                    {#                            <a class="nav-link  text-white" href="{% url "user:users_cart" %}">Кошик</a>#}
-                    {#                        </li>#}
-
-
-
-                    {% if not user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link  text-white"
-                               href="{% url "users:login" %}">{% translate "Вхід" %}</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle text-white"
-                               href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                {% translate "Мій профіль" %}
-                            </a>
-                            <ul class="dropdown-menu">
-{#                                <li><a class="dropdown-item  text-white"#}
-{#                                       href="{% url "users_cart" %}">{% translate "Кошик" %}</a>#}
-{#                                </li>#}
-                                <li><a class="dropdown-item  text-white"
-                                       href="{% url "users:profile" %}">{% translate "Особистий кабінет" %}</a>
-                                </li>
-                                {% if user.is_admin or user.is_staff %}
-                                    <li><a class="dropdown-item  text-white"
-                                           href="{% url "admin:index" %}">{% translate "Адмін панель" %}</a>
-                                    </li>
-                                {% endif %}
-
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item  text-white"
-                                       href="{% url "users:logout" %}">{% translate "Вихід" %}</a>
-                                </li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                </ul>
-
-
-                <form class="d-flex" role="search"
-                      action="{% url "catalog:search" %}" method="get">
-                    <input class="form-control me-2" type="search" name="q"
-                           placeholder="{% translate "Search" %}"
-                           aria-label="Search">
-                    <button class="btn btn-outline-success text-white"
-                            type="submit">{% translate "Search" %}</button>
-                </form>
+            <!-- Right side: Icons -->
+            <div class="navbar-right">
+                <a href="#" class="navbar-icon" title="{% translate 'Обране' %}">
+                    <i class='bx bx-heart'></i>
+                </a>
+                <a href="#" class="navbar-icon" title="{% translate 'Кошик' %}">
+                    <i class='bx bx-cart'></i>
+                </a>
+                <!-- Mobile menu toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% translate 'Меню' %}">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <div class="navbar-lang">
+                    <i class='bx bx-globe'></i>
+                    <form action="{% url 'set_language' %}" method="post" id="languageForm">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                        <select name="language" id="languageSelect" class="lang-select" onchange="this.form.submit()">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ language.code|upper }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
 </header>
-<section>
-    <div class="container">
-
-        <!-- Каталог и корзина с фиксированным расположением на странице -->
-
-
-        {#        <div class="d-flex justify-content-start align-items-center mt-1 position-fixed z-3">#}
-        {#    <div class="d-flex justify-content-start align-items-center fixed-top-buttons">#}
-        <div class="d-flex justify-content-start align-items-center fixed-top-buttons"
-             style="margin-top: 6px;">
-
-
-            <!-- Каталог -->
-            <div class="dropdown  mb-2 me-2">
-                <button class="btn btn-secondary dropdown-toggle btn-dark"
-                        type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    {% translate "Каталог" %}
-                    <img class="mx-1"
-                         src="{% static "deps/icons/grid-fill.svg" %}"
-                         alt="Catalog Icon" width="16"
-                         height="16">
-                </button>
-                <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                    {% tag_categories as categories %}
-                    {% for category in categories %}
-                        <li><a class="dropdown-item text-white"
-                               href="{% url "catalog:index" category.slug %}">{{ category.name }}</a>
-                        </li>
-                    {% endfor %}
-
-                </ul>
-            </div>
-            {% if show_filters %}
-                <div class="dropdown mb-2 me-2">
-                    <button class="btn btn-secondary dropdown-toggle btn-dark"
-                            type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        {% translate "Фільтри" %}
-                    </button>
-
-                    {#    <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">#}
-                    <form action="
-
-
-                            {% if request.GET.q %}{% url 'catalog:search' %}{% elif slug_url %}{% url 'catalog:index' slug_url %}{% else %}#{% endif %}"
-                          method="get"
-                          class="dropdown-menu bg-dark"
-                          data-bs-theme="dark">
-
-
-                        <div class="form-check text-white mx-3">
-                            <input class="form-check-input" type="checkbox"
-                                   name="on_sale" id="flexCheckDefault"
-                                   value="on"
-                                   {% if request.GET.on_sale == 'on' %}checked{% endif %}>
-                            {% if request.GET.q %}
-                                <input type="hidden" name="q"
-                                       value="{{ request.GET.q }}">
-
-                            {% endif %}
-
-                            <label class="form-check-label"
-                                   for="flexCheckDefault">
-                                {% translate "Товари зі знижками" %}
-                            </label>
-                        </div>
-                        <p class="text-white mx-3 mt-3">{% translate "Сортувати:" %}</p>
-                        <div class="form-check text-white mx-3">
-                            <input class="form-check-input" type="radio"
-                                   name="order_by" id="flexRadioDefault1"
-                                   value="default"
-                                   {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked {% endif %}>
-                            <label class="form-check-label"
-                                   for="flexRadioDefault1">
-                                {% translate "За замовчуванням" %}
-                            </label>
-                        </div>
-                        <div class="form-check text-white mx-3">
-                            <input class="form-check-input" type="radio"
-                                   name="order_by" id="flexRadioDefault2"
-                                   value="price"
-                                   {% if request.GET.order_by == 'price' %}checked{% endif %}>
-                            <label class="form-check-label"
-                                   for="flexRadioDefault2">
-                                {% translate "Від дешевих до дорогих" %}
-                            </label>
-                        </div>
-                        <div class="form-check text-white mx-3">
-                            <input class="form-check-input" type="radio"
-                                   name="order_by" id="flexRadioDefault3"
-                                   value="-price"
-                                   {% if request.GET.order_by == '-price' %}checked{% endif %}>
-                            <label class="form-check-label"
-                                   for="flexRadioDefault3">
-                                {% translate "Від дорогих до дешевих" %}
-                            </label>
-                        </div>
-                        <button type="submit"
-                                class="btn btn-primary mx-3 mt-3">{% translate "Застосувати" %}
-                        </button>
-                    </form>
-                </div>
-            {% endif %}
-
-
-
-            <!-- Значек корзины, вызывает модальное окно -->
-            {% block model_cart %}{% endblock %}
-            <!-- Закончилась разметка модального окна -->
-
-            {#                            {% include 'includes/favorites_button.html' %}#}
-
-
-        </div>
-
-
+<main>
+    <div class="main-container">
+        {% include "includes/notifications.html" %}
+        {% block content %}
+        {% endblock %}
     </div>
-
-
-    <!-- Контент -->
-    <div class="container">
-        <div class="row mt-1">
-            <div class="col-lg-2">
-                <!-- Пустой блок на Ваше усмотрение -->
-            </div>
-            <div class="col-lg-10">
-                <!-- Контент на странице -->
-                {% include "includes/notifications.html" %}
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-</section>
+</main>
 {% block footer %}
 {% endblock %}
 
-<script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
-<script src="{% static "deps/js/jquery-ajax.js" %}"></script>
-<script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js " %}"></script>
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="{% translate 'Закрити' %}">
+        <i class='bx bx-x'></i>
+    </button>
+    <a href="/api/v1/catalog/all/" class="navbar-link">{% translate "Каталог" %}</a>
+    <a href="{% url 'main:contact' %}" class="navbar-link">{% translate "Контакти" %}</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'users:profile' %}" class="navbar-link">{% translate "Профіль" %}</a>
+        {% if user.is_admin or user.is_staff %}
+            <a href="{% url 'admin:index' %}" class="navbar-link">{% translate "Адмін панель" %}</a>
+        {% endif %}
+        <a href="{% url 'users:logout' %}" class="navbar-link">{% translate "Вийти" %}</a>
+    {% else %}
+        <a href="{% url 'users:login' %}" class="navbar-link">{% translate "Увійти" %}</a>
+    {% endif %}
+    <!-- Language selector in mobile menu -->
+    <div class="mobile-nav-lang">
+        {% get_current_language as LANGUAGE_CODE %}
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <input name="language" type="hidden" value="en">
+            <button type="submit" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <input name="language" type="hidden" value="uk">
+            <button type="submit" class="lang-btn {% if LANGUAGE_CODE == 'uk' %}active{% endif %}">UA</button>
+        </form>
+    </div>
+</div>
 
+<script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js" %}"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="{% static "deps/js/main.js" %}"></script>
+{% block scripts %}{% endblock %}
 </body>
 
 </html>
