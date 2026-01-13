@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-20 12:10+0300\n"
+"POT-Creation-Date: 2026-01-12 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,452 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\carts\templates\carts\includes\included_carts.html:60
+#: .\apps\carts\templates\carts\includes\included_carts.html:62
 msgid "Разом"
 msgstr "Total"
 
-#: .\carts\templates\carts\includes\included_carts.html:61
+#: .\apps\carts\templates\carts\includes\included_carts.html:63
 msgid "товар(а) у суммі"
 msgstr "product(s) in total"
 
-#: .\carts\templates\carts\includes\included_carts.html:68
-#: .\orders\templates\orders\create_order.html:152
+#: .\apps\carts\templates\carts\includes\included_carts.html:70
+#: .\apps\orders\templates\orders\create_order.html:153
 msgid "Оформити замовлення"
 msgstr "Place an order"
 
-#: .\carts\views.py:48
+#: .\apps\carts\views.py:23
+msgid "Не вказано ID товару"
+msgstr ""
+
+#: .\apps\carts\views.py:30 .\apps\goods\templates\goods\product.html:126
+#: .\apps\goods\views.py:71
+msgid "Товар не знайдено"
+msgstr "Product not found"
+
+#: .\apps\carts\views.py:54
 msgid "Товар доданий до кошика"
 msgstr "Product added to cart"
 
-#: .\carts\views.py:71
+#: .\apps\carts\views.py:68 .\apps\carts\views.py:102
+#, fuzzy
+#| msgid "Товар додано до кошика"
+msgid "Не вказано ID елемента кошика"
+msgstr "Product added to cart"
+
+#: .\apps\carts\views.py:75 .\apps\carts\views.py:109
+msgid "Елемент кошика не знайдено"
+msgstr "Nothing found for the query"
+
+#: .\apps\carts\views.py:90
 msgid "Кількість змінено"
 msgstr "Quantity changed"
 
-#: .\carts\views.py:92
+#: .\apps\carts\views.py:118
 msgid "Товар видалено"
 msgstr "Product removed"
 
-#: .\goods\templates\goods\catalog.html:58
-msgid "Результати пошуку за запитом"
-msgstr "Search results for the query"
+#: .\apps\goods\templates\goods\catalog.html:12
+msgid "КАТАЛОГ"
+msgstr "CATALOG"
 
-#: .\goods\templates\goods\catalog.html:62
-msgid "За запитом нічого не знайдено"
-msgstr "Nothing found for the query"
+#: .\apps\goods\templates\goods\catalog.html:19
+msgid "Пошук..."
+msgstr "Search"
 
-#: .\goods\templates\goods\catalog.html:112
-msgid "Знижка"
+#: .\apps\goods\templates\goods\catalog.html:22
+msgid "СОРТУВАННЯ:"
+msgstr "SORTING:"
+
+#: .\apps\goods\templates\goods\catalog.html:24
+msgid "За замовчуванням"
+msgstr "Default"
+
+#: .\apps\goods\templates\goods\catalog.html:25
+msgid "Зі знижкою"
 msgstr "Discount"
 
-#: .\goods\templates\goods\product.html:37
-msgid "Зображення відсутнє"
-msgstr "Image is missing"
+#: .\apps\goods\templates\goods\catalog.html:26
+msgid "Ціна: від низької до високої"
+msgstr "Price: low to high"
 
-#: .\goods\templates\goods\product.html:50
-#: .\users\templates\users\profile.html:156
+#: .\apps\goods\templates\goods\catalog.html:27
+msgid "Ціна: від високої до низької"
+msgstr "Price: high to low"
+
+#: .\apps\goods\templates\goods\catalog.html:39
+msgid "ФІЛЬТРИ"
+msgstr "FILTERS"
+
+#: .\apps\goods\templates\goods\catalog.html:43
+msgid "КАТЕГОРІЇ"
+msgstr "CATEGORIES"
+
+#: .\apps\goods\templates\goods\catalog.html:50
+#, fuzzy
+#| msgid "Вхід"
+msgid "Всі"
+msgstr "Login"
+
+#: .\apps\goods\templates\goods\catalog.html:111
+#: .\apps\goods\templates\goods\product.html:14
+#, fuzzy
+#| msgid "Повернення"
+msgid "Завантаження..."
+msgstr "Return"
+
+#: .\apps\goods\templates\goods\catalog.html:117
+msgid "Товари не знайдено"
+msgstr "Product removed"
+
+#: .\apps\goods\templates\goods\product.html:21 .\templates\base.html:41
+#: .\templates\base.html:109
+msgid "Каталог"
+msgstr "Catalog"
+
+#: .\apps\goods\templates\goods\product.html:69
+#: .\apps\users\templates\users\profile.html:156
 msgid "Ціна"
 msgstr "Price"
 
-#: .\goods\templates\goods\product.html:60
+#: .\apps\goods\templates\goods\product.html:85
+#: .\apps\users\templates\users\profile.html:155
+msgid "Кількість"
+msgstr "Quantity"
+
+#: .\apps\goods\templates\goods\product.html:95
+msgid "Є в наявності"
+msgstr "In stock"
+
+#: .\apps\goods\templates\goods\product.html:96
+msgid "Немає в наявності"
+msgstr "Out of stock"
+
+#: .\apps\goods\templates\goods\product.html:102
 msgid "Додати до кошика"
 msgstr "Product added to cart"
 
-#: .\goods\templates\goods\product.html:120
-msgid "Характеристики"
-msgstr "Characteristics"
+#: .\apps\goods\templates\goods\product.html:111
+msgid "ХАРАКТЕРИСТИКИ"
+msgstr "CHARACTERISTICS"
 
-#: .\goods\templates\goods\product.html:127
-msgid "Характеристики відсутні"
-msgstr "Characteristics are missing"
+#: .\apps\goods\templates\goods\product.html:127
+#, fuzzy
+#| msgid "Переглянути каталог"
+msgid "Повернутись до каталогу"
+msgstr "View catalog"
 
-#: .\goods\views.py:93
-msgid "Home - Каталог"
-msgstr "Home - Catalog"
+#: .\apps\goods\views.py:30
+#, fuzzy
+#| msgid "Товар не знайдено"
+msgid "Категорію не знайдено"
+msgstr "Product not found"
 
-#: .\main\templates\main\about.html:28 .\templates\base.html:119
+#: .\apps\goods\views.py:52
+msgid "Catalog"
+msgstr "Catalog"
+
+#: .\apps\orders\models.py:20
+msgid "В обробці"
+msgstr "In processing"
+
+#: .\apps\orders\models.py:21
+msgid "Відправлено"
+msgstr "Sent"
+
+#: .\apps\orders\models.py:22
+msgid "Доставлено"
+msgstr "Delivered"
+
+#: .\apps\orders\templates\orders\create_order.html:9
+msgid "Вибрані товари"
+msgstr "Selected products"
+
+#: .\apps\orders\templates\orders\create_order.html:21
+msgid "Деталі замовлення"
+msgstr "Place an order"
+
+#: .\apps\orders\templates\orders\create_order.html:30
+#: .\apps\users\templates\users\profile.html:49
+#: .\apps\users\templates\users\registration.html:18
+#: .\main\templates\main\contact.html:80
+msgid "Ім'я*"
+msgstr "Name*"
+
+#: .\apps\orders\templates\orders\create_order.html:42
+#: .\apps\users\templates\users\profile.html:62
+#: .\apps\users\templates\users\registration.html:29
+#: .\main\templates\main\contact.html:72
+msgid "Прізвище*"
+msgstr "Surname*"
+
+#: .\apps\orders\templates\orders\create_order.html:54
+msgid "Номер телефона*"
+msgstr "Phone*"
+
+#: .\apps\orders\templates\orders\create_order.html:74
+#: .\main\templates\main\contact.html:107
+msgid "Невірний формат номера. Приклад: +380931234567 або +46701234567"
+msgstr "Invalid phone format. Example: +380931234567 or +46701234567"
+
+#: .\apps\orders\templates\orders\create_order.html:79
+#: .\apps\users\templates\users\profile.html:89
+#: .\apps\users\templates\users\registration.html:52
+msgid "Email*"
+msgstr "E-mail*"
+
+#: .\apps\orders\templates\orders\create_order.html:95
+msgid "Спосіб доставки"
+msgstr "Delivery time"
+
+#: .\apps\orders\templates\orders\create_order.html:103
+msgid "Потрібна доставка"
+msgstr "Delivery required"
+
+#: .\apps\orders\templates\orders\create_order.html:111
+msgid "Самовивіз"
+msgstr "Self-pickup"
+
+#: .\apps\orders\templates\orders\create_order.html:116
+msgid "Адреса доставки*"
+msgstr "Delivery address*"
+
+#: .\apps\orders\templates\orders\create_order.html:130
+msgid "Спосіб оплати"
+msgstr "Payment method"
+
+#: .\apps\orders\templates\orders\create_order.html:137
+msgid "Оплата карткою"
+msgstr "Payment by details"
+
+#: .\apps\orders\templates\orders\create_order.html:144
+msgid "Готівкою/карткою при отриманні"
+msgstr "Cash/card on delivery"
+
+#: .\apps\orders\views.py:20
+#, fuzzy
+#| msgid "Потрібна доставка"
+msgid "Потрібно увійти в систему"
+msgstr "Delivery required"
+
+#: .\apps\orders\views.py:26
+msgid "Ваш кошик порожній"
+msgstr "Your cart is empty"
+
+#: .\apps\orders\views.py:49
+#, python-format
+msgid ""
+"Недостатня кількість товару %(name)s на складі. В наявності — %(quantity)d"
+msgstr "Not enough product %(name)s in stock. Available - %(quantity)d"
+
+#: .\apps\users\serializers.py:42
+#, fuzzy
+#| msgid "Введіть ваш пароль"
+msgid "Невірний email або пароль"
+msgstr "Enter your password"
+
+#: .\apps\users\serializers.py:47
+msgid "Обліковий запис деактивовано"
+msgstr "Account deactivated"
+
+#: .\apps\users\serializers.py:79 .\apps\users\serializers.py:146
+#: .\apps\users\serializers.py:179
+msgid "Паролі не співпадають"
+msgstr "Passwords do not match"
+
+#: .\apps\users\serializers.py:86
+msgid "Користувач з таким email вже існує"
+msgstr "User with this email already exists"
+
+#: .\apps\users\serializers.py:93
+msgid "Користувач з таким username вже існує"
+msgstr "User with this username already exists"
+
+#: .\apps\users\serializers.py:140
+#, fuzzy
+#| msgid "Введіть пароль"
+msgid "Невірний поточний пароль"
+msgstr "Enter your password"
+
+#: .\apps\users\serializers.py:163
+#, fuzzy
+#| msgid "Користувач з таким email вже існує"
+msgid "Користувача з таким email не знайдено"
+msgstr "User with this email already exists"
+
+#: .\apps\users\templates\users\login.html:13
+msgid "Авторизація"
+msgstr "Authorization"
+
+#: .\apps\users\templates\users\login.html:23
+#: .\apps\users\templates\users\registration.html:44
+msgid "Ім'я користувача"
+msgstr "Username"
+
+#: .\apps\users\templates\users\login.html:24
+msgid "Введіть ім'я користувача"
+msgstr "Enter username"
+
+#: .\apps\users\templates\users\login.html:27
+msgid "Пароль"
+msgstr "Password"
+
+#: .\apps\users\templates\users\login.html:28
+msgid "Введіть ваш пароль"
+msgstr "Enter your password"
+
+#: .\apps\users\templates\users\login.html:60
+msgid "Вхід"
+msgstr "Login"
+
+#: .\apps\users\templates\users\login.html:63
+msgid "Забули пароль?"
+msgstr "Forgot password?"
+
+#: .\apps\users\templates\users\login.html:63
+msgid "Створити акаунт"
+msgstr "Create an account"
+
+#: .\apps\users\templates\users\login.html:67
+msgid "Або авторизуйтесь через:"
+msgstr "Or log in via:"
+
+#: .\apps\users\templates\users\profile.html:18
+msgid "Профіль користувача"
+msgstr "Username"
+
+#: .\apps\users\templates\users\profile.html:53
+#: .\apps\users\templates\users\registration.html:22
+msgid "Введіть ваше ім'я"
+msgstr "Enter your name"
+
+#: .\apps\users\templates\users\profile.html:66
+#: .\apps\users\templates\users\registration.html:33
+msgid "Введіть ваше прізвище"
+msgstr "Enter your surname"
+
+#: .\apps\users\templates\users\profile.html:75
+#: .\apps\users\templates\users\registration.html:40
+msgid "Ім'я користувача*"
+msgstr "Username*"
+
+#: .\apps\users\templates\users\profile.html:79
+msgid "Введіть ваше ім'я користувача"
+msgstr "Enter your username"
+
+#: .\apps\users\templates\users\profile.html:93
+#, fuzzy
+#| msgid "Введіть ваш email"
+msgid "Введіть ваш email *youremail@example.com"
+msgstr "Enter your email"
+
+#: .\apps\users\templates\users\profile.html:102
+msgid "Зберегти"
+msgstr "Save"
+
+#: .\apps\users\templates\users\profile.html:111
+#: .\apps\users\templates\users\users_cart.html:11 .\templates\base.html:65
+#: .\templates\includes\cart_button.html:25
+msgid "Кошик"
+msgstr "Basket"
+
+#: .\apps\users\templates\users\profile.html:125
+msgid "Мої замовлення"
+msgstr "My orders"
+
+#: .\apps\users\templates\users\profile.html:139
+msgid "Замовлення № "
+msgstr "Order № "
+
+#: .\apps\users\templates\users\profile.html:141
+msgid "Статус:"
+msgstr "Status:"
+
+#: .\apps\users\templates\users\profile.html:154
+msgid "Товар"
+msgstr "Product"
+
+#: .\apps\users\templates\users\profile.html:157
+msgid "Загальна вартість"
+msgstr "Total cost"
+
+#: .\apps\users\templates\users\registration.html:12
+msgid "Реєстрація"
+msgstr "Registration"
+
+#: .\apps\users\templates\users\registration.html:56
+msgid "Введіть ваш email"
+msgstr "Enter your email"
+
+#: .\apps\users\templates\users\registration.html:63
+msgid "Пароль*"
+msgstr "Password*"
+
+#: .\apps\users\templates\users\registration.html:67
+msgid "Введіть пароль"
+msgstr "Enter your password"
+
+#: .\apps\users\templates\users\registration.html:74
+msgid "Підтвердження пароля*"
+msgstr "Confirm password*"
+
+#: .\apps\users\templates\users\registration.html:78
+msgid "Підтвердіть пароль"
+msgstr "Confirm password"
+
+#: .\apps\users\templates\users\registration.html:86
+msgid "Зареєструватись"
+msgstr "Register"
+
+#: .\apps\users\views.py:57
+#, python-format
+msgid "%(username)s, Ви увійшли до облікового запису"
+msgstr "%(username)s, you have logged into your account"
+
+#: .\apps\users\views.py:88
+#, python-format
+msgid "%(username)s, Ви успішно зареєстровані та увійшли до облікового запису"
+msgstr ""
+"%(username)s, you have successfully registered and logged into your account"
+
+#: .\apps\users\views.py:140
+msgid "Профіль успішно оновлено"
+msgstr "Profile updated successfully"
+
+#: .\apps\users\views.py:160
+#, fuzzy
+#| msgid "%(username)s, Ви увійшли до облікового запису"
+msgid "Ви вийшли з облікового запису"
+msgstr "%(username)s, you have logged into your account"
+
+#: .\apps\users\views.py:181 .\apps\users\views.py:278
+msgid "Пароль успішно змінено"
+msgstr "Password changed successfully!"
+
+#: .\apps\users\views.py:208
+#, fuzzy
+#| msgid "Підтвердження пароля*"
+msgid "Скидання пароля"
+msgstr "Confirm password*"
+
+#: .\apps\users\views.py:229
+msgid "Помилка відправки email"
+msgstr "Email sending error"
+
+#: .\apps\users\views.py:236
+msgid "Перевірте вашу пошту. Ми надіслали інструкції для скидання пароля."
+msgstr "Check your email. We have sent instructions to reset your password."
+
+#: .\apps\users\views.py:264
+#, fuzzy
+#| msgid "Перевірте вашу пошту. Ми надіслали інструкції для скидання пароля."
+msgid "Невірне посилання для скидання пароля"
+msgstr "Check your email. We have sent instructions to reset your password."
+
+#: .\apps\users\views.py:270
+msgid "Токен недійсний або прострочений"
+msgstr "Token is invalid or expired"
+
+#: .\main\templates\main\about.html:28
 msgid "Про нас"
 msgstr "About us"
 
@@ -330,7 +713,8 @@ msgstr "Name: military equipment store"
 msgid "Тип компанії: Компанія, що надає послуги, Виробник "
 msgstr "Company providing services, Manufacturer"
 
-#: .\main\templates\main\contact.html:9
+#: .\main\templates\main\contact.html:9 .\templates\base.html:42
+#: .\templates\base.html:110
 msgid "Контакти"
 msgstr "Contacts"
 
@@ -351,8 +735,6 @@ msgstr ""
 "provide consultation by phone."
 
 #: .\main\templates\main\contact.html:19
-
-#| msgid "Додати до кошика"
 msgid "Контакти для зв'язку:"
 msgstr "Contacts for communication:"
 
@@ -390,38 +772,19 @@ msgstr "Kyiv, Lviv region (Rais Okipnoy St., 8)."
 msgid "Форма зворотного зв'язку"
 msgstr "Feedback form"
 
-#: .\main\templates\main\contact.html:72
-#: .\orders\templates\orders\create_order.html:43
-#: .\users\templates\users\profile.html:62
-#: .\users\templates\users\registration.html:29
-msgid "Прізвище*"
-msgstr "Surname*"
-
-#: .\main\templates\main\contact.html:80
-#: .\orders\templates\orders\create_order.html:30
-#: .\users\templates\users\profile.html:49
-#: .\users\templates\users\registration.html:18
-msgid "Ім'я*"
-msgstr "Name*"
-
-#: .\main\templates\main\contact.html:98
+#: .\main\templates\main\contact.html:99
 msgid "Телефон*"
 msgstr "Phone*"
 
-#: .\main\templates\main\contact.html:104
-#: .\orders\templates\orders\create_order.html:89
-msgid "Невірний формат номера. Приклад: +380931234567 або +46701234567"
-msgstr "Invalid phone format. Example: +380931234567 or +46701234567"
-
-#: .\main\templates\main\contact.html:109
+#: .\main\templates\main\contact.html:112
 msgid "E-mail*"
 msgstr "E-mail*"
 
-#: .\main\templates\main\contact.html:119
+#: .\main\templates\main\contact.html:122
 msgid "Коментар*"
 msgstr "Comment*"
 
-#: .\main\templates\main\contact.html:127
+#: .\main\templates\main\contact.html:130
 msgid "Відправити"
 msgstr "Send"
 
@@ -505,6 +868,58 @@ msgid "*Однак є винятки, вони вказані у ЗУ 'Про з
 msgstr ""
 "*However, there are exceptions, they are indicated in the Law of Ukraine"
 
+#: .\main\templates\main\index.html:40
+#, fuzzy
+#| msgid ""
+#| "Преміальне тактичне спорядження, розроблене для професіоналів. Надійне "
+#| "обладнання для випадків, коли помилка не є варіантом."
+msgid ""
+"Тактичне спорядження преміум класу для професіоналів. Надійне обладнання, "
+"коли невдача неприпустима."
+msgstr ""
+"Premium tactical gear engineered for elite professionals. Reliable equipment "
+"for when failure is not an option."
+
+#: .\main\templates\main\index.html:46
+msgid "Купити зараз"
+msgstr "Shop Now"
+
+#: .\main\templates\main\index.html:49
+msgid "Переглянути каталог"
+msgstr "View catalog"
+
+#: .\main\templates\main\index.html:81
+msgid "ТАКТИЧНИЙ ЖИЛЕТ"
+msgstr "Tactical Vest"
+
+#: .\main\templates\main\index.html:82
+msgid "ПРОФЕСІЙНИЙ КЛАС"
+msgstr "Professional Grade"
+
+#: .\main\templates\main\index.html:86
+msgid "ТАКТИЧНИЙ РЮКЗАК"
+msgstr "Tactical Backpack"
+
+#: .\main\templates\main\index.html:87
+msgid "МАКСИМАЛЬНА МІСТКІСТЬ"
+msgstr "Maximum Capacity"
+
+#: .\main\templates\main\index.html:91
+msgid "БОЙОВІ ЧЕРЕВИКИ"
+msgstr "Combat Boots"
+
+#: .\main\templates\main\index.html:92
+msgid "НАДІЙНІСТЬ У БОЮ"
+msgstr "Reliability in Battle"
+
+#: .\main\templates\main\index.html:96
+msgid "БАЛІСТИЧНИЙ ШОЛОМ"
+msgstr "Ballistic Helmet"
+
+#: .\main\templates\main\index.html:97
+msgid "СЕРТИФІКОВАНИЙ ЗАХИСТ"
+msgstr "Certified Protection"
+
 #: .\main\views.py:21
 msgid "Home - Головна"
 msgstr "Home - Main"
@@ -529,296 +944,36 @@ msgstr "Thank you for your feedback! Your message has been successfully sent."
 msgid "Home - Зв'яжіться з нами"
 msgstr "Home - Contact us"
 
-#: .\orders\models.py:20
-msgid "В обробці"
-msgstr "In processing"
+#: .\templates\base.html:45 .\templates\base.html:112
+msgid "Профіль"
+msgstr "Profile"
 
-#: .\orders\models.py:21
-msgid "Відправлено"
-msgstr "Sent"
+#: .\templates\base.html:47
+#, fuzzy
+#| msgid "Створити акаунт"
+msgid "Мій акаунт"
+msgstr "Create an account"
 
-#: .\orders\models.py:22
-msgid "Доставлено"
-msgstr "Delivered"
-
-#: .\orders\templates\orders\create_order.html:9
-msgid "Вибрані товари"
-msgstr "Selected products"
-
-#: .\orders\templates\orders\create_order.html:21
-msgid "Деталі замовлення"
-msgstr "Place an order"
-
-#: .\orders\templates\orders\create_order.html:68
-msgid "Номер телефона*"
-msgstr "Phone*"
-
-#: .\orders\templates\orders\create_order.html:95
-msgid "Спосіб доставки"
-msgstr "Delivery time"
-
-#: .\orders\templates\orders\create_order.html:103
-msgid "Потрібна доставка"
-msgstr "Delivery required"
-
-#: .\orders\templates\orders\create_order.html:111
-msgid "Самовивіз"
-msgstr "Self-pickup"
-
-#: .\orders\templates\orders\create_order.html:116
-msgid "Адреса доставки*"
-msgstr "Delivery address*"
-
-#: .\orders\templates\orders\create_order.html:129
-msgid "Спосіб оплати"
-msgstr "Payment method"
-
-#: .\orders\templates\orders\create_order.html:136
-msgid "Оплата карткою"
-msgstr "Payment by details"
-
-#: .\orders\templates\orders\create_order.html:143
-msgid "Готівкою/карткою при отриманні"
-msgstr "Cash/card on delivery"
-
-#: .\orders\views.py:57
-#, python-format
-msgid ""
-"Недостатня кількість товару %(name)s на складі. В наявності — %(quantity)d"
-msgstr "Not enough product %(name)s in stock. Available - %(quantity)d"
-
-#: .\orders\views.py:78
-msgid "Замовлення оформлено!"
-msgstr "Order placed!"
-
-#: .\orders\views.py:85
-msgid "Заповніть всі обов'язкові поля!"
-msgstr "Fill in all required fields!"
-
-#: .\orders\views.py:90
-msgid "Оформлення замовлення"
-msgstr "Place an order"
-
-#: .\templates\base.html:109
-msgid "Інформація"
-msgstr "Information"
-
-#: .\templates\base.html:113
-msgid "Доставка і оплата"
-msgstr "Delivery and payment"
-
-#: .\templates\base.html:116
-msgid "Контактна інформація"
-msgstr "Contact information"
-
-#: .\templates\base.html:132 .\users\templates\users\login.html:60
-msgid "Вхід"
-msgstr "Login"
-
-#: .\templates\base.html:139
-msgid "Мій профіль"
-msgstr "My profile"
-
-#: .\templates\base.html:143 .\templates\includes\cart_button.html:25
-#: .\users\templates\users\profile.html:111
-#: .\users\templates\users\users_cart.html:11
-msgid "Кошик"
-msgstr "Basket"
-
-#: .\templates\base.html:146
-msgid "Особистий кабінет"
-msgstr "Personal account"
-
-#: .\templates\base.html:150
+#: .\templates\base.html:49 .\templates\base.html:114
 msgid "Адмін панель"
 msgstr "Admin panel"
 
-#: .\templates\base.html:158
-msgid "Вихід"
+#: .\templates\base.html:52 .\templates\base.html:116
+msgid "Вийти"
 msgstr "Logout"
 
-#: .\templates\base.html:169 .\templates\base.html:172
-msgid "Search"
-msgstr "Search"
+#: .\templates\base.html:56 .\templates\base.html:118
+msgid "Увійти"
+msgstr "Login"
 
-#: .\templates\base.html:195
-msgid "Каталог"
-msgstr "Catalog"
+#: .\templates\base.html:62
+msgid "Обране"
+msgstr "Favorites"
 
-#: .\templates\base.html:216
-msgid "Фільтри"
-msgstr "Filters"
+#: .\templates\base.html:69
+msgid "Меню"
+msgstr "Menu"
 
-#: .\templates\base.html:242
-msgid "Товари зі знижками"
-msgstr "Discounted products"
-
-#: .\templates\base.html:245
-msgid "Сортувати:"
-msgstr "Sort by:"
-
-#: .\templates\base.html:253
-msgid "За замовчуванням"
-msgstr "Default"
-
-#: .\templates\base.html:263
-msgid "Від дешевих до дорогих"
-msgstr "From cheap to expensive"
-
-#: .\templates\base.html:273
-msgid "Від дорогих до дешевих"
-msgstr "From expensive to cheap"
-
-#: .\templates\base.html:277
-msgid "Застосувати"
-msgstr "Apply"
-
-#: .\users\templates\users\login.html:13
-msgid "Авторизація"
-msgstr "Authorization"
-
-#: .\users\templates\users\login.html:23
-#: .\users\templates\users\registration.html:44
-msgid "Ім'я користувача"
-msgstr "Username"
-
-#: .\users\templates\users\login.html:24
-msgid "Введіть ім'я користувача"
-msgstr "Enter username"
-
-#: .\users\templates\users\login.html:27
-msgid "Пароль"
-msgstr "Password"
-
-#: .\users\templates\users\login.html:28
-msgid "Введіть ваш пароль"
-msgstr "Enter your password"
-
-#: .\users\templates\users\login.html:63
-msgid "Забули пароль?"
-msgstr "Forgot password?"
-
-#: .\users\templates\users\login.html:63
-msgid "Створити акаунт"
-msgstr "Create an account"
-
-#: .\users\templates\users\login.html:67
-msgid "Або авторизуйтесь через:"
-msgstr "Or log in via:"
-
-#: .\users\templates\users\profile.html:18
-msgid "Профіль користувача"
-msgstr "Username"
-
-#: .\users\templates\users\profile.html:53
-#: .\users\templates\users\registration.html:22
-msgid "Введіть ваше ім'я"
-msgstr "Enter your name"
-
-#: .\users\templates\users\profile.html:66
-#: .\users\templates\users\registration.html:33
-msgid "Введіть ваше прізвище"
-msgstr "Enter your surname"
-
-#: .\users\templates\users\profile.html:75
-#: .\users\templates\users\registration.html:40
-msgid "Ім'я користувача*"
-msgstr "Username*"
-
-#: .\users\templates\users\profile.html:79
-msgid "Введіть ваше ім'я користувача"
-msgstr "Enter your username"
-
-#: .\users\templates\users\profile.html:89
-#: .\users\templates\users\registration.html:52
-msgid "Email*"
-msgstr "E-mail*"
-
-#: .\users\templates\users\profile.html:93
-#, fuzzy
-#| msgid "Введіть ваш email"
-msgid "Введіть ваш email *youremail@example.com"
-msgstr "Enter your email"
-
-#: .\users\templates\users\profile.html:102
-msgid "Зберегти"
-msgstr "Save"
-
-#: .\users\templates\users\profile.html:125
-msgid "Мої замовлення"
-msgstr "My orders"
-
-#: .\users\templates\users\profile.html:139
-msgid "Замовлення № "
-msgstr "Order № "
-
-#: .\users\templates\users\profile.html:141
-msgid "Статус:"
-msgstr "Status:"
-
-#: .\users\templates\users\profile.html:154
-msgid "Товар"
-msgstr "Product"
-
-#: .\users\templates\users\profile.html:155
-msgid "Кількість"
-msgstr "Quantity"
-
-#: .\users\templates\users\profile.html:157
-msgid "Загальна вартість"
-msgstr "Total cost"
-
-#: .\users\templates\users\registration.html:12
-msgid "Реєстрація"
-msgstr "Registration"
-
-#: .\users\templates\users\registration.html:56
-msgid "Введіть ваш email"
-msgstr "Enter your email"
-
-#: .\users\templates\users\registration.html:63
-msgid "Пароль*"
-msgstr "Password*"
-
-#: .\users\templates\users\registration.html:67
-msgid "Введіть пароль"
-msgstr "Enter your password"
-
-#: .\users\templates\users\registration.html:74
-msgid "Підтвердження пароля*"
-msgstr "Confirm password*"
-
-#: .\users\templates\users\registration.html:78
-msgid "Підтвердіть пароль"
-msgstr "Confirm password"
-
-#: .\users\templates\users\registration.html:86
-msgid "Зареєструватись"
-msgstr "Register"
-
-#: .\users\views.py:56
-#, python-format
-msgid "%(username)s, Ви увійшли до облікового запису"
-msgstr "%(username)s, you have logged into your account"
-
-#: .\users\views.py:92
-#, python-format
-msgid "%(username)s, Ви успішно зареєстровані та увійшли до облікового запису"
-msgstr ""
-"%(username)s, you have successfully registered and logged into your account"
-
-#: .\users\views.py:113
-msgid "Профіль успішно оновлено"
-msgstr "Profile updated successfully"
-
-#: .\users\views.py:117
-msgid "Сталася помилка"
-msgstr "An error occurred"
-
-#: .\users\views.py:282
-msgid "Пароль успішно змінено!"
-msgstr "Password changed successfully!"
-
-#: .\users\views.py:297
-msgid "Перевірте вашу пошту. Ми надіслали інструкції для скидання пароля."
-msgstr "Check your email. We have sent instructions to reset your password."
+#: .\templates\base.html:106
+msgid "Закрити"
+msgstr "Close"
