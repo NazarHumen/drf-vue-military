@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
+    "drf_yasg",
 
     # Local apps
     "apps.api",
@@ -68,6 +69,7 @@ AUTHENTICATION_BACKENDS = [
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     )
 }
 
@@ -75,6 +77,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "apps.tools.middleware.ForceLanguageMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -106,9 +109,6 @@ WSGI_APPLICATION = "dev_env.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-from dotenv import load_dotenv
-
-load_dotenv()
 
 DATABASES = {
     "default": {
@@ -151,8 +151,8 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ("en", "English"),
     ("uk", "Ukrainian"),
+    ("en", "English"),
 ]
 LOCALE_PATHS = [
     BASE_DIR / "locale",
