@@ -83,23 +83,3 @@ def contact(request):
     }
 
     return render(request, "main/contact.html",  context)
-
-# def index(request):
-#
-#     context = {
-#         "title": "Home - Головна",
-#         "content": "Магазин військового спорядження",
-#     }
-#
-#     return render(request, "main/index.html", context)
-
-
-# def about(request):
-#     context = {
-#         "title": "Home - Про нас",
-#         "content": "Про нас ",
-#         "text_on_page": "Ми спеціалізуємося на "
-#         "продажу військового спорядження, включаючи одяг, рюкзаки, обладнання для тактичних операцій та "
-#         "інші необхідні аксесуари. У нас ви знайдете все, що потрібно для активного відпочинку, туризму або служби.",
-#     }
-#     return render(request, "main/about.html", context)
