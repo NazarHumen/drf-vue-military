@@ -1,185 +1,235 @@
 {% extends "base.html" %}
 {% load static %}
-{% load goods_tags %}
 {% load i18n %}
 
-{% block model_cart %}
-    {% include 'includes/cart_button.html' %}
-{% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
-    <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
+    <link rel="stylesheet" href="{% static 'deps/css/catalog.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <!-- Форма фільтрів -->
-        {#<div class="dropdown mb-2">#}
-        {#    <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"#}
-        {#        aria-expanded="false">#}
-        {#        Фільтри#}
-        {#    </button>#}
-        {##}
-        {#    <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">#}
-        {#        <div class="form-check text-white mx-3">#}
-        {#            <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %} >#}
-        {#            {% if request.GET.q %}#}
-        {#                <input type="hidden" name="q" value="{{ request.GET.q }}">#}
-        {##}
-        {#            {% endif %}#}
-        {##}
-        {#            <label class="form-check-label" for="flexCheckDefault">#}
-        {#                Товари зі знижками#}
-        {#            </label>#}
-        {#        </div>#}
-        {#        <p class="text-white mx-3 mt-3">Сортувати:</p>#}
-        {#        <div class="form-check text-white mx-3">#}
-        {#            <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked {% endif %}>#}
-        {#            <label class="form-check-label" for="flexRadioDefault1">#}
-        {#                За замовчуванням#}
-        {#            </label>#}
-        {#        </div>#}
-        {#        <div class="form-check text-white mx-3">#}
-        {#            <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price" {% if request.GET.order_by == 'price' %}checked{% endif %}>#}
-        {#            <label class="form-check-label" for="flexRadioDefault2">#}
-        {#                Від дешевих до дорогих#}
-        {#            </label>#}
-        {#        </div>#}
-        {#        <div class="form-check text-white mx-3">#}
-        {#            <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" {% if request.GET.order_by == '-price' %}checked{% endif %}>#}
-        {#            <label class="form-check-label" for="flexRadioDefault3">#}
-        {#                Від дорогих до дешевих#}
-        {#            </label>#}
-        {#        </div>#}
-        {#        <button type="submit" class="btn btn-primary mx-3 mt-3">Застосувати</button>#}
-        {#    </form>#}
-        {#</div>#}
-        {% if request.GET.q %}
-            <h3 class="mt-4 search-results ">{% translate "Результати пошуку за запитом" %}
-                : {{ request.GET.q }}</h3>
-            {% if not goods %}
-                {#     <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">#}
-                <h2 class="mt-4 search-results">{% translate "За запитом нічого не знайдено" %}</h2>
-            {% endif %}
-        {% endif %}
+<div id="catalog-app">
+    <div class="catalog-header">
+        <h1 class="catalog-title">{% translate "КАТАЛОГ" %}</h1>
+        <div class="catalog-controls">
+            <div class="search-box">
+                <i class='bx bx-search'></i>
+                <input type="text"
+                       v-model="searchQuery"
+                       @input="debouncedSearch"
+                       placeholder="{% translate 'Пошук...' %}">
+            </div>
+            <div class="sort-dropdown">
+                <label>{% translate "СОРТУВАННЯ:" %}</label>
+                <select v-model="sortBy" @change="fetchProducts">
+                    <option value="default">{% translate "За замовчуванням" %}</option>
+                    <option value="on_sale">{% translate "Зі знижкою" %}</option>
+                    <option value="price">{% translate "Ціна: від низької до високої" %}</option>
+                    <option value="-price">{% translate "Ціна: від високої до низької" %}</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
+    <div class="catalog-content">
+        <!-- Sidebar Filters -->
+        <aside class="catalog-sidebar">
+            <div class="filters-section">
+                <h3 class="filters-title">
+                    <i class='bx bx-slider-alt'></i>
+                    {% translate "ФІЛЬТРИ" %}
+                </h3>
 
+                <div class="filter-group">
+                    <h4 class="filter-label">{% translate "КАТЕГОРІЇ" %}</h4>
+                    <div class="filter-options categories-list">
+                        <label class="filter-option">
+                            <input type="checkbox"
+                                   :checked="allSelected"
+                                   @change="selectAll">
+                            <span>{% translate "Всі" %}</span>
+                            <span class="category-count">([[ totalProductsCount ]])</span>
+                        </label>
+                        <label class="filter-option" v-for="category in visibleCategories" :key="category.id">
+                            <input type="checkbox"
+                                   :checked="isCategorySelected(category.slug)"
+                                   @change="toggleCategory(category.slug)">
+                            <span>[[ category.name ]]</span>
+                            <span class="category-count">([[ category.products_count ]])</span>
+                        </label>
+                    </div>
+                    <button class="show-more-btn"
+                            v-if="hasMoreCategories"
+                            @click="toggleShowAllCategories">
+                        <span v-if="!showAllCategories">
+                            {% translate "Показати ще" %} ([[ hiddenCategoriesCount ]])
+                            <i class='bx bx-chevron-down'></i>
+                        </span>
+                        <span v-else>
+                            {% translate "Сховати" %}
+                            <i class='bx bx-chevron-up'></i>
+                        </span>
+                    </button>
+                </div>
 
+                <!-- Фільтр ціни -->
+                <div class="filter-group price-filter">
+                    <h4 class="filter-label">{% translate "ЦІНА" %}</h4>
 
-        {#Карта товара#}
-        {% for product in goods %}
-            <div class="col-lg-4 col-md-6 p-4">
-                <div class="card border-0 rounded custom-shadow product-card bg-dark text-light">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}"
-                             class="card-img-top product-image"
-                             alt="{{ product.name }}">
-                    {% else %}
-                        <img src="{% static "deps/images/Not found image.png" %}"
-                             class="card-img-top product-image" alt="...">
-                    {% endif %}
+                    <!-- Поля від/до -->
+                    <div class="price-inputs">
+                        <div class="price-input-group">
+                            <label>{% translate "Від" %}</label>
+                            <input type="number"
+                                   :value="priceMin"
+                                   @input="onPriceMinInput"
+                                   :min="priceRange.min"
+                                   :max="priceRange.max">
+                            <span class="currency-label">₴</span>
+                        </div>
+                        <div class="price-input-group">
+                            <label>{% translate "До" %}</label>
+                            <input type="number"
+                                   :value="priceMax"
+                                   @input="onPriceMaxInput"
+                                   :min="priceRange.min"
+                                   :max="priceRange.max">
+                            <span class="currency-label">₴</span>
+                        </div>
+                    </div>
 
-                    <div class="card-body">
-                        <a href="{% url "catalog:product" product.slug %}"
-                           class="text-decoration-none text-light">
-                            <h5 class="card-title font-weight-bold">
-                                {% autoescape off %}{% if product.headline %}
-                                    {{ product.headline }}{% else %}
-                                    {{ product.name }}
-                                {% endif %}{% endautoescape %} </h5>
+                    <!-- Подвійний слайдер -->
+                    <div class="price-slider">
+                        <div class="slider-track"></div>
+                        <div class="slider-range"
+                             :style="{
+                                 left: sliderMinPercent + '%',
+                                 width: (sliderMaxPercent - sliderMinPercent) + '%'
+                             }"></div>
+                        <input type="range"
+                               class="slider-min"
+                               :min="priceRange.min"
+                               :max="priceRange.max"
+                               :value="priceMin"
+                               @input="onSliderMinInput">
+                        <input type="range"
+                               class="slider-max"
+                               :min="priceRange.min"
+                               :max="priceRange.max"
+                               :value="priceMax"
+                               @input="onSliderMaxInput">
+                    </div>
+
+                    <!-- Кількість знайдених товарів -->
+                    <div class="price-filter-info">
+                        <span>{% translate "Знайдено:" %} [[ filteredCount ]] {% translate "товарів" %}</span>
+                    </div>
+
+                    <!-- Кнопки застосувати/скинути -->
+                    <div class="price-filter-actions">
+                        <button class="apply-filter-btn" @click="applyPriceFilter">
+                            {% translate "Застосувати" %}
+                        </button>
+                        <button class="clear-filter-btn"
+                                v-if="priceFilterActive"
+                                @click="clearPriceFilter"
+                                title="{% translate 'Скинути фільтр' %}">
+                            <i class='bx bx-trash'></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Products Grid -->
+        <div class="catalog-main">
+            <div class="products-grid" v-if="products.length > 0">
+                <div class="product-card" v-for="product in products" :key="product.id">
+                    <!-- Favorite button -->
+                    <button class="favorite-btn" @click="toggleFavorite(product.id)">
+                        <i class='bx bx-heart'></i>
+                    </button>
+
+                    <!-- Discount badge -->
+                    <span class="discount-badge" v-if="product.discount">
+                        -[[ product.discount ]]%
+                    </span>
+
+                    <!-- Product image -->
+                    <a :href="'/api/v1/catalog/product/' + product.slug + '/'" class="product-image-link">
+                        <img :src="product.image || '{% static "deps/images/Not found image.png" %}'"
+                             :alt="product.name"
+                             class="product-image">
+                    </a>
+
+                    <!-- Product info -->
+                    <div class="product-info">
+                        <a :href="'/api/v1/catalog/product/' + product.slug + '/'" class="product-name">
+                            [[ product.name ]]
                         </a>
-                        <p class="card-text">
-                            {% autoescape off %}{% if product.bodyline %}
-                                {{ product.bodyline|truncatechars:100 }}
-                            {% else %}
-                                {{ product.description|truncatechars:50 }}
-                            {% endif %}{% endautoescape %}
-                        </p>
-                        <p class="product-id small text-secondary">
-                            ID: {{ product.display_id }}</p>
+                        <p class="product-description">[[ truncate(product.description, 80) ]]</p>
+                        <p class="product-id">ID: [[ formatId(product.id) ]]</p>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            {% if product.discount %}
-                                <div>
-                                    <p class="mb-0 text-danger">
-                                        <s>{{ product.price }} ₴</s></p>
-                                    <p class="mb-0">
-                                        <strong>{{ product.sell_price }}
-                                            ₴ / {{ product.price_in_usd }} $
-
-                                        </strong></p>
-
-                                    <span class="badge bg-warning text-dark">{% translate "Знижка" %} {{ product.discount }} %</span>
-                                </div>
-                            {% else %}
-                                <p class="mb-0"><strong>{{ product.price }}
-                                    ₴ </strong></p>
-                            {% endif %}
-
-                            <a href="{% url "cart:cart_add" %}"
-                               class="btn add-to-cart"
-                               data-product-id="{{ product.id }}">
-                                {% csrf_token %}
-                                <img src="{% static "deps/icons/cart-plus.svg" %}"
-                                     alt="Catalog Icon" width="32" height="32">
-                            </a>
-
+                        <!-- Price -->
+                        <div class="product-price-row">
+                            <div class="price-info">
+                                <span class="old-price" v-if="product.discount">[[ product.price ]] ₴</span>
+                                <span class="current-price">[[ product.sell_price ]] <span class="currency">₴</span></span>
+                                <span class="usd-price">/ [[ product.price_in_usd ]] $</span>
+                            </div>
+                            <button class="add-to-cart-btn" @click="addToCart(product.id)">
+                                <i class='bx bx-cart-add'></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
 
+            <!-- Loading state -->
+            <div class="loading-state" v-if="loading">
+                <i class='bx bx-loader-alt bx-spin'></i>
+                <p>{% translate "Завантаження..." %}</p>
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" v-if="!loading && products.length === 0">
+                <i class='bx bx-package'></i>
+                <p>{% translate "Товари не знайдено" %}</p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" v-if="!loading && products.length > 0">
+                <button class="page-btn"
+                        :disabled="currentPage === 1"
+                        @click="goToPage(currentPage - 1)">
+                    <i class='bx bx-chevron-left'></i>
+                </button>
+                <button class="page-btn"
+                        v-for="page in visiblePages"
+                        :key="page"
+                        :class="{ active: page === currentPage }"
+                        @click="goToPage(page)">
+                    [[ page ]]
+                </button>
+                <button class="page-btn"
+                        :disabled="currentPage === totalPages"
+                        @click="goToPage(currentPage + 1)">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
+            </div>
+        </div>
     </div>
-
-
-
-
-
-
-
-    <!-- Пагинация -->
-    {% if goods %}
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center my-4">
-                <div class="custom-shadow d-flex">
-                    <li class="page-item {% if not goods.has_previous %} disabled {% endif %}">
-                        <a class="page-link" href="{% if goods.has_previous %}?
-
-
-                            {% change_params page=goods.previous_page_number %}{% else %}#{% endif %}">Назад</a>
-                    </li>
-
-                    {% for page in goods.paginator.page_range %}
-                        {% if page >= goods.number|add:-2  and page <= goods.number|add:2 %}
-                            <li class="page-item {% if goods.number == page %} active {% endif %}">
-                                <a class="page-link"
-                                   href="?{% change_params page=page %}">{{ page }}</a>
-                            </li>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-
-                    <li class="page-item {% if not goods.has_next %} disabled {% endif %}">
-                        <a class="page-link" href="{% if goods.has_next %}?
-
-
-                            {% change_params page=goods.next_page_number %}{% else %}#{% endif %}">Наступна</a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
-    {% endif %}
-
+</div>
 {% endblock %}
 
 {% block footer %}
-    <footer class="py-4 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Nazarii
-                Humen 2024</p>
-        </div>
-    </footer>
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/catalog.js' %}"></script>
 {% endblock %}
