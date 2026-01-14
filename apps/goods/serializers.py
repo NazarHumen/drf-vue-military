@@ -4,14 +4,23 @@ from apps.goods.models import (
     Categories,
     ExchangeRate,
     ProductAttribute,
+    ProductImage,
     Products,
 )
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    products_count = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Categories
-        fields = "__all__"
+        fields = ["id", "name", "slug", "products_count"]
+
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ["id", "image", "order"]
 
 
 class ProductAttributeSerializer(serializers.ModelSerializer):
@@ -23,6 +32,7 @@ class ProductAttributeSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     attributes = ProductAttributeSerializer(many=True, read_only=True)
+    images = ProductImageSerializer(many=True, read_only=True)
 
     sell_price = serializers.SerializerMethodField()
     price_in_usd = serializers.DecimalField(
@@ -38,6 +48,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "slug",
             "description",
             "image",
+            "images",
             "price",
             "currency",
             "discount",
