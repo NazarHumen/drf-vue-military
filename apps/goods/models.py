@@ -126,7 +126,7 @@ class Products(models.Model):
         decimal_places=4,
         blank=True,
         null=True,
-        verbose_name="Курс валют",
+        verbose_name="Курс валют USD->UAH",
     )
 
     discounted_price = models.DecimalField(
@@ -232,22 +232,57 @@ class Products(models.Model):
 
     # курс обміну
     def save(self, *args, **kwargs):
-        # Отримуємо актуальний курс для валюти товару
-        if self.currency == "UAH":
-            self.exchange_rate = self.get_exchange_rate("UAH", "USD")
-        elif self.currency == "USD":
-            self.exchange_rate = self.get_exchange_rate("USD", "UAH")
+        # Отримуємо актуальний курс USD -> UAH
+        self.exchange_rate = self.get_exchange_rate("USD", "UAH")
 
         # Розрахунок ціни зі знижкою
         self.discounted_price = self.sell_price()
 
-        # Перерахунок ціни в USD або UAH з урахуванням знижки
-        if self.currency == "UAH":
-            self.price_in_usd = self.discounted_price * self.exchange_rate
+        # Перерахунок ціни в USD з урахуванням знижки
+        if self.currency == "UAH" and self.exchange_rate:
+            # Якщо ціна в грн, ділимо на курс щоб отримати USD
+            self.price_in_usd = round(
+                self.discounted_price / self.exchange_rate, 2
+            )
         elif self.currency == "USD":
-            self.price_in_uah = self.discounted_price * self.exchange_rate
+            # Якщо ціна вже в USD
+            self.price_in_usd = self.discounted_price
 
         super().save(*args, **kwargs)
+
+
+class ProductImage(models.Model):
+    ORDER_CHOICES = (
+        (0, "1-е зображення"),
+        (1, "2-е зображення"),
+        (2, "3-є зображення"),
+        (3, "4-е зображення"),
+    )
+
+    product = models.ForeignKey(
+        Products,
+        on_delete=models.CASCADE,
+        related_name="images",
+        verbose_name="Продукт",
+    )
+    image = models.ImageField(
+        upload_to="goods_images",
+        verbose_name="Зображення",
+    )
+    order = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name="Порядок",
+        choices=ORDER_CHOICES,
+    )
+
+    class Meta:
+        db_table = "product_image"
+        verbose_name = "Зображення продукту"
+        verbose_name_plural = "Зображення продукту"
+        ordering = ("order",)
+
+    def __str__(self):
+        return f"Зображення {self.order} для {self.product.name}"
 
 
 class ProductAttribute(models.Model):
@@ -255,7 +290,6 @@ class ProductAttribute(models.Model):
         Products,
         on_delete=models.CASCADE,
         related_name="attributes",
-        # Це дозволяє отримувати характеристики через product.attributes
         verbose_name="Продукт",
     )
     key = models.CharField(max_length=100, verbose_name="Назва характеристики")
