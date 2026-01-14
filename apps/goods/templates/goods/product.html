@@ -1,163 +1,147 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'deps/css/product.css' %}">
 {% endblock %}
 
-{% block model_cart %}
-    {% include 'includes/cart_button.html' %}
+{% block content %}
+<div id="product-app">
+    <!-- Loading state -->
+    <div class="loading-state" v-if="loading">
+        <i class='bx bx-loader-alt bx-spin'></i>
+        <p>{% translate "Завантаження..." %}</p>
+    </div>
+
+    <!-- Product content -->
+    <div class="product-page" v-if="!loading && product">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/api/v1/catalog/all/">{% translate "Каталог" %}</a>
+            <span>/</span>
+            <a :href="'/api/v1/catalog/' + product.category?.slug + '/'" v-if="product.category">
+                [[ product.category.name ]]
+            </a>
+            <span v-if="product.category">/</span>
+            <span class="current">[[ product.name ]]</span>
+        </nav>
+
+        <div class="product-container">
+            <!-- Product Gallery -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img :src="currentImage || product.image || '{% static "deps/images/Not found image.png" %}'"
+                         :alt="product.name">
+                    <span class="discount-badge" v-if="product.discount">
+                        -[[ product.discount ]]%
+                    </span>
+                </div>
+                <!-- Thumbnails -->
+                <div class="thumbnails">
+                    <!-- Main image thumbnail -->
+                    <div class="thumbnail"
+                         :class="{ active: currentImage === product.image }"
+                         @click="setCurrentImage(product.image)">
+                        <img :src="product.image || '{% static "deps/images/Not found image.png" %}'" :alt="product.name">
+                    </div>
+                    <!-- Additional images (up to 4) -->
+                    <div class="thumbnail"
+                         v-for="(img, index) in getImages()"
+                         :key="index"
+                         :class="{ active: currentImage === img.image, placeholder: !img.image }"
+                         @click="img.image && setCurrentImage(img.image)">
+                        <img :src="img.image || '{% static "deps/images/tactical_gear_with_not_found_text.png" %}'" :alt="product.name + ' ' + (index + 1)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-details">
+                <!-- Product ID -->
+                <div class="product-id">
+                    <span class="label">ID:</span>
+                    <span class="id-value">[[ formatId(product.id) ]]</span>
+                </div>
+
+                <!-- Price at top -->
+                <div class="price-section">
+                    <span class="label">{% translate "Ціна" %}:</span>
+                    <div class="price-info">
+                        <span class="current-price">[[ product.sell_price ]] ₴</span>
+                        <span class="usd-price">/ [[ product.price_in_usd ]] $</span>
+                    </div>
+                </div>
+
+                <h1 class="product-title">[[ product.name ]]</h1>
+
+                <!-- Description -->
+                <div class="description-section">
+                    <p>[[ product.description ]]</p>
+                </div>
+
+                <!-- Quantity Selector -->
+                <div class="quantity-section">
+                    <span class="label">{% translate "Кількість" %}:</span>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus" @click="decreaseQuantity" :disabled="quantity <= 1">
+                            <i class='bx bx-minus'></i>
+                        </button>
+                        <input type="number" class="quantity-input" v-model.number="quantity" min="1" :max="product.quantity">
+                        <button class="quantity-btn plus" @click="increaseQuantity" :disabled="quantity >= product.quantity">
+                            <i class='bx bx-plus'></i>
+                        </button>
+                    </div>
+                    <span class="stock-info in-stock" v-if="product.quantity > 0">{% translate "Є в наявності" %}</span>
+                    <span class="stock-info out-of-stock" v-else>{% translate "Немає в наявності" %}</span>
+                </div>
+
+                <!-- Actions - Cart button and Favorite button -->
+                <div class="actions-section">
+                    <button class="add-to-cart-btn" @click="addToCart">
+                        {% translate "Додати до кошика" %}
+                    </button>
+                    <button class="favorite-btn" @click="toggleFavorite" :class="{ active: isFavorite }">
+                        <i class='bx' :class="isFavorite ? 'bxs-heart' : 'bx-heart'"></i>
+                    </button>
+                </div>
+
+                <!-- Attributes Section -->
+                <div class="attributes-section" v-if="product.attributes && product.attributes.length > 0">
+                    <h3>{% translate "ХАРАКТЕРИСТИКИ" %}</h3>
+                    <ul class="attributes-list">
+                        <li v-for="attr in product.attributes" :key="attr.id">
+                            <span class="attr-key">[[ attr.key ]]:</span>
+                            <span class="attr-value">[[ attr.value ]]</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="error-state" v-if="!loading && !product">
+        <i class='bx bx-error'></i>
+        <p>{% translate "Товар не знайдено" %}</p>
+        <a href="/api/v1/catalog/all/" class="back-link">{% translate "Повернутись до каталогу" %}</a>
+    </div>
+</div>
 {% endblock %}
 
-
-
-
-
-{% block content %}
-    <div class="container mt-5">
-        <div class="card mb-4 custom-shadow position-relative product-card">
-            <!-- Кнопка закриття -->
-            <button type="button"
-                    class="close-button position-absolute top-0 end-0 m-2"
-                    aria-label="Close"></button>
-
-
-            <div class="row">
-                <!-- Ліва частина картки (зображення та id) -->
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Зображення -->
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}"
-                                     class="img-thumbnail"
-                                     data-bs-toggle="modal"
-                                     data-bs-target="#imageModal1">
-                            {% else %}
-                                <p>{% translate "Зображення відсутнє" %}</p>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-12">
-                            <p class="product_id mt-3">
-                                id: {{ product.display_id }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Права частина картки (назва, ціна, опис) -->
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <p class="card-text">{% translate "Ціна" %}:
-                            <strong>{{ product.sell_price }} ₴
-                                / {{ product.price_in_usd }} $</strong></p>
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                        <div class="button-container">
-                            <a href="{% url 'cart:cart_add' %}"
-                               class="btn btn-dark add-to-cart"
-                               data-product-id="{{ product.id }}">
-                                {% csrf_token %}
-                                {% translate "Додати до кошика" %}</a>
-                            {#                    <button#}
-                            {#    class="btn toggle-favorite"#}
-                            {#    data-product-id="{{ product.id }}"#}
-                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
-                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
-                            {#    data-url-remove="{% url 'favorites:remove_favorite' %}"#}
-                            {#>#}
-                            {#    <img#}
-                            {#        src="{% static 'deps/images/heart.svg' %}"#}
-                            {#        alt="Heart Icon"#}
-                            {#        class="favorite-icon {% if product.is_favorited %}filled{% endif %}"#}
-                            {#        width="32" height="32">#}
-                            {#</button>#}
-                            {#                    <button#}
-                            {#    class="btn toggle-favorite"#}
-                            {#    data-product-id="{{ product.id }}"#}
-                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
-                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
-                            {#    data-url-remove="{% url 'favorites:remove_favorite' %}"#}
-                            {#>#}
-                            {#    <img#}
-                            {#        src="{% static 'deps/images/heart.svg' %}"#}
-                            {#        alt="Heart Icon"#}
-                            {#        class="favorite-icon {% if product.is_favorited %}filled{% endif %}"#}
-                            {#        width="32" height="32">#}
-                            {#</button>#}
-                            {# <button#}
-                            {#    class="btn toggle-favorite"#}
-                            {#    data-product-id="{{ product.id }}"#}
-                            {#    data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
-                            {#    data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
-                            {#>#}
-                            {#    <span class="heart {% if product.is_favorited %}filled{% endif %}"></span>#}
-                            {#</button>#}
-                            {#                             <button#}
-                            {#                                class="heart-btn"#}
-                            {#                                data-product-id="{{ product.id }}"#}
-                            {#                                data-favorited="{{ product.is_favorited|yesno:'true,false' }}"#}
-                            {#                                data-url-toggle="{% url 'favorites:toggle_favorite' %}"#}
-                            {#                            >#}
-                            {#                                <span class="heart {% if product.is_favorited %}filled{% endif %}">&#10084;</span>#}
-                            {#                            </button>#}
-                            {#                                                        <a href="{% url 'favorites:toggle_favorite' %}"#}
-                            {#                                                           class="add-to-favorites"#}
-                            {#                                                           data-product-id="{{ product.id }}">#}
-                            {#                                                            Додати в обрані#}
-                            {#                                                        </a>#}
-                            {#                            <button type="button"#}
-                            {#                                    class="add-to-favorites"#}
-                            {#                                    data-product-id="{{ product.id }}"#}
-                            {#                                    data-url="{% url 'favorites:toggle_favorite' %}">#}
-                            {#                                Додати в обрані#}
-                            {#                            </button>#}
-
-
-                        </div>
-                    </div>
-                    <!-- Характеристики -->
-                    <div class="card-footer">
-                        <h5>{% translate "Характеристики" %}</h5>
-                        <ul>
-                            {% for attribute in product.attributes.all %}
-                                <li>
-                                    <strong>{{ attribute.key }}:</strong> {{ attribute.value }}
-                                </li>
-                            {% empty %}
-                                <li>{% translate "Характеристики відсутні" %}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
     </div>
+</footer>
+{% endblock %}
 
-
-
-
-
-
-
-    <!-- Модальне вікно для зображення -->
-    <div class="modal fade" id="imageModal1" tabindex="-1"
-         aria-labelledby="imageModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"
-                        id="imageModal1Label">{{ product.name }}</h5>
-                    <button type="button" class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Закрити"></button>
-                </div>
-                <div class="modal-body">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" class="img-fluid"
-                             alt="{{ product.name }}">
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+{% block scripts %}
+<script>
+    window.PRODUCT_CONFIG = {
+        productSlug: '{{ product_slug }}'
+    };
+</script>
+<script src="{% static 'deps/js/product.js' %}"></script>
 {% endblock %}
