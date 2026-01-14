@@ -1,17 +1,26 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from apps.goods.models import (  # Додано ProductAttribute
+from apps.goods.models import (
     Categories,
     ExchangeRate,
     ProductAttribute,
+    ProductImage,
     Products,
 )
 
 
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 4
+    max_num = 4
+    verbose_name = "Додаткове зображення"
+    verbose_name_plural = "Додаткові зображення"
+
+
 class ProductAttributeInline(admin.TabularInline):
-    model = ProductAttribute  # Підключаємо модель характеристик
-    extra = 1  # Скільки порожніх рядків буде додано для заповнення
+    model = ProductAttribute
+    extra = 1
     verbose_name = "Характеристика"
     verbose_name_plural = "Характеристики"
 
@@ -26,12 +35,11 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Products)
 class ProductsAdmin(TranslationAdmin):
-    prepopulated_fields = {
-        "slug": ("name",)
-    }  # Автоматичне заповнення поля `slug`
+    prepopulated_fields = {"slug": ("name",)}
     inlines = [
-        ProductAttributeInline
-    ]  # Додаємо характеристики як інлайн-редактор
+        ProductImageInline,
+        ProductAttributeInline,
+    ]
 
     list_display = [
         "name",
