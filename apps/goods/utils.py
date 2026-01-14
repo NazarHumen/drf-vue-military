@@ -1,12 +1,6 @@
 from decimal import Decimal
 
 import requests
-from django.contrib.postgres.search import (
-    SearchHeadline,
-    SearchQuery,
-    SearchRank,
-    SearchVector,
-)
 from django.utils.translation import get_language
 
 from apps.goods.models import ExchangeRate, Products
@@ -53,44 +47,16 @@ def q_search(request, query):
     if query.isdigit() and len(query) <= 5:
         return Products.objects.filter(id=int(query))
 
-    vector = SearchVector("name", "description", "name_en", "description_en")
-    search_query = SearchQuery(query)
-
-    result = (
-        Products.objects.annotate(rank=SearchRank(vector, search_query))
-        .filter(rank__gt=0)
-        .order_by("-rank")
-    )
+    # Частковий пошук по назві та описі (icontains)
+    from django.db.models import Q
 
     if lang == "en":
-        result = result.annotate(
-            title=SearchHeadline(
-                "name_en",
-                search_query,
-                start_sel='<span style="background-color: red;">',
-                stop_sel="</span>",
-            ),
-            body=SearchHeadline(
-                "description_en",
-                search_query,
-                start_sel='<span style="background-color: red;">',
-                stop_sel="</span>",
-            ),
+        result = Products.objects.filter(
+            Q(name_en__icontains=query) | Q(description_en__icontains=query)
         )
     else:
-        result = result.annotate(
-            title=SearchHeadline(
-                "name",
-                search_query,
-                start_sel='<span style="background-color: red;">',
-                stop_sel="</span>",
-            ),
-            body=SearchHeadline(
-                "description",
-                search_query,
-                start_sel='<span style="background-color: red;">',
-                stop_sel="</span>",
-            ),
+        result = Products.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
         )
 
     return result
