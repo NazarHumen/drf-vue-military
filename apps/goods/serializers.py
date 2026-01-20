@@ -39,6 +39,7 @@ class ProductSerializer(serializers.ModelSerializer):
         max_digits=10, decimal_places=2, read_only=True
     )
     price_in_uah = serializers.SerializerMethodField()
+    availability_status_display = serializers.SerializerMethodField()
 
     class Meta:
         model = Products
@@ -58,6 +59,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "price_in_uah",
             "exchange_rate",
             "quantity",
+            "availability_status",
+            "availability_status_display",
             "category",
             "attributes",
         ]
@@ -67,6 +70,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_price_in_uah(self, obj):
         return obj.price_in_uah
+
+    def get_availability_status_display(self, obj):
+        return obj.get_availability_status_display()
 
 
 class ExchangeRateSerializer(serializers.ModelSerializer):
