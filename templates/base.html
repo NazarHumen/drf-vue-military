@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{% static "deps/css/navbar.css" %}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet">
+    <!-- iziToast -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     {% block css %}
     {% endblock %}
     <!-- Favicons -->
@@ -62,8 +64,9 @@
                 <a href="#" class="navbar-icon" title="{% translate 'Обране' %}">
                     <i class='bx bx-heart'></i>
                 </a>
-                <a href="#" class="navbar-icon" title="{% translate 'Кошик' %}">
+                <a href="/api/v1/cart/basket/" class="navbar-icon cart-icon" title="{% translate 'Кошик' %}">
                     <i class='bx bx-cart'></i>
+                    <span id="cart-count" class="cart-badge">0</span>
                 </a>
                 <!-- Mobile menu toggle -->
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% translate 'Меню' %}">
@@ -137,6 +140,8 @@
 
 <script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js" %}"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+<script src="{% static "deps/js/cart-handler.js" %}"></script>
 <script src="{% static "deps/js/main.js" %}"></script>
 {% block scripts %}{% endblock %}
 </body>
