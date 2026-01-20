@@ -42,14 +42,32 @@ class CartMixin:
                 item.product.price_in_usd * item.quantity
             )
 
+            # Отримуємо URL зображення товару
+            product_image = None
+            if item.product.image:
+                product_image = item.product.image.url
+
+            # Визначаємо максимальну кількість залежно від статусу
+            if item.product.availability_status == "last_item":
+                max_quantity = min(5, item.product.quantity)
+            elif item.product.availability_status == "out_of_stock":
+                max_quantity = 0
+            else:  # ready_to_ship
+                max_quantity = item.product.quantity
+
             cart_data.append(
                 {
                     "id": item.id,
                     "product_id": item.product.id,
                     "product_name": item.product.name,
+                    "product_description": item.product.description,
+                    "product_image": product_image,
+                    "product_slug": item.product.slug,
                     "product_sell_price": round(item.product.sell_price(), 2),
                     "product_price_usd": round(item.product.price_in_usd, 2),
                     "quantity": item.quantity,
+                    "max_quantity": max_quantity,
+                    "availability_status": item.product.availability_status,
                     "products_price": round(products_price_uah, 2),
                     "products_price_usd": round(products_price_usd, 2),
                 }
