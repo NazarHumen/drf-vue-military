@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 18:36+0200\n"
+"POT-Creation-Date: 2026-01-20 14:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\apps\carts\templates\carts\basket.html:14
+#: .\apps\goods\templates\goods\catalog.html:204
+#: .\apps\goods\templates\goods\product.html:14
+#, fuzzy
+#| msgid "Повернення"
+msgid "Завантаження..."
+msgstr "Return"
+
+#: .\apps\carts\templates\carts\basket.html:19 .\apps\carts\views.py:22
+#: .\apps\users\templates\users\profile.html:111
+#: .\apps\users\templates\users\users_cart.html:11 .\templates\base.html:67
+#: .\templates\includes\cart_button.html:25
+msgid "Кошик"
+msgstr "Basket"
+
+#: .\apps\carts\templates\carts\basket.html:25
+#, fuzzy
+#| msgid "Ваш кошик порожній"
+msgid "Кошик порожній"
+msgstr "Your cart is empty"
+
+#: .\apps\carts\templates\carts\basket.html:27
+#, fuzzy
+#| msgid "Переглянути каталог"
+msgid "Перейти до каталогу"
+msgstr "View catalog"
+
+#: .\apps\carts\templates\carts\basket.html:88
+#, fuzzy
+#| msgid "бронеплити"
+msgid "Видалити"
+msgstr "armor plates"
+
+#: .\apps\carts\templates\carts\basket.html:96
+msgid "ORDER SUMMARY"
+msgstr ""
+
+#: .\apps\carts\templates\carts\basket.html:99
+#, fuzzy
+#| msgid "Кількість змінено"
+msgid "Кількість товарів"
+msgstr "Quantity changed"
+
+#: .\apps\carts\templates\carts\basket.html:100
+msgid "од."
+msgstr ""
+
+#: .\apps\carts\templates\carts\basket.html:105
+msgid "Сума"
+msgstr ""
+
+#: .\apps\carts\templates\carts\basket.html:112
+#: .\apps\carts\templates\carts\includes\included_carts.html:70
+#: .\apps\orders\templates\orders\create_order.html:153
+msgid "Оформити замовлення"
+msgstr "Place an order"
+
 #: .\apps\carts\templates\carts\includes\included_carts.html:62
 msgid "Разом"
 msgstr "Total"
@@ -26,41 +83,71 @@ msgstr "Total"
 msgid "товар(а) у суммі"
 msgstr "product(s) in total"
 
-#: .\apps\carts\templates\carts\includes\included_carts.html:70
-#: .\apps\orders\templates\orders\create_order.html:153
-msgid "Оформити замовлення"
-msgstr "Place an order"
-
-#: .\apps\carts\views.py:23
+#: .\apps\carts\views.py:46
 msgid "Не вказано ID товару"
 msgstr ""
 
-#: .\apps\carts\views.py:30 .\apps\goods\templates\goods\product.html:126
-#: .\apps\goods\views.py:71
+#: .\apps\carts\views.py:62 .\apps\goods\templates\goods\product.html:147
+#: .\apps\goods\views.py:119
 msgid "Товар не знайдено"
 msgstr "Product not found"
 
-#: .\apps\carts\views.py:54
+#: .\apps\carts\views.py:69 .\apps\carts\views.py:159
+#, fuzzy
+#| msgid "Товар доданий до кошика"
+msgid "Товар відсутній на складі"
+msgstr "Product added to cart"
+
+#: .\apps\carts\views.py:89
+#, python-format
+msgid "Максимальна кількість для цього товару: %(max)s шт."
+msgstr ""
+
+#: .\apps\carts\views.py:98
+#, python-format
+msgid "На складі залишилось лише %(max)s шт."
+msgstr ""
+
+#: .\apps\carts\views.py:122
 msgid "Товар доданий до кошика"
 msgstr "Product added to cart"
 
-#: .\apps\carts\views.py:68 .\apps\carts\views.py:102
+#: .\apps\carts\views.py:136 .\apps\carts\views.py:197
 #, fuzzy
 #| msgid "Товар додано до кошика"
 msgid "Не вказано ID елемента кошика"
 msgstr "Product added to cart"
 
-#: .\apps\carts\views.py:75 .\apps\carts\views.py:109
+#: .\apps\carts\views.py:143 .\apps\carts\views.py:204
 msgid "Елемент кошика не знайдено"
 msgstr "Nothing found for the query"
 
-#: .\apps\carts\views.py:90
+#: .\apps\carts\views.py:174
+#, python-format
+msgid "Максимальна кількість: %(max)s шт."
+msgstr ""
+
+#: .\apps\carts\views.py:185
 msgid "Кількість змінено"
 msgstr "Quantity changed"
 
-#: .\apps\carts\views.py:118
+#: .\apps\carts\views.py:213
 msgid "Товар видалено"
 msgstr "Product removed"
+
+#: .\apps\goods\models.py:55
+#| msgid "Готовий до відправлення"
+msgid "Готовий до відправлення"
+msgstr "Ready to ship"
+
+#: .\apps\goods\models.py:56
+#| msgid "Останній товар!"
+msgid "Останній товар!"
+msgstr "Latest product!"
+
+#: .\apps\goods\models.py:57
+msgid "Немає в наявності"
+msgstr "Out of stock"
 
 #: .\apps\goods\templates\goods\catalog.html:12
 msgid "КАТАЛОГ"
@@ -98,25 +185,62 @@ msgstr "FILTERS"
 msgid "КАТЕГОРІЇ"
 msgstr "CATEGORIES"
 
-#: .\apps\goods\templates\goods\catalog.html:50
+#: .\apps\goods\templates\goods\catalog.html:49
 #, fuzzy
 #| msgid "Вхід"
 msgid "Всі"
 msgstr "Login"
 
-#: .\apps\goods\templates\goods\catalog.html:111
-#: .\apps\goods\templates\goods\product.html:14
-#, fuzzy
-#| msgid "Повернення"
-msgid "Завантаження..."
-msgstr "Return"
+#: .\apps\goods\templates\goods\catalog.html:64
+msgid "Показати ще"
+msgstr ""
 
-#: .\apps\goods\templates\goods\catalog.html:117
+#: .\apps\goods\templates\goods\catalog.html:68
+msgid "Сховати"
+msgstr ""
+
+#: .\apps\goods\templates\goods\catalog.html:76
+msgid "ЦІНА"
+msgstr ""
+
+#: .\apps\goods\templates\goods\catalog.html:81
+#, fuzzy
+#| msgid "Вхід"
+msgid "Від"
+msgstr "Login"
+
+#: .\apps\goods\templates\goods\catalog.html:90
+msgid "До"
+msgstr ""
+
+#: .\apps\goods\templates\goods\catalog.html:124
+#, fuzzy
+#| msgid "Товар не знайдено"
+msgid "Знайдено:"
+msgstr "Product not found"
+
+#: .\apps\goods\templates\goods\catalog.html:124
+#, fuzzy
+#| msgid "Товар"
+msgid "товарів"
+msgstr "Product"
+
+#: .\apps\goods\templates\goods\catalog.html:130
+#, fuzzy
+#| msgid "Зареєструватись"
+msgid "Застосувати"
+msgstr "Register"
+
+#: .\apps\goods\templates\goods\catalog.html:135
+msgid "Скинути фільтр"
+msgstr ""
+
+#: .\apps\goods\templates\goods\catalog.html:210
 msgid "Товари не знайдено"
 msgstr "Product removed"
 
-#: .\apps\goods\templates\goods\product.html:21 .\templates\base.html:41
-#: .\templates\base.html:109
+#: .\apps\goods\templates\goods\product.html:21 .\templates\base.html:43
+#: .\templates\base.html:112
 msgid "Каталог"
 msgstr "Catalog"
 
@@ -130,35 +254,27 @@ msgstr "Price"
 msgid "Кількість"
 msgstr "Quantity"
 
-#: .\apps\goods\templates\goods\product.html:95
-msgid "Є в наявності"
-msgstr "In stock"
-
-#: .\apps\goods\templates\goods\product.html:96
-msgid "Немає в наявності"
-msgstr "Out of stock"
-
-#: .\apps\goods\templates\goods\product.html:102
+#: .\apps\goods\templates\goods\product.html:123
 msgid "Додати до кошика"
 msgstr "Product added to cart"
 
-#: .\apps\goods\templates\goods\product.html:111
+#: .\apps\goods\templates\goods\product.html:132
 msgid "ХАРАКТЕРИСТИКИ"
 msgstr "CHARACTERISTICS"
 
-#: .\apps\goods\templates\goods\product.html:127
+#: .\apps\goods\templates\goods\product.html:148
 #, fuzzy
 #| msgid "Переглянути каталог"
 msgid "Повернутись до каталогу"
 msgstr "View catalog"
 
-#: .\apps\goods\views.py:30
+#: .\apps\goods\views.py:49
 #, fuzzy
 #| msgid "Товар не знайдено"
 msgid "Категорію не знайдено"
 msgstr "Product not found"
 
-#: .\apps\goods\views.py:52
+#: .\apps\goods\views.py:95
 msgid "Catalog"
 msgstr "Catalog"
 
@@ -359,12 +475,6 @@ msgstr "Enter your email"
 #: .\apps\users\templates\users\profile.html:102
 msgid "Зберегти"
 msgstr "Save"
-
-#: .\apps\users\templates\users\profile.html:111
-#: .\apps\users\templates\users\users_cart.html:11 .\templates\base.html:65
-#: .\templates\includes\cart_button.html:25
-msgid "Кошик"
-msgstr "Basket"
 
 #: .\apps\users\templates\users\profile.html:125
 msgid "Мої замовлення"
@@ -713,8 +823,8 @@ msgstr "Name: military equipment store"
 msgid "Тип компанії: Компанія, що надає послуги, Виробник "
 msgstr "Company providing services, Manufacturer"
 
-#: .\main\templates\main\contact.html:9 .\templates\base.html:42
-#: .\templates\base.html:110
+#: .\main\templates\main\contact.html:9 .\templates\base.html:44
+#: .\templates\base.html:113
 msgid "Контакти"
 msgstr "Contacts"
 
@@ -944,36 +1054,39 @@ msgstr "Thank you for your feedback! Your message has been successfully sent."
 msgid "Home - Зв'яжіться з нами"
 msgstr "Home - Contact us"
 
-#: .\templates\base.html:45 .\templates\base.html:112
+#: .\templates\base.html:47 .\templates\base.html:115
 msgid "Профіль"
 msgstr "Profile"
 
-#: .\templates\base.html:47
+#: .\templates\base.html:49
 #, fuzzy
 #| msgid "Створити акаунт"
 msgid "Мій акаунт"
 msgstr "Create an account"
 
-#: .\templates\base.html:49 .\templates\base.html:114
+#: .\templates\base.html:51 .\templates\base.html:117
 msgid "Адмін панель"
 msgstr "Admin panel"
 
-#: .\templates\base.html:52 .\templates\base.html:116
+#: .\templates\base.html:54 .\templates\base.html:119
 msgid "Вийти"
 msgstr "Logout"
 
-#: .\templates\base.html:56 .\templates\base.html:118
+#: .\templates\base.html:58 .\templates\base.html:121
 msgid "Увійти"
 msgstr "Login"
 
-#: .\templates\base.html:62
+#: .\templates\base.html:64
 msgid "Обране"
 msgstr "Favorites"
 
-#: .\templates\base.html:69
+#: .\templates\base.html:72
 msgid "Меню"
 msgstr "Menu"
 
-#: .\templates\base.html:106
+#: .\templates\base.html:109
 msgid "Закрити"
 msgstr "Close"
+
+#~ msgid "Є в наявності"
+#~ msgstr "In stock"
