@@ -5,7 +5,8 @@ from apps.carts import views
 app_name = "carts"
 
 urlpatterns = [
-path("cart_list/", views.CartListAPIView.as_view(), name="cart_list"),
+    path("basket/", views.BasketAPIView.as_view(), name="basket"),
+    path("cart_list/", views.CartListAPIView.as_view(), name="cart_list"),
     path("cart_add/", views.CartAddAPIView.as_view(), name="cart_add"),
     path(
         "cart_change/",
