@@ -3,6 +3,7 @@ from decimal import Decimal
 import requests
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
@@ -50,6 +51,12 @@ class Products(models.Model):
         ("USD", "Долар"),
     )
 
+    AVAILABILITY_CHOICES = (
+        ("ready_to_ship", _("Готовий до відправлення")),
+        ("last_item", _("Останній товар!")),
+        ("out_of_stock", _("Немає в наявності")),
+    )
+
     name = models.CharField(max_length=150, unique=True, verbose_name="Назва")
     slug = models.SlugField(
         max_length=200, unique=True, blank=True, null=True, verbose_name="URL"
@@ -90,6 +97,13 @@ class Products(models.Model):
 
     quantity = models.PositiveSmallIntegerField(
         default=0, verbose_name="Кількість"
+    )
+
+    availability_status = models.CharField(
+        max_length=20,
+        choices=AVAILABILITY_CHOICES,
+        default="ready_to_ship",
+        verbose_name="Статус наявності",
     )
 
     category = models.ForeignKey(
