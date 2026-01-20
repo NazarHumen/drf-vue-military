@@ -12,6 +12,38 @@ createApp({
             productSlug: window.PRODUCT_CONFIG?.productSlug || ''
         }
     },
+    computed: {
+        maxQuantity() {
+            if (!this.product) return 1;
+            if (this.product.availability_status === 'last_item') {
+                return Math.min(5, this.product.quantity);
+            }
+            if (this.product.availability_status === 'out_of_stock') {
+                return 0;
+            }
+            return this.product.quantity;
+        }
+    },
+    watch: {
+        quantity(newVal, oldVal) {
+            if (!this.product) return;
+
+            // Перевірка на перевищення максимуму
+            if (newVal > this.maxQuantity) {
+                this.quantity = this.maxQuantity;
+                CartHandler.showNotification(
+                    `На складі залишилось лише ${this.maxQuantity} шт.`,
+                    'warning'
+                );
+                return;
+            }
+
+            // Перевірка на мінімум
+            if (newVal < 1) {
+                this.quantity = 1;
+            }
+        }
+    },
     methods: {
         async fetchProduct() {
             this.loading = true;
@@ -41,9 +73,8 @@ createApp({
             // TODO: Implement favorites API
             console.log('Toggle favorite:', this.product.id);
         },
-        addToCart() {
-            // TODO: Implement cart API
-            console.log('Add to cart:', this.product.id, 'quantity:', this.quantity);
+        async addToCart() {
+            await CartHandler.addToCart(this.product.id, this.quantity);
         },
         formatId(id) {
             return String(id).padStart(4, '0');
@@ -58,7 +89,7 @@ createApp({
             return result;
         },
         increaseQuantity() {
-            if (this.quantity < this.product.quantity) {
+            if (this.quantity < this.maxQuantity) {
                 this.quantity++;
             }
         },
