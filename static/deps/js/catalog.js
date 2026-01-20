@@ -194,9 +194,8 @@ createApp({
             // TODO: Implement favorites API
             console.log('Toggle favorite:', productId);
         },
-        addToCart(productId) {
-            // TODO: Implement cart API
-            console.log('Add to cart:', productId);
+        async addToCart(productId) {
+            await CartHandler.addToCart(productId);
         },
         truncate(text, length) {
             if (!text) return '';
