@@ -599,7 +599,36 @@ body {
     font-size: 0.9rem;
     color: #666;
     letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+/* Availability Status */
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
     margin-bottom: 1rem;
+    padding: 0.25rem 0;
+}
+
+.availability-status i {
+    font-size: 1rem;
+}
+
+.availability-status.status-ready {
+    color: #8B9A46;
+}
+
+.availability-status.status-last {
+    color: #FF6B00;
+}
+
+.availability-status.status-out {
+    color: #e53935;
 }
 
 .product-price-row {
@@ -659,9 +688,17 @@ body {
     transition: all 0.3s ease;
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover:not(:disabled) {
     background-color: #8B9A46;
     color: #1a1a1a;
+}
+
+.add-to-cart-btn:disabled,
+.add-to-cart-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #444;
+    color: #444;
 }
 
 /* Loading & Empty States */
