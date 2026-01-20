@@ -84,21 +84,42 @@
                 <div class="quantity-section">
                     <span class="label">{% translate "Кількість" %}:</span>
                     <div class="quantity-selector">
-                        <button class="quantity-btn minus" @click="decreaseQuantity" :disabled="quantity <= 1">
+                        <button class="quantity-btn minus"
+                                @click="decreaseQuantity"
+                                :disabled="quantity <= 1 || product.availability_status === 'out_of_stock'">
                             <i class='bx bx-minus'></i>
                         </button>
-                        <input type="number" class="quantity-input" v-model.number="quantity" min="1" :max="product.quantity">
-                        <button class="quantity-btn plus" @click="increaseQuantity" :disabled="quantity >= product.quantity">
+                        <input type="number"
+                               class="quantity-input"
+                               v-model.number="quantity"
+                               min="1"
+                               :max="maxQuantity"
+                               :disabled="product.availability_status === 'out_of_stock'">
+                        <button class="quantity-btn plus"
+                                @click="increaseQuantity"
+                                :disabled="quantity >= maxQuantity || product.availability_status === 'out_of_stock'">
                             <i class='bx bx-plus'></i>
                         </button>
                     </div>
-                    <span class="stock-info in-stock" v-if="product.quantity > 0">{% translate "Є в наявності" %}</span>
-                    <span class="stock-info out-of-stock" v-else>{% translate "Немає в наявності" %}</span>
+                    <span class="stock-info"
+                          :class="{
+                              'status-ready': product.availability_status === 'ready_to_ship',
+                              'status-last': product.availability_status === 'last_item',
+                              'status-out': product.availability_status === 'out_of_stock'
+                          }">
+                        <i class='bx bx-package' v-if="product.availability_status === 'ready_to_ship'"></i>
+                        <i class='bx bxs-error' v-else-if="product.availability_status === 'last_item'"></i>
+                        <i class='bx bx-box' v-else></i>
+                        [[ product.availability_status_display ]]
+                    </span>
                 </div>
 
                 <!-- Actions - Cart button and Favorite button -->
                 <div class="actions-section">
-                    <button class="add-to-cart-btn" @click="addToCart">
+                    <button class="add-to-cart-btn"
+                            @click="addToCart"
+                            :disabled="product.availability_status === 'out_of_stock'"
+                            :class="{ 'disabled': product.availability_status === 'out_of_stock' }">
                         {% translate "Додати до кошика" %}
                     </button>
                     <button class="favorite-btn" @click="toggleFavorite" :class="{ active: isFavorite }">
