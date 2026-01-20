@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="cart-app">
+    <!-- Loading state -->
+    <div class="loading-state" v-if="loading">
+        <i class='bx bx-loader-alt bx-spin'></i>
+        <p>{% translate "Завантаження..." %}</p>
+    </div>
+
+    <!-- Cart content -->
+    <div class="basket-page" v-if="!loading">
+        <h1 class="basket-title">{% translate "Кошик" %}</h1>
+
+        <!-- Empty cart -->
+        <div class="basket-container" v-if="items.length === 0">
+            <div class="empty-cart">
+                <i class='bx bx-cart'></i>
+                <h2 class="empty-cart-title">{% translate "Кошик порожній" %}</h2>
+                <a href="/api/v1/catalog/all/" class="empty-cart-link">
+                    {% translate "Перейти до каталогу" %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Cart with items -->
+        <div class="basket-container" v-else>
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <div class="cart-item" v-for="item in items" :key="item.id">
+                    <!-- Product Image -->
+                    <div class="cart-item-image">
+                        <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'">
+                            <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
+                                 :alt="item.product_name">
+                        </a>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="cart-item-details">
+                        <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'" class="cart-item-name">
+                            [[ item.product_name ]]
+                        </a>
+                        <p class="cart-item-description" v-if="item.product_description">
+                            [[ truncate(item.product_description, 80) ]]
+                        </p>
+                        <div class="cart-item-id">
+                            ID: <span>[[ formatId(item.product_id) ]]</span>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="cart-item-price">
+                        <div class="price-uah">[[ item.products_price ]] ₴</div>
+                        <div class="price-usd">/ $[[ item.products_price_usd ]]</div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="cart-item-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn"
+                                    @click="decreaseQuantity(item)"
+                                    :disabled="item.quantity <= 1 || item.availability_status === 'out_of_stock'">
+                                -
+                            </button>
+                            <input type="number"
+                                   class="quantity-input"
+                                   :value="item.quantity"
+                                   @input="onQuantityInput(item, $event)"
+                                   @change="onQuantityChange(item, $event)"
+                                   min="1"
+                                   :max="item.max_quantity"
+                                   :disabled="item.availability_status === 'out_of_stock'">
+                            <button class="quantity-btn"
+                                    @click="increaseQuantity(item)"
+                                    :disabled="item.quantity >= item.max_quantity || item.availability_status === 'out_of_stock'">
+                                +
+                            </button>
+                        </div>
+                        <button class="remove-btn" @click="removeItem(item)">
+                            <i class='bx bx-trash'></i>
+                            {% translate "Видалити" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h2 class="order-summary-title">{% translate "ORDER SUMMARY" %}</h2>
+
+                <div class="summary-row">
+                    <span class="summary-label">{% translate "Кількість товарів" %}</span>
+                    <span class="summary-value">[[ totalQuantity ]] {% translate "од." %}</span>
+                </div>
+
+                <div class="summary-total">
+                    <div class="summary-row">
+                        <span class="summary-label">{% translate "Сума" %}</span>
+                    </div>
+                    <div class="total-price">[[ totalPrice ]] ₴</div>
+                    <div class="total-price-usd">/ $[[ totalPriceUsd ]]</div>
+                </div>
+
+                <a href="{% url 'orders:create_order' %}" class="checkout-btn" :class="{ disabled: items.length === 0 }">
+                    {% translate "Оформити замовлення" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/cart.js' %}"></script>
+{% endblock %}
