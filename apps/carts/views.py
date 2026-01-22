@@ -86,17 +86,18 @@ class CartAddAPIView(CartMixin, APIView):
                 return Response(
                     {
                         "error": _(
-                            "Максимальна кількість для цього товару: %(max)s шт."
-                        ) % {"max": max_quantity}
+                            "Максимальна кількість "
+                            "для цього товару: %(max)s шт."
+                        )
+                        % {"max": max_quantity}
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             else:
                 return Response(
                     {
-                        "error": _(
-                            "На складі залишилось лише %(max)s шт."
-                        ) % {"max": max_quantity}
+                        "error": _("На складі залишилось лише %(max)s шт.")
+                        % {"max": max_quantity}
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
@@ -170,9 +171,8 @@ class CartChangeAPIView(CartMixin, APIView):
         if quantity > max_quantity:
             return Response(
                 {
-                    "error": _(
-                        "Максимальна кількість: %(max)s шт."
-                    ) % {"max": max_quantity},
+                    "error": _("Максимальна кількість: %(max)s шт.")
+                    % {"max": max_quantity},
                     "max_quantity": max_quantity,
                 },
                 status=status.HTTP_400_BAD_REQUEST,

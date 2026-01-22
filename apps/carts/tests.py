@@ -19,7 +19,9 @@ class CartModelTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         """Set up test data for entire test class"""
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -54,7 +56,11 @@ class CartModelTestCase(TestCase):
 
     def test_cart_str_with_user(self):
         """Test cart string representation with user"""
-        expected = f"Кошик {self.user.username} | Товар {self.product.name} | Кількість 2"
+        expected = (
+            f"Кошик {self.user.username} "
+            f"| Товар {self.product.name} "
+            f"| Кількість 2"
+        )
         self.assertEqual(str(self.cart), expected)
 
     def test_cart_str_anonymous(self):
@@ -65,17 +71,23 @@ class CartModelTestCase(TestCase):
             product=self.product,
             quantity=1,
         )
-        expected = f"Кошик Anonymous user | Товар {self.product.name} | Кількість 1"
+        expected = (
+            f"Кошик Anonymous user | Товар {self.product.name} | Кількість 1"
+        )
         self.assertEqual(str(cart), expected)
 
     def test_products_price(self):
         """Test products_price calculates correctly"""
-        expected_price = round(self.product.sell_price() * self.cart.quantity, 2)
+        expected_price = round(
+            self.product.sell_price() * self.cart.quantity, 2
+        )
         self.assertEqual(self.cart.products_price(), expected_price)
 
     def test_products_price_usd(self):
         """Test products_price_usd calculates correctly"""
-        expected_price = round(self.product.price_in_usd * self.cart.quantity, 2)
+        expected_price = round(
+            self.product.price_in_usd * self.cart.quantity, 2
+        )
         self.assertEqual(self.cart.products_price_usd(), expected_price)
 
     def test_cart_default_quantity(self):
@@ -103,7 +115,9 @@ class CartQuerysetTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -160,7 +174,9 @@ class CartQuerysetTestCase(TestCase):
     def test_total_price_usd(self):
         """Test total_price_usd returns sum in USD"""
         carts = Cart.objects.filter(user=self.user)
-        expected = self.cart1.products_price_usd() + self.cart2.products_price_usd()
+        expected = (
+            self.cart1.products_price_usd() + self.cart2.products_price_usd()
+        )
         self.assertEqual(carts.total_price_usd(), expected)
 
 
@@ -169,7 +185,9 @@ class CartUtilsTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -240,7 +258,9 @@ class CartMixinTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -379,7 +399,9 @@ class CartAddAPIViewTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -433,7 +455,9 @@ class CartAddAPIViewTestCase(APITestCase):
     def test_add_nonexistent_product(self):
         """Test adding nonexistent product returns 404"""
         self.client.force_authenticate(user=self.user)
-        response = self.client.post(self.url, {"product_id": 99999, "quantity": 1})
+        response = self.client.post(
+            self.url, {"product_id": 99999, "quantity": 1}
+        )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_add_out_of_stock_product(self):
@@ -508,7 +532,9 @@ class CartChangeAPIViewTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -556,7 +582,9 @@ class CartChangeAPIViewTestCase(APITestCase):
     def test_change_nonexistent_cart(self):
         """Test change nonexistent cart returns 404"""
         self.client.force_authenticate(user=self.user)
-        response = self.client.post(self.url, {"cart_id": 99999, "quantity": 5})
+        response = self.client.post(
+            self.url, {"cart_id": 99999, "quantity": 5}
+        )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_change_invalid_quantity(self):
@@ -596,7 +624,9 @@ class CartRemoveAPIViewTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -650,7 +680,9 @@ class CartListAPIViewTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
@@ -703,7 +735,9 @@ class BasketAPIViewTestCase(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.category = Categories.objects.create(name="Test Category", slug="test-cat")
+        cls.category = Categories.objects.create(
+            name="Test Category", slug="test-cat"
+        )
         ExchangeRate.objects.create(
             base_currency="USD", target_currency="UAH", rate=Decimal("41.50")
         )
