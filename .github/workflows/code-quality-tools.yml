@@ -1,0 +1,38 @@
+name: Code Quality Tools
+run-name: Run Code Quality Tools
+
+on: [pull_request]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get changed Python files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            **/*.py
+
+      - name: Install dependencies
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: pip install black isort flake8
+
+      - name: Black formatter
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: black --check ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Isort
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: isort --check ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Flake8
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: flake8 ${{ steps.changed-files.outputs.all_changed_files }}
+
+
