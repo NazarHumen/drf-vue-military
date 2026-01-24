@@ -1,160 +1,344 @@
 {% extends "base.html" %}
 {% load static %}
-{% load carts_tags %}
 {% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/order.css' %}">
+{% endblock %}
+
 {% block content %}
-    <!-- Контент на сторінці -->
-    <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
-        <div class="container">
-            <h3 class="text-center mb-4">{% translate "Вибрані товари" %}</h3>
-            <div class="container" id="cart-items-container">
-                <!-- Розмітка кошика -->
-                {% user_carts request as carts %}
-                {% include "carts/includes/included_carts.html" %}
+    <div class="container">
+        <h1 class="order-title">{% translate "Оформлення замовлення" %}</h1>
 
+        <div id="order-app"
+             data-first-name="{{ user.first_name|default:'' }}"
+             data-last-name="{{ user.last_name|default:'' }}"
+             data-email="{{ user.email|default:'' }}">
 
-                <!-- Закінчилася розмітка кошика -->
+            <!-- Success Message -->
+            <div v-if="submitSuccess" class="alert alert-success text-center mb-4">
+                <i class='bx bx-check-circle'></i>
+                {% translate "Замовлення успішно створено! Перенаправлення..." %}
             </div>
-        </div>
-        <!-- Детали заказа -->
-        <div class="container">
-            <h3 class="text-center">{% translate "Деталі замовлення" %}</h3>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <form action="{% url "orders:create_order" %}"
-                          method="post" id="create_order_form">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="id_first_name"
-                                       class="form-label">{% translate "Ім'я*" %}:</label>
-                                <input type="text" class="form-control"
-                                       id="id_first_name"
-                                       value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
-                                       name="first_name" required>
-                                {% if form.first_name.errors %}
-                                    <div class="alert alert-danger alert-dismissible fade show">{{ form.first_name.errors }}</div>
-                                {% endif %}
 
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_last_name"
-                                       class="form-label">{% translate "Прізвище*" %}:</label>
-                                <input type="text" class="form-control"
-                                       id="id_last_name" name="last_name"
-                                       value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
-                                       required>
-                                {% if form.last_name.errors %}
-                                    <div class="alert alert-danger alert-dismissible fade show">{{ form.last_name.errors }}</div>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_phone_number"
-                                       class="form-label">
-                                    {% translate "Номер телефона*" %}
-                                </label>
+            <!-- Global Error Message -->
+            <div v-if="submitError" class="alert alert-danger text-center mb-4">
+                <i class='bx bx-error-circle'></i>
+                [[ submitError ]]
+            </div>
 
-                                <input type="text"
-                                       class="form-control"
-                                       id="id_phone_number"
-                                       name="phone_number"
-                                       value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
-                                       placeholder="+380XXXXXXXXX"
-                                       required>
-
-                                {% if form.phone_number.errors %}
-                                    <div class="alert alert-danger alert-dismissible fade show">
-                                        {{ form.phone_number.errors }}
-                                    </div>
-                                {% endif %}
-
-                                <div class="alert alert-danger alert-dismissible fade show"
-                                     style="display: none"
-                                     id="phone_number_error">
-                                    {% translate "Невірний формат номера. Приклад: +380931234567 або +46701234567" %}
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="order_email"
-                                       class="form-label">{% translate "Email*" %}:</label>
-                                <input type="email"
-                                       class="form-control"
-                                       id="order_email"
-                                       name="email"
-                                       value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
-                                       required>
-                                {% if form.email.errors %}
-                                    <div class="alert alert-danger alert-dismissible fade show">
-                                        {{ form.email.errors }}
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="delivery"
-                                       class="form-label">{% translate "Спосіб доставки" %}: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="requires_delivery"
-                                           id="id_requires_delivery" value="1"
-                                           checked>
-                                    <label class="form-check-label"
-                                           for="id_requires_delivery">{% translate "Потрібна доставка" %}</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="requires_delivery"
-                                           id="id_requires_delivery" value="0">
-                                    <label class="form-check-label"
-                                           for="id_requires_delivery">{% translate "Самовивіз" %}</label>
-                                </div>
-                            </div>
-                            <div class="mb-3" id="deliveryAddressField">
-                                <label for="id_delivery_address"
-                                       class="form-label">{% translate "Адреса доставки*" %}:</label>
-                                <textarea class="form-control"
-                                          id="id_delivery_address"
-                                          value="
-
-                                                  {% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}"
-                                          name="delivery_address"
-                                          rows="2"></textarea>
-                                {% if form.delivery_address.errors %}
-                                    <div class="alert alert-danger alert-dismissible fade show">{{ form.delivery_address.errors }}</div>
-                                {% endif %}
-
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label class="form-label">{% translate "Спосіб оплати" %}: </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio" name="payment_on_get"
-                                           id="id_payment_on_get" value="0"
-                                           checked>
-                                    <label class="form-check-label"
-                                           for="id_payment_on_get">{% translate "Оплата карткою" %}</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio" name="payment_on_get"
-                                           id="id_payment_on_get" value="1">
-                                    <label class="form-check-label"
-                                           for="id_payment_on_get">{% translate "Готівкою/карткою при отриманні" %}
-                                    </label>
-                                    {% if form.payment_on_get.errors %}
-                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.payment_on_get.errors }}</div>
-                                    {% endif %}
-                                </div>
-                            </div>
+            <div class="row" v-if="!submitSuccess">
+                <!-- Left Column: Cart Items -->
+                <div class="col-lg-6 mb-4">
+                    <div class="order-section">
+                        <div class="order-section-header">
+                            <h3>
+                                <i class='bx bx-cart'></i>
+                                {% translate "Вибрані товари" %}
+                            </h3>
                         </div>
-                        <button type="submit"
-                                class="btn btn-dark">{% translate "Оформити замовлення" %}</button>
-                    </form>
+                        <div class="order-section-body">
+                            <!-- Loading State -->
+                            <div v-if="isLoadingCart" class="text-center py-4">
+                                <div class="spinner-border text-success" role="status">
+                                    <span class="visually-hidden">{% translate "Завантаження..." %}</span>
+                                </div>
+                                <p class="mt-2 text-muted">{% translate "Завантаження кошика..." %}</p>
+                            </div>
+
+                            <!-- Cart Error -->
+                            <div v-else-if="cartError" class="alert alert-danger">
+                                <i class='bx bx-error-circle'></i>
+                                [[ cartError ]]
+                                <button @click="fetchCart" class="btn btn-sm btn-outline-light ms-2">
+                                    {% translate "Спробувати знову" %}
+                                </button>
+                            </div>
+
+                            <!-- Empty Cart -->
+                            <div v-else-if="items.length === 0" class="text-center py-4">
+                                <i class='bx bx-cart' style="font-size: 3rem; color: var(--military-green);"></i>
+                                <p class="mt-2 text-muted">{% translate "Ваш кошик порожній" %}</p>
+                                <a href="/api/v1/catalog/all/" class="btn btn-outline-success">
+                                    {% translate "Перейти до каталогу" %}
+                                </a>
+                            </div>
+
+                            <!-- Cart Items -->
+                            <template v-else>
+                                <div v-for="item in items" :key="item.id" class="order-cart-item">
+                                    <div class="order-cart-item-image">
+                                        <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
+                                             :alt="item.product_name">
+                                    </div>
+                                    <div class="order-cart-item-info">
+                                        <div class="order-cart-item-name">[[ item.product_name ]]</div>
+                                        <div class="order-cart-item-price">
+                                            [[ item.product_sell_price ]] ₴ {% translate "за шт." %}
+                                        </div>
+                                    </div>
+                                    <div class="order-cart-item-actions">
+                                        <div class="quantity-selector-mini">
+                                            <button type="button"
+                                                    class="qty-btn"
+                                                    @click="decreaseQuantity(item)"
+                                                    :disabled="item.quantity <= 1">
+                                                <i class='bx bx-minus'></i>
+                                            </button>
+                                            <input type="number"
+                                                   class="qty-input"
+                                                   :value="item.quantity"
+                                                   @input="onQuantityInput(item, $event)"
+                                                   @change="onQuantityChange(item, $event)"
+                                                   min="1"
+                                                   :max="item.max_quantity">
+                                            <button type="button"
+                                                    class="qty-btn"
+                                                    @click="increaseQuantity(item)"
+                                                    :disabled="item.quantity >= item.max_quantity">
+                                                <i class='bx bx-plus'></i>
+                                            </button>
+                                        </div>
+                                        <button type="button"
+                                                class="remove-item-btn"
+                                                @click="removeItem(item)"
+                                                title="{% translate 'Видалити' %}">
+                                            <i class='bx bx-trash'></i>
+                                        </button>
+                                    </div>
+                                    <div class="order-cart-item-total">
+                                        [[ item.products_price ]] ₴
+                                        <div class="order-cart-item-price-usd">
+                                            / $[[ item.products_price_usd.toFixed(2) ]]
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Order Summary -->
+                                <div class="order-summary mt-4">
+                                    <div class="order-summary-row">
+                                        <span class="order-summary-label">{% translate "Кількість товарів" %}</span>
+                                        <span class="order-summary-value">[[ totalQuantity ]] од.</span>
+                                    </div>
+                                    <div class="order-summary-row">
+                                        <span class="order-summary-label">{% translate "Загальна сума" %}</span>
+                                        <span class="order-summary-value order-summary-total">
+                                            [[ totalPrice ]] ₴
+                                            <span class="order-summary-usd">/ [[ totalPriceUsd.toFixed(2) ]] $</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Form -->
+                <div class="col-lg-6">
+                    <div class="order-section">
+                        <div class="order-section-header">
+                            <h3>
+                                <i class='bx bx-package'></i>
+                                {% translate "Деталі замовлення" %}
+                            </h3>
+                        </div>
+                        <div class="order-section-body">
+                            <form @submit.prevent="submitOrder" class="order-form">
+                                {% csrf_token %}
+
+                                <!-- Personal Info -->
+                                <div class="field-group">
+                                    <span class="field-group-title">
+                                        <i class='bx bx-user'></i> {% translate "Особисті дані" %}
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="id_first_name" class="form-label">
+                                                {% translate "Ім'я" %} *
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   :class="{ 'is-invalid': errors.first_name }"
+                                                   id="id_first_name"
+                                                   v-model="form.first_name"
+                                                   @input="filterName($event, 'first_name')"
+                                                   placeholder="{% translate "Введіть ваше ім'я" %}">
+                                            <div v-if="errors.first_name" class="invalid-feedback">
+                                                [[ errors.first_name ]]
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="id_last_name" class="form-label">
+                                                {% translate "Прізвище" %} *
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   :class="{ 'is-invalid': errors.last_name }"
+                                                   id="id_last_name"
+                                                   v-model="form.last_name"
+                                                   @input="filterName($event, 'last_name')"
+                                                   placeholder="{% translate 'Введіть ваше прізвище' %}">
+                                            <div v-if="errors.last_name" class="invalid-feedback">
+                                                [[ errors.last_name ]]
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="id_phone_number" class="form-label">
+                                                {% translate "Номер телефону" %} *
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   :class="{ 'is-invalid': errors.phone_number }"
+                                                   id="id_phone_number"
+                                                   v-model="form.phone_number"
+                                                   @input="filterPhone($event)"
+                                                   placeholder="+380XXXXXXXXX">
+                                            <div v-if="errors.phone_number" class="invalid-feedback">
+                                                [[ errors.phone_number ]]
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="order_email" class="form-label">
+                                                {% translate "Email" %} *
+                                            </label>
+                                            <input type="email"
+                                                   class="form-control"
+                                                   :class="{ 'is-invalid': errors.email }"
+                                                   id="order_email"
+                                                   v-model="form.email"
+                                                   @input="filterEmail($event)"
+                                                   placeholder="example@email.com">
+                                            <div v-if="errors.email" class="invalid-feedback">
+                                                [[ errors.email ]]
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="order-divider"></div>
+
+                                <!-- Delivery Method -->
+                                <div class="field-group">
+                                    <span class="field-group-title">
+                                        <i class='bx bx-truck'></i> {% translate "Спосіб доставки" %}
+                                    </span>
+                                    <div class="delivery-option">
+                                        <label class="radio-card">
+                                            <input type="radio"
+                                                   name="requires_delivery"
+                                                   value="1"
+                                                   v-model="form.requires_delivery">
+                                            <div class="radio-card-content">
+                                                <span class="radio-indicator"></span>
+                                                <i class='bx bx-package radio-card-icon'></i>
+                                                <span class="radio-card-text">{% translate "Потрібна доставка" %}</span>
+                                            </div>
+                                        </label>
+                                        <label class="radio-card">
+                                            <input type="radio"
+                                                   name="requires_delivery"
+                                                   value="0"
+                                                   v-model="form.requires_delivery">
+                                            <div class="radio-card-content">
+                                                <span class="radio-indicator"></span>
+                                                <i class='bx bx-store radio-card-icon'></i>
+                                                <span class="radio-card-text">{% translate "Самовивіз" %}</span>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3" v-show="showDeliveryAddress">
+                                        <label for="id_delivery_address" class="form-label">
+                                            {% translate "Адреса доставки" %} *
+                                        </label>
+                                        <textarea class="form-control"
+                                                  :class="{ 'is-invalid': errors.delivery_address }"
+                                                  id="id_delivery_address"
+                                                  v-model="form.delivery_address"
+                                                  @input="clearFieldError('delivery_address')"
+                                                  rows="2"
+                                                  placeholder="{% translate 'Місто, вулиця, будинок, квартира' %}"></textarea>
+                                        <div v-if="errors.delivery_address" class="invalid-feedback">
+                                            [[ errors.delivery_address ]]
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="order-divider"></div>
+
+                                <!-- Payment Method -->
+                                <div class="field-group">
+                                    <span class="field-group-title">
+                                        <i class='bx bx-credit-card'></i> {% translate "Спосіб оплати" %}
+                                    </span>
+                                    <div class="delivery-option">
+                                        <label class="radio-card">
+                                            <input type="radio"
+                                                   name="payment_on_get"
+                                                   value="0"
+                                                   v-model="form.payment_on_get">
+                                            <div class="radio-card-content">
+                                                <span class="radio-indicator"></span>
+                                                <i class='bx bx-credit-card radio-card-icon'></i>
+                                                <span class="radio-card-text">{% translate "Оплата карткою" %}</span>
+                                            </div>
+                                        </label>
+                                        <label class="radio-card">
+                                            <input type="radio"
+                                                   name="payment_on_get"
+                                                   value="1"
+                                                   v-model="form.payment_on_get">
+                                            <div class="radio-card-content">
+                                                <span class="radio-indicator"></span>
+                                                <i class='bx bx-money radio-card-icon'></i>
+                                                <span class="radio-card-text">{% translate "При отриманні" %}</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="order-divider"></div>
+
+                                <!-- Cart Error -->
+                                <div v-if="errors.cart" class="alert alert-danger mb-3">
+                                    <i class='bx bx-error-circle'></i>
+                                    [[ errors.cart ]]
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="text-center">
+                                    <button type="submit"
+                                            class="btn-order"
+                                            :disabled="isSubmitting || items.length === 0">
+                                        <span v-if="isSubmitting">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                            {% translate "Обробка..." %}
+                                        </span>
+                                        <span v-else>
+                                            <i class='bx bx-check-circle'></i>
+                                            {% translate "Оформити замовлення" %}
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
 
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'deps/js/order.js' %}"></script>
 {% endblock %}
