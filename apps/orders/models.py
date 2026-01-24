@@ -25,11 +25,8 @@ class OrderStatus(models.TextChoices):
 class Order(models.Model):
     user = models.ForeignKey(
         to=User,
-        on_delete=models.SET_DEFAULT,
-        blank=True,
-        null=True,
+        on_delete=models.PROTECT,
         verbose_name="Користувач",
-        default=None,
     )
     created_timestamp = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата створення замовлення"
