@@ -88,7 +88,7 @@ class CreateOrderAPIView(APIView):
 
         if form.is_valid():
             try:
-                order = self._create_order(user, form.cleaned_data, cart_items)
+                self._create_order(user, form.cleaned_data, cart_items)
                 # Redirect до профілю або сторінки успіху
                 from django.shortcuts import redirect
 
