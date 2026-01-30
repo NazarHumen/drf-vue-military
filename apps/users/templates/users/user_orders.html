@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/my_css.css' %}">
+    <style>
+        body {
+            background-color: #0d0d0d !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main { flex: 1 0 auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="user-orders-app">
+    <h1 class="profile-title">{% translate "ОСОБИСТІ ДАНІ" %}</h1>
+
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <nav class="profile-nav">
+                <a href="{% url 'users:profile' %}" class="profile-nav-link">
+                    <i class="bx bx-user"></i>
+                    <span>{% translate "Профіль" %}</span>
+                </a>
+                <a href="{% url 'users:user_cart' %}" class="profile-nav-link">
+                    <i class="bx bx-cart"></i>
+                    <span>{% translate "Кошик" %}</span>
+                </a>
+                <a href="{% url 'users:user_orders' %}" class="profile-nav-link active">
+                    <i class="bx bx-package"></i>
+                    <span>{% translate "Мої замовлення" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="profile-content">
+            <div class="profile-card">
+                <h3>
+                    <i class="bx bx-package"></i>
+                    {% translate "Мої замовлення" %}
+                </h3>
+                <div class="profile-card-body">
+                    <!-- Loading -->
+                    <div v-if="isLoading" class="text-center py-5">
+                        <div class="spinner-border" style="color: #8B9A46;" role="status">
+                            <span class="visually-hidden">{% translate "Завантаження..." %}</span>
+                        </div>
+                    </div>
+
+                    <!-- Error -->
+                    <div v-else-if="error" class="alert alert-warning">
+                        [[ error ]]
+                        <button class="btn btn-link" @click="fetchOrders">{% translate "Спробувати знову" %}</button>
+                    </div>
+
+                    <!-- No Orders -->
+                    <div v-else-if="orders.length === 0" class="empty-cart">
+                        <i class="bx bx-package"></i>
+                        <h2 class="empty-cart-title">{% translate "У вас ще немає замовлень" %}</h2>
+                        <a href="/api/v1/catalog/all/" class="empty-cart-link">
+                            {% translate "Перейти до каталогу" %}
+                        </a>
+                    </div>
+
+                    <!-- Orders Accordion -->
+                    <div v-else class="accordion orders-accordion" id="ordersAccordion">
+                        <div v-for="order in orders" :key="order.id" class="accordion-item">
+                            <h2 class="accordion-header" :id="'heading' + order.id">
+                                <button class="accordion-button"
+                                        :class="{ 'collapsed': !isOrderActive(order.id) }"
+                                        type="button"
+                                        @click="toggleOrder(order.id)">
+                                    <div class="d-flex justify-content-between align-items-center w-100 me-3 flex-wrap gap-2">
+                                        <span>
+                                            <strong>{% translate "Замовлення №" %}[[ order.id ]]</strong>
+                                            <span class="text-muted ms-2 d-none d-sm-inline" style="font-size: 0.85rem;">
+                                                [[ formatDate(order.created_timestamp) ]]
+                                            </span>
+                                        </span>
+                                        <span :class="'badge-status ' + order.status">
+                                            [[ getStatusDisplay(order.status) ]]
+                                        </span>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div :id="'collapse' + order.id"
+                                 class="accordion-collapse collapse"
+                                 :class="{ 'show': isOrderActive(order.id) }">
+                                <div class="accordion-body">
+                                    <!-- Order Date (mobile) -->
+                                    <p class="text-muted d-sm-none mb-3" style="font-size: 0.85rem;">
+                                        <i class="bx bx-calendar me-1"></i>
+                                        [[ formatDate(order.created_timestamp) ]]
+                                    </p>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% translate "Товар" %}</th>
+                                                    <th class="text-center">{% translate "К-сть" %}</th>
+                                                    <th class="text-end">{% translate "Ціна" %}</th>
+                                                    <th class="text-end">{% translate "Сума" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in order.items" :key="item.id">
+                                                    <td>[[ item.name ]]</td>
+                                                    <td class="text-center">[[ item.quantity ]]</td>
+                                                    <td class="text-end" style="color: #8B9A46;"><strong>[[ item.price ]] ₴</strong></td>
+                                                    <td class="text-end">
+                                                        <strong style="color: #8B9A46;">[[ getOrderItemPrice(item) ]] ₴</strong>
+                                                        <div v-if="item.products_price_usd" style="font-size: 0.85rem; color: #e53935;">
+                                                            <strong>/ $[[ item.products_price_usd.toFixed(2) ]]</strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3" class="text-end"><strong>{% translate "Всього:" %}</strong></td>
+                                                    <td class="text-end">
+                                                        <strong style="color: #8B9A46;">[[ getOrderTotal(order) ]] ₴</strong>
+                                                        <div v-if="getOrderTotalUsd(order)" style="font-size: 0.85rem; color: #e53935;">
+                                                            <strong>/ $[[ getOrderTotalUsd(order).toFixed(2) ]]</strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+
+                                    <!-- Order Details -->
+                                    <div class="row mt-4 pt-3" style="border-top: 1px solid #2a2a2a;">
+                                        <div class="col-md-6 mb-3">
+                                            <p class="mb-2" style="color: #aaa;">
+                                                <i class="bx bx-phone me-2" style="color: #8B9A46;"></i>
+                                                <strong style="color: #fff;">{% translate "Телефон:" %}</strong>
+                                                <span class="ms-1">[[ order.phone_number ]]</span>
+                                            </p>
+                                            <p class="mb-2" style="color: #aaa;">
+                                                <i class="bx bx-envelope me-2" style="color: #8B9A46;"></i>
+                                                <strong style="color: #fff;">{% translate "Email:" %}</strong>
+                                                <span class="ms-1">[[ order.email ]]</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <p class="mb-2" style="color: #aaa;">
+                                                <i class="bx bxs-truck me-2" style="color: #8B9A46;"></i>
+                                                <strong style="color: #fff;">{% translate "Спосіб доставки:" %}</strong>
+                                                <span v-if="order.requires_delivery" class="ms-1">{% translate "Потрібна доставка" %}</span>
+                                                <span v-else class="ms-1">{% translate "Самовивіз" %}</span>
+                                            </p>
+                                            <p v-if="order.requires_delivery && order.delivery_address" class="mb-2" style="color: #aaa;">
+                                                <i class="bx bx-map me-2" style="color: #8B9A46;"></i>
+                                                <strong style="color: #fff;">{% translate "Адреса:" %}</strong>
+                                                <span class="ms-1">[[ order.delivery_address ]]</span>
+                                            </p>
+                                            <p class="mb-2" style="color: #aaa;">
+                                                <i class="bx bx-credit-card me-2" style="color: #8B9A46;"></i>
+                                                <strong style="color: #fff;">{% translate "Оплата:" %}</strong>
+                                                <span v-if="order.payment_on_get" class="ms-1">{% translate "При отриманні" %}</span>
+                                                <span v-else class="ms-1">{% translate "Онлайн" %}</span>
+                                                <span v-if="order.is_paid" class="badge bg-success ms-2">{% translate "Сплачено" %}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/user_orders.js' %}"></script>
+{% endblock %}
