@@ -38,9 +38,7 @@ class LoginSerializer(serializers.Serializer):
         )
 
         if not user:
-            raise serializers.ValidationError(
-                _("Невірний email або пароль")
-            )
+            raise serializers.ValidationError(_("Невірний email або пароль"))
 
         if not user.is_active:
             raise serializers.ValidationError(
@@ -59,7 +57,9 @@ class LoginSerializer(serializers.Serializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password1 = serializers.CharField(write_only=True, validators=[validate_password])
+    password1 = serializers.CharField(
+        write_only=True, validators=[validate_password]
+    )
     password2 = serializers.CharField(write_only=True)
 
     class Meta:
@@ -182,6 +182,8 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    products_price_usd = serializers.SerializerMethodField()
+
     class Meta:
         model = OrderItem
         fields = [
@@ -190,12 +192,18 @@ class OrderItemSerializer(serializers.ModelSerializer):
             "name",
             "price",
             "quantity",
+            "products_price_usd",
             "created_timestamp",
         ]
 
+    def get_products_price_usd(self, obj):
+        return obj.products_price_usd()
+
 
 class UserOrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(source="orderitem_set", many=True, read_only=True)
+    items = OrderItemSerializer(
+        source="orderitem_set", many=True, read_only=True
+    )
 
     class Meta:
         model = Order
