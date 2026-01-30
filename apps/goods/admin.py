@@ -70,6 +70,7 @@ class ProductsAdmin(TranslationAdmin):
     ]
 
     list_display = [
+        "id",
         "name",
         "quantity",
         "availability_status",
@@ -91,6 +92,7 @@ class ProductsAdmin(TranslationAdmin):
         "availability_status",
     ]
     fields = [
+        "id",
         "name",
         "category",
         "slug",
@@ -103,7 +105,7 @@ class ProductsAdmin(TranslationAdmin):
         ("quantity", "availability_status"),
         "exchange_rate",
     ]
-    readonly_fields = ["price_in_usd", "price_in_uah"]
+    readonly_fields = ["id", "price_in_usd", "price_in_uah"]
 
 
 @admin.register(ExchangeRate)
