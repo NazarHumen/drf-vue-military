@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<h1 class="profile-title">{% translate "ОСОБИСТІ ДАНІ" %}</h1>
+
+<div class="profile-sidebar">
+    <nav class="profile-nav">
+        <a href="{% url 'users:profile' %}"
+           class="profile-nav-link {% if active_tab == 'profile' %}active{% endif %}">
+            <i class="bx bx-user"></i>
+            <span>{% translate "Профіль" %}</span>
+        </a>
+        <a href="{% url 'users:user_cart' %}"
+           class="profile-nav-link {% if active_tab == 'cart' %}active{% endif %}">
+            <i class="bx bx-cart"></i>
+            <span>{% translate "Кошик" %}</span>
+        </a>
+        <a href="{% url 'users:user_orders' %}"
+           class="profile-nav-link {% if active_tab == 'orders' %}active{% endif %}">
+            <i class="bx bx-package"></i>
+            <span>{% translate "Мої замовлення" %}</span>
+        </a>
+    </nav>
+</div>
