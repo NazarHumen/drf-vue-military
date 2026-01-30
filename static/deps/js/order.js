@@ -273,7 +273,7 @@ createApp({
 
                 // Redirect to profile after success
                 setTimeout(() => {
-                    window.location.href = '/users/profile/';
+                    window.location.href = '/api/v1/users/orders/';
                 }, 1500);
             } catch (error) {
                 console.error('Error submitting order:', error);
