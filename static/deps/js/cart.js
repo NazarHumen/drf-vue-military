@@ -8,7 +8,10 @@ createApp({
             totalPrice: 0,
             totalPriceUsd: 0,
             totalQuantity: 0,
-            loading: true
+            loading: true,
+            isAuthenticated: false,
+            loginUrl: '/api/v1/users/login/',
+            orderUrl: '/api/v1/orders/create-order/'
         }
     },
     methods: {
@@ -120,9 +123,33 @@ createApp({
         truncate(text, length) {
             if (!text) return '';
             return text.length > length ? text.substring(0, length) + '...' : text;
+        },
+
+        checkout() {
+            if (this.items.length === 0) return;
+
+            if (!this.isAuthenticated) {
+                // Redirect to login with next parameter pointing to order page
+                CartHandler.showNotification('Для оформлення замовлення потрібно увійти', 'info');
+                setTimeout(() => {
+                    window.location.href = this.loginUrl + '?next=' + encodeURIComponent(this.orderUrl);
+                }, 500);
+                return;
+            }
+
+            // User is authenticated, go to order page
+            window.location.href = this.orderUrl;
         }
     },
     mounted() {
+        // Get authentication status and URLs from data attributes
+        const appEl = document.getElementById('cart-app');
+        if (appEl) {
+            this.isAuthenticated = appEl.dataset.authenticated === 'true';
+            this.loginUrl = appEl.dataset.loginUrl || this.loginUrl;
+            this.orderUrl = appEl.dataset.orderUrl || this.orderUrl;
+        }
+
         this.fetchCart();
     }
 }).mount('#cart-app');
