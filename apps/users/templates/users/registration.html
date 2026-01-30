@@ -1,93 +1,198 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'deps/css/auth.css' %}">
+<style>
+    body {
+        background-color: #0d0d0d !important;
+    }
+    main {
+        background-color: #0d0d0d !important;
+    }
+</style>
+{% endblock %}
+
 {% block model_cart %}
     {% include 'includes/cart_button.html' %}
 {% endblock %}
+
 {% block content %}
-    <div class="row">
-                        <div class="container mt-5">
-                            <div class="row justify-content-center">
-                                <div class="col-md-9 bg-white p-4 mb-5 mx-2 rounded custom-shadow">
-                                    <h2 class="text-center mb-4">{% translate "Реєстрація" %}</h2>
-                                    <form action="{% url "registration" %}" method="post">
-                                        {% csrf_token %}
+<div id="registration-app" class="auth-container">
+    <div class="auth-card auth-card-wide">
+        <h2 class="auth-title">
+            <i class="bx bx-user-plus"></i>
+            {% translate "Реєстрація" %}
+        </h2>
 
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_first_name" class="form-label">{% translate "Ім'я*" %}</label>
-                                                <input type="text" class="form-control" id="id_first_name"
-                                                    value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
-                                                    name="first_name"
-                                                    placeholder="{% translate "Введіть ваше ім'я" %}" required>
-                                                    {% if form.first_name.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.first_name.errors }}</div>
-                                                    {% endif %}
+        <!-- General Error -->
+        <div v-if="errors.general" class="alert alert-danger alert-dismissible fade show">
+            [[ errors.general ]]
+            <button type="button" class="btn-close" @click="errors.general = null"></button>
+        </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_last_name" class="form-label">{% translate "Прізвище*" %}</label>
-                                                <input type="text" class="form-control" id="id_last_name"
-                                                    value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
-                                                    name="last_name"
-                                                    placeholder="{% translate "Введіть ваше прізвище"%}" required>
-                                                    {% if form.last_name.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.last_name.errors }}</div>
-                                                    {% endif %}
+        <form @submit.prevent="submitRegistration">
+            {% csrf_token %}
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_username" class="form-label">{% translate "Ім'я користувача*" %}</label>
-                                                <input type="text" class="form-control" id="id_username"
-                                                    value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
-                                                    name="username"
-                                                    placeholder="{% translate "Ім'я користувача"  %}" required>
-                                                    {% if form.username.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.username.errors }}</div>
-                                                    {% endif %}
+            <div class="row">
+                <!-- First Name -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_first_name" class="form-label">{% translate "Ім'я" %} *</label>
+                    <input type="text"
+                           class="form-control"
+                           :class="{ 'is-invalid': errors.first_name }"
+                           v-model="form.first_name"
+                           @input="filterName($event, 'first_name')"
+                           id="id_first_name"
+                           placeholder="{% translate "Введіть ваше ім'я" %}"
+                           required>
+                    <div v-if="errors.first_name" class="invalid-feedback">
+                        [[ errors.first_name ]]
+                    </div>
+                </div>
 
+                <!-- Last Name -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_last_name" class="form-label">{% translate "Прізвище" %} *</label>
+                    <input type="text"
+                           class="form-control"
+                           :class="{ 'is-invalid': errors.last_name }"
+                           v-model="form.last_name"
+                           @input="filterName($event, 'last_name')"
+                           id="id_last_name"
+                           placeholder="{% translate "Введіть ваше прізвище" %}"
+                           required>
+                    <div v-if="errors.last_name" class="invalid-feedback">
+                        [[ errors.last_name ]]
+                    </div>
+                </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_email" class="form-label">{% translate "Email*" %}</label>
-                                                <input type="email" class="form-control" id="id_email"
-                                                    value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
-                                                    name="email"
-                                                    placeholder="{% translate  "Введіть ваш email" %}" required>
-                                                    {% if form.email.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.email.errors }}</div>
-                                                    {% endif %}
+                <!-- Username -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_username" class="form-label">{% translate "Ім'я користувача" %} *</label>
+                    <input type="text"
+                           class="form-control"
+                           :class="{ 'is-invalid': errors.username }"
+                           v-model="form.username"
+                           @input="filterUsername"
+                           id="id_username"
+                           placeholder="{% translate "Ім'я користувача" %}"
+                           required>
+                    <div v-if="errors.username" class="invalid-feedback">
+                        [[ errors.username ]]
+                    </div>
+                    <small class="text-muted">{% translate "Латинські букви, цифри та _" %}</small>
+                </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_password1" class="form-label">{% translate "Пароль*" %}</label>
-                                                <input type="password" class="form-control" id="id_password1"
-                                                    value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}"
-                                                    name="password1"
-                                                    placeholder="{% translate "Введіть пароль" %}" required>
-                                                    {% if form.password1.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.password1.errors }}</div>
-                                                    {% endif %}
+                <!-- Email -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_email" class="form-label">{% translate "Email" %} *</label>
+                    <input type="email"
+                           class="form-control"
+                           :class="{ 'is-invalid': errors.email }"
+                           v-model="form.email"
+                           @input="filterEmail"
+                           id="id_email"
+                           placeholder="{% translate "Введіть ваш email" %}"
+                           required>
+                    <div v-if="errors.email" class="invalid-feedback">
+                        [[ errors.email ]]
+                    </div>
+                </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="id_password2" class="form-label">{% translate "Підтвердження пароля*" %}</label>
-                                                <input type="password" class="form-control" id="id_password2"
-                                                    value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}"
-                                                    name="password2"
-                                                    placeholder="{% translate "Підтвердіть пароль" %}" required>
-                                                    {% if form.password2.errors %}
-                                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.password2.errors }}</div>
-                                                    {% endif %}
-
-                                            </div>
-                                        </div>
-                                        <button type="submit"
-                                            class="btn btn-dark btn-block">{% translate "Зареєструватись" %}</button>
-                                    </form>
-                                </div>
+                <!-- Password 1 -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_password1" class="form-label">{% translate "Пароль" %} *</label>
+                    <div class="input-group">
+                        <input :type="showPassword1 ? 'text' : 'password'"
+                               class="form-control"
+                               :class="{ 'is-invalid': errors.password1 }"
+                               v-model="form.password1"
+                               id="id_password1"
+                               placeholder="{% translate "Введіть пароль" %}"
+                               required>
+                        <button class="btn btn-outline-secondary"
+                                type="button"
+                                @click="togglePassword(1)">
+                            <i :class="showPassword1 ? 'bx bx-hide' : 'bx bx-show'"></i>
+                        </button>
+                    </div>
+                    <div v-if="errors.password1" class="text-danger small mt-1">
+                        [[ errors.password1 ]]
+                    </div>
+                    <!-- Password Strength Indicator -->
+                    <div v-if="form.password1.length > 0" class="password-strength">
+                        <div class="progress">
+                            <div class="progress-bar"
+                                 :class="passwordStrengthClass"
+                                 role="progressbar"
+                                 :style="{ width: passwordStrengthPercent + '%' }">
                             </div>
                         </div>
+                        <small :class="passwordStrengthClass.replace('bg-', 'text-')">
+                            [[ passwordStrengthText ]]
+                        </small>
                     </div>
+                    <small class="text-muted">{% translate "Мінімум 8 символів" %}</small>
+                </div>
 
+                <!-- Password 2 -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_password2" class="form-label">{% translate "Підтвердження пароля" %} *</label>
+                    <div class="input-group">
+                        <input :type="showPassword2 ? 'text' : 'password'"
+                               class="form-control"
+                               :class="{ 'is-invalid': errors.password2, 'is-valid': form.password2 && passwordsMatch }"
+                               v-model="form.password2"
+                               id="id_password2"
+                               placeholder="{% translate "Підтвердіть пароль" %}"
+                               required>
+                        <button class="btn btn-outline-secondary"
+                                type="button"
+                                @click="togglePassword(2)">
+                            <i :class="showPassword2 ? 'bx bx-hide' : 'bx bx-show'"></i>
+                        </button>
+                    </div>
+                    <div v-if="errors.password2" class="text-danger small mt-1">
+                        [[ errors.password2 ]]
+                    </div>
+                    <div v-else-if="form.password2 && passwordsMatch" class="text-success small mt-1">
+                        <i class="bx bx-check"></i> {% translate "Паролі співпадають" %}
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="btn-auth mt-2"
+                    :disabled="isSubmitting || !isFormValid">
+                <span v-if="isSubmitting">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    {% translate "Реєстрація..." %}
+                </span>
+                <span v-else>
+                    <i class="bx bx-user-plus"></i>
+                    {% translate "Зареєструватись" %}
+                </span>
+            </button>
+        </form>
+
+        <div class="auth-links">
+            {% translate "Вже маєте акаунт?" %}
+            <a href="{% url 'users:login' %}">{% translate "Увійти" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/registration.js' %}"></script>
 {% endblock %}
