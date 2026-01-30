@@ -46,13 +46,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django.contrib.sites",  # +
-
     # Third party apps
     "debug_toolbar",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
     "drf_yasg",
-
     # Local apps
     "apps.api",
     "main",
@@ -228,7 +226,7 @@ ACCOUNT_ADAPTER = "apps.users.adapters.CustomAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "apps.users.adapters.CustomSocialAccountAdapter"
 
 # Disable default allauth messages
-ACCOUNT_LOGIN_METHOD = {'email'}
+ACCOUNT_LOGIN_METHOD = {"email"}
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 SITE_ID = 2

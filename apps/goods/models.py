@@ -9,12 +9,12 @@ from django.utils.translation import gettext_lazy as _
 def product_image_path(instance, filename):
     """Генерує шлях: goods_images/product_<id>/<filename>"""
     # Для Products
-    if hasattr(instance, 'category'):
-        product_id = instance.pk or 'new'
+    if hasattr(instance, "category"):
+        product_id = instance.pk or "new"
     # Для ProductImage (галерея)
     else:
-        product_id = instance.product_id or 'new'
-    return f'goods_images/product_{product_id}/{filename}'
+        product_id = instance.product_id or "new"
+    return f"goods_images/product_{product_id}/{filename}"
 
 
 # Create your models here.
