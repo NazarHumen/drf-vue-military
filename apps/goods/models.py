@@ -5,6 +5,18 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+
+def product_image_path(instance, filename):
+    """Генерує шлях: goods_images/product_<id>/<filename>"""
+    # Для Products
+    if hasattr(instance, 'category'):
+        product_id = instance.pk or 'new'
+    # Для ProductImage (галерея)
+    else:
+        product_id = instance.product_id or 'new'
+    return f'goods_images/product_{product_id}/{filename}'
+
+
 # Create your models here.
 
 
@@ -65,7 +77,7 @@ class Products(models.Model):
     description = models.TextField(blank=True, null=True, verbose_name="Опис")
 
     image = models.ImageField(
-        upload_to="goods_images",
+        upload_to=product_image_path,
         blank=True,
         null=True,
         verbose_name="Зображення",
@@ -280,7 +292,7 @@ class ProductImage(models.Model):
         verbose_name="Продукт",
     )
     image = models.ImageField(
-        upload_to="goods_images",
+        upload_to=product_image_path,
         verbose_name="Зображення",
     )
     order = models.PositiveSmallIntegerField(
