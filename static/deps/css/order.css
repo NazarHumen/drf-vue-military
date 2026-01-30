@@ -211,6 +211,7 @@ main {
 .btn-order {
     background: linear-gradient(135deg, #8B9A46 0%, #6d7a36 100%);
     color: #ffffff;
+    text-decoration: none;
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
     font-size: 1.1rem;
