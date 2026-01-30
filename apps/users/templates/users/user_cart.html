@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/my_css.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="user-cart-app">
+    <h1 class="profile-title">{% translate "ОСОБИСТІ ДАНІ" %}</h1>
+
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <nav class="profile-nav">
+                <a href="{% url 'users:profile' %}" class="profile-nav-link">
+                    <i class="bx bx-user"></i>
+                    <span>{% translate "Профіль" %}</span>
+                </a>
+                <a href="{% url 'users:user_cart' %}" class="profile-nav-link active">
+                    <i class="bx bx-cart"></i>
+                    <span>{% translate "Кошик" %}</span>
+                </a>
+                <a href="{% url 'users:user_orders' %}" class="profile-nav-link">
+                    <i class="bx bx-package"></i>
+                    <span>{% translate "Мої замовлення" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="profile-content">
+            <div class="order-section">
+                <div class="order-section-header">
+                    <h3>
+                        <i class="bx bx-cart"></i>
+                        {% translate "Кошик" %}
+                    </h3>
+                </div>
+                <div class="order-section-body">
+                    <!-- Loading State -->
+                    <div v-if="isLoading" class="text-center py-4">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">{% translate "Завантаження..." %}</span>
+                        </div>
+                        <p class="mt-2 text-muted">{% translate "Завантаження кошика..." %}</p>
+                    </div>
+
+                    <!-- Cart Error -->
+                    <div v-else-if="error" class="alert alert-danger">
+                        <i class="bx bx-error-circle"></i>
+                        [[ error ]]
+                        <button @click="fetchCart" class="btn btn-sm btn-outline-light ms-2">
+                            {% translate "Спробувати знову" %}
+                        </button>
+                    </div>
+
+                    <!-- Empty Cart -->
+                    <div v-else-if="cartItems.length === 0" class="empty-cart">
+                        <i class="bx bx-cart"></i>
+                        <h2 class="empty-cart-title">{% translate "Кошик порожній" %}</h2>
+                        <a href="/api/v1/catalog/all/" class="empty-cart-link">
+                            {% translate "Перейти до каталогу" %}
+                        </a>
+                    </div>
+
+                    <!-- Cart Items -->
+                    <template v-else>
+                        <div v-for="item in cartItems" :key="item.id" class="order-cart-item">
+                            <div class="order-cart-item-image">
+                                <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
+                                     :alt="item.product_name">
+                            </div>
+                            <div class="order-cart-item-info">
+                                <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'"
+                                   class="order-cart-item-name">[[ item.product_name ]]</a>
+                                <div class="order-cart-item-price">
+                                    [[ item.product_sell_price ]] ₴ {% translate "за шт." %}
+                                </div>
+                            </div>
+                            <div class="order-cart-item-actions">
+                                <div class="quantity-selector-mini">
+                                    <button type="button"
+                                            class="qty-btn"
+                                            @click="decreaseQuantity(item)"
+                                            :disabled="item.quantity <= 1">
+                                        <i class="bx bx-minus"></i>
+                                    </button>
+                                    <input type="number"
+                                           class="qty-input"
+                                           :value="item.quantity"
+                                           @input="onQuantityInput(item, $event)"
+                                           @change="onQuantityChange(item, $event)"
+                                           min="1"
+                                           :max="item.max_quantity">
+                                    <button type="button"
+                                            class="qty-btn"
+                                            @click="increaseQuantity(item)"
+                                            :disabled="item.quantity >= item.max_quantity">
+                                        <i class="bx bx-plus"></i>
+                                    </button>
+                                </div>
+                                <button type="button"
+                                        class="remove-item-btn"
+                                        @click="removeItem(item)"
+                                        title="{% translate 'Видалити' %}">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </div>
+                            <div class="order-cart-item-total">
+                                [[ item.products_price ]] ₴
+                                <div class="order-cart-item-price-usd">
+                                    / $[[ item.products_price_usd.toFixed(2) ]]
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="order-summary mt-4">
+                            <div class="order-summary-row">
+                                <span class="order-summary-label">{% translate "Кількість товарів" %}</span>
+                                <span class="order-summary-value">[[ cartTotalQuantity ]] {% translate "од." %}</span>
+                            </div>
+                            <div class="order-summary-row">
+                                <span class="order-summary-label">{% translate "Загальна сума" %}</span>
+                                <span class="order-summary-value order-summary-total">
+                                    [[ cartTotalPrice ]] ₴
+                                    <span class="order-summary-usd">/ [[ cartTotalPriceUsd.toFixed(2) ]] $</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Order Button -->
+                        <div class="text-center mt-4">
+                            <a href="/api/v1/orders/create-order/" class="btn-order">
+                                <i class="bx bx-check-circle"></i>
+                                {% translate "Оформити замовлення" %}
+                            </a>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/user_cart.js' %}"></script>
+{% endblock %}
