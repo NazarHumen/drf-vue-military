@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="cart-app">
+<div id="cart-app" data-authenticated="{% if user.is_authenticated %}true{% else %}false{% endif %}" data-login-url="{% url 'users:login' %}" data-order-url="{% url 'orders:create_order' %}">
     <!-- Loading state -->
     <div class="loading-state" v-if="loading">
         <i class='bx bx-loader-alt bx-spin'></i>
@@ -108,7 +108,10 @@
                     <div class="total-price-usd">/ $[[ totalPriceUsd ]]</div>
                 </div>
 
-                <a href="{% url 'orders:create_order' %}" class="checkout-btn" :class="{ disabled: items.length === 0 }">
+                <a href="#"
+                   class="checkout-btn"
+                   :class="{ disabled: items.length === 0 }"
+                   @click.prevent="checkout">
                     {% translate "Оформити замовлення" %}
                 </a>
             </div>
