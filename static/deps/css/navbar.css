@@ -86,12 +86,22 @@ header {
 }
 
 .navbar-dropdown .dropdown-item {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.5rem 1rem;
     color: #ffffff;
     text-decoration: none;
+    font-family: 'Oswald', sans-serif;
     font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
     transition: background-color 0.3s ease;
+}
+
+.navbar-dropdown .dropdown-item i {
+    font-size: 1.1rem;
+    color: #8B9A46;
 }
 
 .navbar-dropdown .dropdown-item:hover {
