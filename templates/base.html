@@ -46,12 +46,18 @@
                     <div class="navbar-dropdown">
                         <a href="#" class="navbar-link dropdown-toggle">{% translate "Профіль" %}</a>
                         <div class="dropdown-menu">
-                            <a href="{% url 'users:profile' %}" class="dropdown-item">{% translate "Мій акаунт" %}</a>
+                            <a href="{% url 'users:profile' %}" class="dropdown-item">
+                                <i class='bx bx-user'></i> {% translate "Мій профіль" %}
+                            </a>
                             {% if user.is_admin or user.is_staff %}
-                                <a href="{% url 'admin:index' %}" class="dropdown-item">{% translate "Адмін панель" %}</a>
+                                <a href="{% url 'admin:index' %}" class="dropdown-item">
+                                    <i class='bx bx-cog'></i> {% translate "Адмін панель" %}
+                                </a>
                             {% endif %}
                             <div class="dropdown-divider"></div>
-                            <a href="{% url 'users:logout' %}" class="dropdown-item">{% translate "Вийти" %}</a>
+                            <a href="{% url 'users:logout' %}" class="dropdown-item">
+                                <i class='bx bx-log-out'></i> {% translate "Вийти" %}
+                            </a>
                         </div>
                     </div>
                 {% else %}
