@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "apps.users",
     "apps.carts",
     "apps.orders",
-    "favorites",
+    "apps.favorites",
 ]
 AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -222,8 +222,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Custom adapters
-ACCOUNT_ADAPTER = "apps.users.adapters.CustomAccountAdapter"
-SOCIALACCOUNT_ADAPTER = "apps.users.adapters.CustomSocialAccountAdapter"
+ACCOUNT_ADAPTER = "apps.tools.adapters.CustomAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "apps.tools.adapters.CustomSocialAccountAdapter"
 
 # Disable default allauth messages
 ACCOUNT_LOGIN_METHOD = {"email"}
