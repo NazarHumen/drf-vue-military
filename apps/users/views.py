@@ -18,6 +18,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.carts.models import Cart
+from apps.favorites.utils import merge_favorites_on_login
 from apps.orders.models import Order, OrderItem
 from apps.users.models import User
 from apps.users.serializers import (
@@ -102,6 +103,8 @@ class LoginAPIView(APIView):
                 forgot_carts.delete()
             # add new authorized user carts from anonymous session
             Cart.objects.filter(session_key=session_key).update(user=user)
+            # merge favorites from anonymous session
+            merge_favorites_on_login(request, user)
 
         # Django session login
         login(
@@ -178,6 +181,8 @@ class RegistrationAPIView(APIView):
 
         if session_key:
             Cart.objects.filter(session_key=session_key).update(user=user)
+            # merge favorites from anonymous session
+            merge_favorites_on_login(request, user)
 
         # Django session login
         login(
