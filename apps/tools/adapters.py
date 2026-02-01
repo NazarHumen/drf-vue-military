@@ -3,6 +3,25 @@ from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
+from apps.carts.models import Cart
+from apps.favorites.utils import merge_favorites_on_login
+
+
+def merge_session_data_on_login(request, user):
+    """Об'єднує кошик та обране з сесії після логіну."""
+    session_key = request.session.session_key
+    if not session_key:
+        return
+
+    # Merge cart
+    forgot_carts = Cart.objects.filter(user=user)
+    if forgot_carts.exists():
+        forgot_carts.delete()
+    Cart.objects.filter(session_key=session_key).update(user=user)
+
+    # Merge favorites
+    merge_favorites_on_login(request, user)
+
 
 class CustomAccountAdapter(DefaultAccountAdapter):
     """Custom adapter for regular account login"""
@@ -34,8 +53,18 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             request, level, message_template, message_context, extra_tags
         )
 
+    def login(self, request, user):
+        """Override login to merge cart and favorites from session."""
+        merge_session_data_on_login(request, user)
+        return super().login(request, user)
+
 
 class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
     """Custom adapter for social account login"""
 
-    pass
+    def pre_social_login(self, request, sociallogin):
+        """Merge cart and favorites before social login completes."""
+        user = sociallogin.user
+        if user.pk:
+            merge_session_data_on_login(request, user)
+        return super().pre_social_login(request, sociallogin)
