@@ -41,7 +41,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("apps.api.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
-    path("favorites/", include("favorites.urls")),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
          name='schema-swagger-ui'),
     path("", include("main.urls", namespace="main")),
