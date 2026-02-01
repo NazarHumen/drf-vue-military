@@ -1,5 +1,6 @@
 from django import template
-from favorites.models import Favorite
+
+from apps.favorites.models import Favorite
 
 register = template.Library()
 
