@@ -146,8 +146,9 @@
             <div class="products-grid" v-if="products.length > 0">
                 <div class="product-card" v-for="product in products" :key="product.id">
                     <!-- Favorite button -->
-                    <button class="favorite-btn" @click="toggleFavorite(product.id)">
-                        <i class='bx bx-heart'></i>
+                    <button class="favorite-btn" @click="toggleFavorite(product.id)"
+                            :class="{ active: isFavorite(product.id) }">
+                        <i class='bx' :class="isFavorite(product.id) ? 'bxs-heart' : 'bx-heart'"></i>
                     </button>
 
                     <!-- Discount badge -->
