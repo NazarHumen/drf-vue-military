@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/my_css.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="user-favorites-app">
+    <h1 class="profile-title">{% translate "ОСОБИСТІ ДАНІ" %}</h1>
+
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <nav class="profile-nav">
+                <a href="{% url 'users:profile' %}" class="profile-nav-link">
+                    <i class="bx bx-user"></i>
+                    <span>{% translate "Профіль" %}</span>
+                </a>
+                <a href="{% url 'users:user_cart' %}" class="profile-nav-link">
+                    <i class="bx bx-cart"></i>
+                    <span>{% translate "Кошик" %}</span>
+                </a>
+                <a href="{% url 'users:user_favorites' %}" class="profile-nav-link active">
+                    <i class="bx bx-heart"></i>
+                    <span>{% translate "Обране" %}</span>
+                </a>
+                <a href="{% url 'users:user_orders' %}" class="profile-nav-link">
+                    <i class="bx bx-package"></i>
+                    <span>{% translate "Мої замовлення" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="profile-content">
+            <div class="order-section">
+                <div class="order-section-header">
+                    <h3>
+                        <i class="bx bx-heart"></i>
+                        {% translate "Обране" %}
+                    </h3>
+                </div>
+                <div class="order-section-body">
+                    <!-- Loading State -->
+                    <div v-if="isLoading" class="text-center py-4">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">{% translate "Завантаження..." %}</span>
+                        </div>
+                        <p class="mt-2 text-muted">{% translate "Завантаження обраного..." %}</p>
+                    </div>
+
+                    <!-- Error -->
+                    <div v-else-if="error" class="alert alert-danger">
+                        <i class="bx bx-error-circle"></i>
+                        [[ error ]]
+                        <button @click="fetchFavorites" class="btn btn-sm btn-outline-light ms-2">
+                            {% translate "Спробувати знову" %}
+                        </button>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div v-else-if="items.length === 0" class="empty-cart">
+                        <i class="bx bx-heart"></i>
+                        <h2 class="empty-cart-title">{% translate "Обране порожнє" %}</h2>
+                        <a href="/api/v1/catalog/all/" class="empty-cart-link">
+                            {% translate "Перейти до каталогу" %}
+                        </a>
+                    </div>
+
+                    <!-- Favorite Items -->
+                    <template v-else>
+                        <div v-for="item in items" :key="item.id" class="order-cart-item">
+                            <div class="order-cart-item-image">
+                                <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
+                                     :alt="item.product_name">
+                            </div>
+                            <div class="order-cart-item-info">
+                                <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'"
+                                   class="order-cart-item-name">[[ item.product_name ]]</a>
+                                <div class="order-cart-item-price">
+                                    [[ item.product_sell_price ]] ₴ {% translate "за шт." %}
+                                </div>
+                            </div>
+                            <div class="order-cart-item-actions">
+                                <button type="button"
+                                        class="btn-add-to-cart"
+                                        @click="addToCart(item.product_id)"
+                                        :disabled="item.availability_status === 'out_of_stock'"
+                                        :title="item.availability_status === 'out_of_stock' ? '{% translate "Немає в наявності" %}' : '{% translate "Додати до кошика" %}'">
+                                    <i class="bx bx-cart-add"></i>
+                                </button>
+                                <button type="button"
+                                        class="remove-item-btn"
+                                        @click="removeItem(item)"
+                                        title="{% translate 'Видалити з обраного' %}">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </div>
+                            <div class="order-cart-item-total">
+                                [[ item.product_sell_price ]] ₴
+                                <div class="order-cart-item-price-usd">
+                                    / $[[ item.product_price_usd ]]
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="order-summary mt-4">
+                            <div class="order-summary-row">
+                                <span class="order-summary-label">{% translate "Всього товарів" %}</span>
+                                <span class="order-summary-value">[[ items.length ]] {% translate "шт." %}</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'deps/js/users/user_favorites.js' %}"></script>
+{% endblock %}
