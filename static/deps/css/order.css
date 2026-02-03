@@ -294,8 +294,8 @@ main {
 
 .order-cart-item-price {
     font-family: 'Barlow', sans-serif;
-    color: #666;
-    font-size: 0.85rem;
+    color: #d4c5a9;
+    font-size: 0.95rem;
 }
 
 .order-cart-item-total {
@@ -380,6 +380,37 @@ main {
 .quantity-selector-mini .qty-input:focus {
     outline: none;
     background-color: #1a1a1a;
+}
+
+/* Add to Cart Button */
+.btn-add-to-cart {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #8B9A46;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #8B9A46;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-add-to-cart:hover:not(:disabled) {
+    background-color: #8B9A46;
+    color: #0d0d0d;
+}
+
+.btn-add-to-cart:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #444;
+    color: #444;
+}
+
+.btn-add-to-cart i {
+    font-size: 1.1rem;
 }
 
 /* Remove Item Button */
