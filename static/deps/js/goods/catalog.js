@@ -22,7 +22,9 @@ createApp({
             filteredCount: 0,
             // Категорії - показати ще
             showAllCategories: false,
-            categoriesLimit: 7
+            categoriesLimit: 7,
+            // Обране
+            favoriteIds: []
         }
     },
     computed: {
@@ -190,9 +192,23 @@ createApp({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         },
-        toggleFavorite(productId) {
-            // TODO: Implement favorites API
-            console.log('Toggle favorite:', productId);
+        async toggleFavorite(productId) {
+            const result = await FavoritesHandler.toggleFavorite(productId);
+            if (result && !result.error) {
+                if (result.is_favorited) {
+                    if (!this.favoriteIds.includes(productId)) {
+                        this.favoriteIds.push(productId);
+                    }
+                } else {
+                    const index = this.favoriteIds.indexOf(productId);
+                    if (index > -1) {
+                        this.favoriteIds.splice(index, 1);
+                    }
+                }
+            }
+        },
+        isFavorite(productId) {
+            return this.favoriteIds.includes(productId);
         },
         async addToCart(productId) {
             await CartHandler.addToCart(productId);
@@ -242,7 +258,7 @@ createApp({
             this.updateUrl();
         }
     },
-    mounted() {
+    async mounted() {
         // Завантажити параметри з URL якщо є
         const urlParams = new URLSearchParams(window.location.search);
         const categoriesParam = urlParams.get('categories');
@@ -260,5 +276,26 @@ createApp({
 
         this.fetchCategories();
         this.fetchProducts(true); // true = оновити діапазон цін
+
+        // Завантажити обрані товари
+        await FavoritesHandler.init();
+        this.favoriteIds = FavoritesHandler.getFavoriteIds();
+
+        // Оновлювати обране при поверненні на сторінку
+        window.addEventListener('pageshow', async (event) => {
+            if (event.persisted) {
+                FavoritesHandler._initialized = false;
+                await FavoritesHandler.init();
+                this.favoriteIds = FavoritesHandler.getFavoriteIds();
+            }
+        });
+
+        document.addEventListener('visibilitychange', async () => {
+            if (document.visibilityState === 'visible') {
+                FavoritesHandler._initialized = false;
+                await FavoritesHandler.init();
+                this.favoriteIds = FavoritesHandler.getFavoriteIds();
+            }
+        });
     }
 }).mount('#catalog-app');
