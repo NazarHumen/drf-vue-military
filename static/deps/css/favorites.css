@@ -1,0 +1,104 @@
+/* Favorites Page Styles */
+
+/* Full width layout without sidebar */
+.catalog-content.no-sidebar {
+    grid-template-columns: 1fr;
+}
+
+.catalog-content.no-sidebar .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Remove button (X) - positioned on the right */
+.remove-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 6;
+    transition: all 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn:hover {
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+/* Empty State */
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.empty-cart i {
+    font-size: 5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.empty-cart-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.empty-cart-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: #8B9A46;
+    border: 2px solid #8B9A46;
+    border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.empty-cart-link:hover {
+    background-color: #8B9A46;
+    color: #0d0d0d;
+}
+
+/* Responsive for no-sidebar layout */
+@media (max-width: 1200px) {
+    .catalog-content.no-sidebar .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .catalog-content.no-sidebar .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .remove-btn {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-content.no-sidebar .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
