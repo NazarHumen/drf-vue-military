@@ -14,6 +14,11 @@
             <i class="bx bx-cart"></i>
             <span>{% translate "Кошик" %}</span>
         </a>
+        <a href="{% url 'users:user_favorites' %}"
+           class="profile-nav-link {% if active_tab == 'favorites' %}active{% endif %}">
+            <i class="bx bx-heart"></i>
+            <span>{% translate "Обране" %}</span>
+        </a>
         <a href="{% url 'users:user_orders' %}"
            class="profile-nav-link {% if active_tab == 'orders' %}active{% endif %}">
             <i class="bx bx-package"></i>
