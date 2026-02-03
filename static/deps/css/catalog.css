@@ -498,24 +498,22 @@ body {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    background: rgba(0, 0, 0, 0.6);
+    background: transparent;
     border: none;
     color: #ffffff;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     cursor: pointer;
     z-index: 5;
     transition: all 0.3s ease;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .favorite-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
     color: #8B9A46;
+    transform: scale(1.1);
 }
 
 .favorite-btn.active i {
@@ -718,6 +716,27 @@ body {
     margin-bottom: 1rem;
 }
 
+.browse-catalog-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background: #8B9A46;
+    color: #0d0d0d;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.browse-catalog-btn:hover {
+    background: #a0b050;
+    color: #0d0d0d;
+}
+
 /* Pagination */
 .pagination {
     display: flex;
@@ -896,9 +915,7 @@ body {
     }
 
     .favorite-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
 
     .discount-badge {
@@ -1087,7 +1104,6 @@ body {
 /* Touch-friendly improvements */
 @media (hover: none) and (pointer: coarse) {
     .add-to-cart-btn,
-    .favorite-btn,
     .page-btn {
         min-width: 44px;
         min-height: 44px;
