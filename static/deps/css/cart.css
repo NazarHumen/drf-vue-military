@@ -109,6 +109,12 @@ body {
     gap: 0.25rem;
 }
 
+.price-unit {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    color: #d4c5a9;
+}
+
 .price-uah {
     font-family: 'Oswald', sans-serif;
     font-size: 1.5rem;
