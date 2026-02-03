@@ -36,9 +36,12 @@ class FavoriteMixin:
                     "product_description": item.product.description,
                     "product_image": product_image,
                     "product_slug": item.product.slug,
+                    "product_price": round(item.product.price, 2),
                     "product_sell_price": round(item.product.sell_price(), 2),
                     "product_price_usd": round(item.product.price_in_usd, 2),
+                    "product_discount": item.product.discount,
                     "availability_status": item.product.availability_status,
+                    "availability_status_display": item.product.get_availability_status_display(),
                     "created_at": item.created_at.isoformat(),
                 }
             )
