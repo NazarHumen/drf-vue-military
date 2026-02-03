@@ -23,6 +23,10 @@
                     <i class="bx bx-cart"></i>
                     <span>{% translate "Кошик" %}</span>
                 </a>
+                <a href="{% url 'users:user_favorites' %}" class="profile-nav-link">
+                    <i class="bx bx-heart"></i>
+                    <span>{% translate "Обране" %}</span>
+                </a>
                 <a href="{% url 'users:user_orders' %}" class="profile-nav-link">
                     <i class="bx bx-package"></i>
                     <span>{% translate "Мої замовлення" %}</span>
@@ -121,7 +125,7 @@
                         <div class="order-summary mt-4">
                             <div class="order-summary-row">
                                 <span class="order-summary-label">{% translate "Кількість товарів" %}</span>
-                                <span class="order-summary-value">[[ cartTotalQuantity ]] {% translate "од." %}</span>
+                                <span class="order-summary-value">[[ cartTotalQuantity ]] {% translate "шт." %}</span>
                             </div>
                             <div class="order-summary-row">
                                 <span class="order-summary-label">{% translate "Загальна сума" %}</span>
