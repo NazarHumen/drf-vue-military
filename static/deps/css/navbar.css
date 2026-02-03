@@ -1,3 +1,33 @@
+/* Sticky Footer Layout */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+    background: #1a1a1a;
+    border-top: 1px solid #2a2a2a;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+footer p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
 /* Navbar Styles */
 header {
     position: sticky;
@@ -132,12 +162,14 @@ header {
     color: #8B9A46;
 }
 
-/* Cart icon with badge */
-.cart-icon {
+/* Cart and Favorites icons with badge */
+.cart-icon,
+.favorites-icon {
     position: relative;
 }
 
-.cart-badge {
+.cart-badge,
+.favorites-badge {
     position: absolute;
     top: -2px;
     right: -9px;
@@ -154,6 +186,7 @@ header {
     justify-content: center;
     line-height: 1;
 }
+
 
 /* Language selector */
 .navbar-lang {
@@ -206,35 +239,40 @@ header {
 
 /* Large screens */
 @media (min-width: 1201px) and (max-width: 1439px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 4px;
         right: 1px;
     }
 }
 
 @media (min-width: 1440px) and (max-width: 1599px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 4px;
         right: 1px;
     }
 }
 
 @media (min-width: 1600px) and (max-width: 1919px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 4px;
         right: 1px;
     }
 }
 
 @media (min-width: 1921px) and (max-width: 2559px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 4px;
         right: 1px;
     }
 }
 
 @media (min-width: 2560px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 4px;
         right: 1px;
     }
@@ -242,7 +280,8 @@ header {
 
 /* Mobile responsive */
 @media (max-width: 1200px) {
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 8px;
         right: 4px;
         min-width: 18px;
@@ -264,7 +303,8 @@ header {
         gap: 1.25rem;
     }
 
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 8px;
         right: 4px;
         min-width: 18px;
@@ -303,7 +343,8 @@ header {
         font-size: 1.25rem;
     }
 
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 8px;
         right: 4px;
         min-width: 18px;
@@ -367,7 +408,8 @@ header {
         font-size: 1.25rem;
     }
 
-    .cart-badge {
+    .cart-badge,
+    .favorites-badge {
         top: 8px;
         right: 4px;
         min-width: 18px;
