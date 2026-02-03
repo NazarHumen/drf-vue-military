@@ -711,3 +711,33 @@ class UserOrdersView(APIView):
             {"orders": orders_serializer.data},
             status=status.HTTP_200_OK,
         )
+
+
+class UserFavoritesView(APIView):
+    """View для сторінки обраних товарів користувача"""
+
+    permission_classes = [AllowAny]
+    renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            if is_html_request(request):
+                return redirect(f"/api/v1/users/login/?next={request.path}")
+            return Response(
+                {"detail": "Authentication required"},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        if is_html_request(request):
+            return Response(
+                {
+                    "title": _("Обране"),
+                    "request": request,
+                },
+                template_name="users/user_favorites.html",
+            )
+
+        return Response(
+            {"detail": "Use favorites API for JSON data"},
+            status=status.HTTP_200_OK,
+        )
