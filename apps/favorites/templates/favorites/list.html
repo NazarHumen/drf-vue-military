@@ -1,125 +1,109 @@
 {% extends 'base.html' %}
 {% load static %}
-{##}
-{#{% block content %}#}
-{#<div class="container mt-5">#}
-{#    <h3>Обрані товари</h3>#}
-{#    <div class="row">#}
-{#        {% for favorite in favorites %}#}
-{#        <div class="col-md-4">#}
-{#            <div class="card">#}
-{#                <img src="{{ favorite.product.image.url }}" class="card-img-top" alt="{{ favorite.product.name }}">#}
-{#                <div class="card-body">#}
-{#                    <h5 class="card-title">{{ favorite.product.name }}</h5>#}
-{#                    <p class="card-text">Ціна: {{ favorite.product.sell_price }} $</p>#}
-{#                    <button class="btn toggle-favorite" data-product-id="{{ favorite.product.id }}" data-favorited="true">#}
-{#                        <img src="{% static "deps/images/heart.svg" %}" class="favorite-icon filled" alt="Heart Icon">#}
-{#                    </button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        {% empty %}#}
-{#        <p>У вас немає обраних товарів.</p>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#</div>#}
-{#{% endblock %}#}
-{#{% extends 'base.html' %}#}
-{##}
-{#{% block content %}#}
-{#    <h2>Обрані товари</h2>#}
-{##}
-{#    <div class="row">#}
-{#        {% for favorite in favorites %}#}
-{#            <div class="col-md-4">#}
-{#                <div class="card">#}
-{#                    <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" class="card-img-top">#}
-{#                    <div class="card-body">#}
-{#                        <h5 class="card-title">{{ favorite.product.name }}</h5>#}
-{#                        <p class="card-text">{{ favorite.product.description }}</p>#}
-{#                        <button class="toggle-favorite" data-product-id="{{ favorite.product.id }}"#}
-{#                            data-favorited="true" data-url-remove="{% url 'favorites:remove_favorite' %}">#}
-{#                            <i class="favorite-icon {% if favorite.product in request.user.favorites.all %}filled{% endif %}"></i>#}
-{#                        </button>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% empty %}#}
-{#            <p>У вас немає обраних товарів.</p>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#{% endblock %}#}
+{% load i18n %}
 
-{#{% for favorite in favorites %}#}
-{#<div class="col-lg-4 col-md-6 p-4">#}
-{#    <div class="card border-0 rounded custom-shadow product-card bg-dark text-light">#}
-{#        {% if favorite.product.image %}#}
-{#            <img src="{{ favorite.product.image.url }}" class="card-img-top product-image" alt="{{ favorite.product.name }}">#}
-{#        {% else %}#}
-{#            <img src="{% static "deps/images/Not found image.png" %}" class="card-img-top product-image" alt="...">#}
-{#        {% endif %}#}
-{##}
-{#        <div class="card-body">#}
-{#            <a href="{% url "catalog:product" favorite.product.slug %}" class="text-decoration-none text-light">#}
-{#                <h5 class="card-title font-weight-bold">{{ favorite.product.name }}</h5>#}
-{#            </a>#}
-{#            <p class="card-text">{{ favorite.product.description|truncatechars:50 }}</p>#}
-{#            <p class="product-id small text-secondary">ID: {{ favorite.product.display_id }}</p>#}
-{##}
-{#            <div class="d-flex justify-content-between align-items-center">#}
-{#                <p class="mb-0"><strong>{{ favorite.product.price }} $</strong></p>#}
-{#                <button class="btn remove-from-favorites" data-product-id="{{ favorite.product.id }}">#}
-{#                    <img src="{% static "deps/images/heart.svg" %}" alt="Remove Favorite" width="32" height="32">#}
-{#                </button>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#{% empty %}#}
-{#<p>У вас немає обраних товарів.</p>#}
-{#{% endfor %}#}
-
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/favorites.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h3 class="text-light">Обрані товари</h3>
-    <div class="row">
-        {% for favorite in favorites %}
-        <div class="col-lg-4 col-md-6 p-4">
-            <div class="card border-0 rounded custom-shadow product-card bg-dark text-light">
-                {% if favorite.product.image %}
-                    <img src="{{ favorite.product.image.url }}" class="card-img-top product-image" alt="{{ favorite.product.name }}">
-                {% else %}
-                    <img src="{% static 'deps/images/Not found image.png' %}" class="card-img-top product-image" alt="Not Found">
-                {% endif %}
+<div id="favorites-app">
+    <div class="catalog-header">
+        <h1 class="catalog-title">{% translate "ОБРАНЕ" %}</h1>
+    </div>
 
-                <div class="card-body">
-                    <a href="{% url 'catalog:product' favorite.product.slug %}" class="text-decoration-none text-light">
-                        <h5 class="card-title font-weight-bold">{{ favorite.product.name }}</h5>
+    <div class="catalog-content no-sidebar">
+        <!-- Products grid -->
+        <div class="products-grid" v-if="!loading && paginatedItems.length > 0">
+            <div class="product-card" v-for="item in paginatedItems" :key="item.id">
+                <!-- Remove button (X) -->
+                <button class="remove-btn" @click="removeItem(item)" title="{% translate 'Видалити з обраного' %}">
+                    <i class='bx bx-x'></i>
+                </button>
+
+                <!-- Product image -->
+                <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'" class="product-image-link">
+                    <img :src="item.product_image || '{% static 'deps/images/Not found image.png' %}'"
+                         :alt="item.product_name"
+                         class="product-image">
+                </a>
+
+                <!-- Product info -->
+                <div class="product-info">
+                    <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'" class="product-name">
+                        [[ item.product_name ]]
                     </a>
-                    <p class="card-text">{{ favorite.product.description|truncatechars:50 }}</p>
-                    <p class="product-id small text-secondary">ID: {{ favorite.product.display_id }}</p>
+                    <p class="product-id">ID: [[ formatId(item.product_id) ]]</p>
+                    <p class="availability-status"
+                       :class="{
+                           'status-ready': item.availability_status === 'ready_to_ship',
+                           'status-last': item.availability_status === 'last_item',
+                           'status-out': item.availability_status === 'out_of_stock'
+                       }">
+                        <i class='bx bx-package' v-if="item.availability_status === 'ready_to_ship'"></i>
+                        <i class='bx bxs-error' v-else-if="item.availability_status === 'last_item'"></i>
+                        <i class='bx bx-box' v-else></i>
+                        [[ item.availability_status_display ]]
+                    </p>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-0"><strong>{{ favorite.product.price }} $</strong></p>
-{#                        <button#}
-{#                            class="btn remove-from-favorites"#}
-{#                            data-product-id="{{ favorite.product.id }}"#}
-{#                            data-url-remove="{% url 'favorites:remove_favorite' %}"#}
-{#                        >#}
-{#                            <img src="{% static 'deps/images/heart.svg' %}" alt="Remove Favorite" width="32" height="32">#}
-{#                        </button>#}
+                    <!-- Price -->
+                    <div class="product-price-row">
+                        <div class="price-info">
+                            <span class="old-price" v-if="item.product_discount">[[ item.product_price ]] ₴</span>
+                            <span class="current-price">[[ item.product_sell_price ]] <span class="currency">₴</span></span>
+                            <span class="usd-price">/ [[ item.product_price_usd ]] $</span>
+                        </div>
+                        <button class="add-to-cart-btn"
+                                @click="addToCart(item.product_id)"
+                                :disabled="item.availability_status === 'out_of_stock'"
+                                :class="{ 'disabled': item.availability_status === 'out_of_stock' }">
+                            <i class='bx bx-cart-add'></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        {% empty %}
-        <div class="col-12">
-            <p class="text-light">У вас немає обраних товарів.</p>
+
+        <!-- Loading state -->
+        <div class="loading-state" v-if="loading">
+            <i class='bx bx-loader-alt bx-spin'></i>
+            <p>{% translate "Завантаження..." %}</p>
         </div>
-        {% endfor %}
+
+        <!-- Pagination -->
+        <div class="pagination" v-if="!loading && totalPages > 1">
+            <button class="page-btn"
+                    :disabled="currentPage === 1"
+                    @click="goToPage(currentPage - 1)">
+                <i class='bx bx-chevron-left'></i>
+            </button>
+            <button class="page-btn"
+                    v-for="page in visiblePages"
+                    :key="page"
+                    :class="{ active: page === currentPage }"
+                    @click="goToPage(page)">
+                [[ page ]]
+            </button>
+            <button class="page-btn"
+                    :disabled="currentPage === totalPages"
+                    @click="goToPage(currentPage + 1)">
+                <i class='bx bx-chevron-right'></i>
+            </button>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-cart" v-if="!loading && items.length === 0">
+            <i class='bx bx-heart'></i>
+            <h2 class="empty-cart-title">{% translate "Обране порожнє" %}</h2>
+            <a href="/api/v1/catalog/all/" class="empty-cart-link">
+                {% translate "Перейти до каталогу" %}
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
 
-
+{% block scripts %}
+<script src="{% static 'deps/js/favorites/favorites.js' %}"></script>
+{% endblock %}
