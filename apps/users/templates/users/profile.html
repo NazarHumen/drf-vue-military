@@ -31,6 +31,10 @@
                     <i class="bx bx-cart"></i>
                     <span>{% translate "Кошик" %}</span>
                 </a>
+                <a href="{% url 'users:user_favorites' %}" class="profile-nav-link">
+                    <i class="bx bx-heart"></i>
+                    <span>{% translate "Обране" %}</span>
+                </a>
                 <a href="{% url 'users:user_orders' %}" class="profile-nav-link">
                     <i class="bx bx-package"></i>
                     <span>{% translate "Мої замовлення" %}</span>
