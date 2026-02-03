@@ -57,6 +57,7 @@
 
                     <!-- Price -->
                     <div class="cart-item-price">
+                        <div class="price-unit">[[ item.product_sell_price ]] ₴ {% translate "за шт." %}</div>
                         <div class="price-uah">[[ item.products_price ]] ₴</div>
                         <div class="price-usd">/ $[[ item.products_price_usd ]]</div>
                     </div>
@@ -97,7 +98,7 @@
 
                 <div class="summary-row">
                     <span class="summary-label">{% translate "Кількість товарів" %}</span>
-                    <span class="summary-value">[[ totalQuantity ]] {% translate "од." %}</span>
+                    <span class="summary-value">[[ totalQuantity ]] {% translate "шт." %}</span>
                 </div>
 
                 <div class="summary-total">
