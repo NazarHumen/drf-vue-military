@@ -68,10 +68,11 @@ createApp({
         setCurrentImage(image) {
             this.currentImage = image;
         },
-        toggleFavorite() {
-            this.isFavorite = !this.isFavorite;
-            // TODO: Implement favorites API
-            console.log('Toggle favorite:', this.product.id);
+        async toggleFavorite() {
+            const result = await FavoritesHandler.toggleFavorite(this.product.id);
+            if (result && !result.error) {
+                this.isFavorite = result.is_favorited;
+            }
         },
         async addToCart() {
             await CartHandler.addToCart(this.product.id, this.quantity);
@@ -99,7 +100,12 @@ createApp({
             }
         }
     },
-    mounted() {
-        this.fetchProduct();
+    async mounted() {
+        await this.fetchProduct();
+        // Перевірити чи товар в обраному
+        await FavoritesHandler.init();
+        if (this.product) {
+            this.isFavorite = FavoritesHandler.isFavorite(this.product.id);
+        }
     }
 }).mount('#product-app');
