@@ -5,6 +5,7 @@ from apps.favorites import views
 app_name = "favorites"
 
 urlpatterns = [
+    path("", views.FavoritesPageAPIView.as_view(), name="favorites_page"),
     path("list/", views.FavoritesListAPIView.as_view(), name="favorites_list"),
     path("add/", views.FavoriteAddAPIView.as_view(), name="favorite_add"),
     path(
