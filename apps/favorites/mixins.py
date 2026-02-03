@@ -42,7 +42,8 @@ class FavoriteMixin:
                     "product_discount": item.product.discount,
                     "availability_status": item.product.availability_status,
                     "availability_status_display": (
-                        item.product.get_availability_status_display()),
+                        item.product.get_availability_status_display()
+                    ),
                     "created_at": item.created_at.isoformat(),
                 }
             )
