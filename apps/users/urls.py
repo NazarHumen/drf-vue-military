@@ -18,6 +18,7 @@ urlpatterns = [
     # Profile
     path("profile/", views.ProfileAPIView.as_view(), name="profile"),
     path("cart/", views.UserCartView.as_view(), name="user_cart"),
+    path("favorites/", views.UserFavoritesView.as_view(), name="user_favorites"),
     path("orders/", views.UserOrdersView.as_view(), name="user_orders"),
     path("me/", views.CurrentUserAPIView.as_view(), name="current_user"),
     # Password management
