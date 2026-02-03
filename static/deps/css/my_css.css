@@ -1001,13 +1001,23 @@ footer {
         margin-bottom: 1rem;
     }
 
+    .profile-nav {
+        min-width: auto;
+        padding: 0.25rem;
+    }
+
     .profile-nav-link {
-        font-size: 0.8rem;
-        padding: 0.6rem 0.75rem;
+        padding: 0.75rem;
+        justify-content: center;
+    }
+
+    .profile-nav-link span {
+        display: none;
     }
 
     .profile-nav-link i {
-        font-size: 1rem;
+        font-size: 1.25rem;
+        margin: 0;
     }
 
     .profile-card h3 {
