@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'deps/css/payments.css' %}">
+<style>
+    body {
+        background-color: #0d0d0d !important;
+    }
+    main {
+        background-color: #0d0d0d !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+    <div class="payment-card">
+        <i class='bx bx-x-circle icon icon-warning'></i>
+        <h1>{{ title }}</h1>
+        <p>{% translate "Ви скасували оплату. Ваше замовлення збережено." %}</p>
+
+        {% if order_id %}
+        <p>{% translate "Номер замовлення:" %} #{{ order_id }}</p>
+        {% endif %}
+
+        <div>
+            <a href="{% url 'users:profile' %}" class="btn btn-primary">
+                {% translate "Мої замовлення" %}
+            </a>
+            <a href="/api/v1/catalog/all/" class="btn btn-secondary">
+                {% translate "Продовжити покупки" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}

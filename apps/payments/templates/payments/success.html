@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'deps/css/payments.css' %}">
+<style>
+    body {
+        background-color: #0d0d0d !important;
+    }
+    main {
+        background-color: #0d0d0d !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+    <div class="payment-card">
+        <i class='bx bx-check-circle icon icon-success'></i>
+        <h1>{{ title }}</h1>
+        <p>{% translate "Дякуємо за ваше замовлення!" %}</p>
+
+        <div class="order-info">
+            <p><strong>{% translate "Номер замовлення:" %}</strong> #{{ order.id }}</p>
+            <p><strong>{% translate "Сума:" %}</strong> ${{ payment.amount }}</p>
+            <p><strong>{% translate "Статус:" %}</strong> {{ payment.get_status_display }}</p>
+        </div>
+
+        <a href="{% url 'users:profile' %}" class="btn btn-primary">
+            {% translate "Перейти до профілю" %}
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}

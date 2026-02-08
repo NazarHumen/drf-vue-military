@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'deps/css/payments.css' %}">
+<style>
+    body {
+        background-color: #0d0d0d !important;
+    }
+    main {
+        background-color: #0d0d0d !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+    <div class="payment-card">
+        <i class='bx bx-error-circle icon icon-error'></i>
+        <h1>{% translate "Помилка" %}</h1>
+
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <a href="{% url 'users:profile' %}" class="btn btn-primary">
+            {% translate "Повернутися до профілю" %}
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </div>
+</footer>
+{% endblock %}
