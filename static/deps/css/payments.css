@@ -1,0 +1,206 @@
+/* ===== Payment Pages Styles ===== */
+
+/* Body override for payment pages */
+body:has(.payment-container) {
+    background-color: #0d0d0d !important;
+}
+
+/* Payment Container - full screen */
+.payment-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    padding: 2rem 1rem;
+    background-color: #0d0d0d;
+    width: 100%;
+}
+
+/* Payment Card */
+.payment-card {
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    border-left: 4px solid #8B9A46;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Icon */
+.payment-card .icon {
+    font-size: 80px;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.payment-card .icon-success {
+    color: #8B9A46;
+}
+
+.payment-card .icon-warning {
+    color: #ffc107;
+}
+
+.payment-card .icon-error {
+    color: #dc3545;
+}
+
+/* Title */
+.payment-card h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+/* Text */
+.payment-card p {
+    font-family: 'Barlow', sans-serif;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.payment-card p strong {
+    color: #ffffff;
+}
+
+/* Order Info Box */
+.payment-card .order-info {
+    background-color: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+}
+
+.payment-card .order-info p {
+    margin: 0.5rem 0;
+}
+
+/* Error Message Box */
+.payment-card .error-message {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    padding: 1rem;
+    border-radius: 4px;
+    color: #ff6b6b;
+    margin-bottom: 1.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Primary Button */
+.payment-card .btn-primary {
+    background: linear-gradient(135deg, #8B9A46 0%, #6d7a36 100%);
+    border: none;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.payment-card .btn-primary:hover {
+    background: linear-gradient(135deg, #9aab52 0%, #7d8a42 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 154, 70, 0.4);
+}
+
+.payment-card .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button */
+.payment-card .btn-secondary {
+    background-color: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.payment-card .btn-secondary:hover {
+    background-color: #1a1a1a;
+    border-color: #8B9A46;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.payment-card .btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .payment-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .payment-card {
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .payment-card h1 {
+        font-size: 1.5rem;
+    }
+
+    .payment-card .icon {
+        font-size: 60px;
+    }
+
+    .payment-card .btn-primary,
+    .payment-card .btn-secondary {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .payment-card {
+        padding: 1.25rem;
+    }
+
+    .payment-card h1 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .payment-card .btn-primary,
+    .payment-card .btn-secondary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
