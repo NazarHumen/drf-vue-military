@@ -6,5 +6,6 @@ urlpatterns = [
     path("orders/", include("apps.orders.urls", namespace="orders")),
     path("favorites/", include("apps.favorites.urls", namespace="favorites")),
     path("users/", include("apps.users.urls", namespace="users")),
+    path("payments/", include("apps.payments.urls", namespace="payments")),
     path("accounts/", include("allauth.urls")),
 ]
