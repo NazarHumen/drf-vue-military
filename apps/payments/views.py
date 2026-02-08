@@ -60,7 +60,8 @@ class CreateCheckoutSessionAPIView(APIView):
             )
 
         total_usd = sum(
-            item.products_price_usd() or 0 for item in order.orderitem_set.all()
+            item.products_price_usd() or 0
+            for item in order.orderitem_set.all()
         )
 
         try:
@@ -145,9 +146,7 @@ class PaymentSuccessAPIView(APIView):
                 session = stripe.checkout.Session.retrieve(session_id)
                 if session.payment_status == "paid":
                     payment.status = PaymentStatus.COMPLETED
-                    payment.stripe_payment_intent_id = (
-                        session.payment_intent
-                    )
+                    payment.stripe_payment_intent_id = session.payment_intent
                     payment.paid_at = timezone.now()
                     payment.save()
                     payment.order.is_paid = True
