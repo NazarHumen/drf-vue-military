@@ -1,6 +1,6 @@
 from django.urls import path
-from main import views
 
+from main import views
 
 app_name = "main"
 urlpatterns = [
@@ -11,6 +11,6 @@ urlpatterns = [
         views.DeliveryAndPaymentView.as_view(),
         name="delivery_and_payment",
     ),
-    path("contact/", views.contact, name="contact"),
+    path("contact/", views.ContactView.as_view(), name="contact"),
     # path('save-feedback/', views.save_feedback, name='save_feedback'),
 ]
