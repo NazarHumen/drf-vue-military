@@ -9,5 +9,6 @@ urlpatterns = [
     path("users/", include("apps.users.urls", namespace="users")),
     path("payments/", include("apps.payments.urls", namespace="payments")),
     path("accounts/", include("allauth.urls")),
-    path("main/feedback/", FeedbackCreateAPIView.as_view(), name="feedback_create"),
+    path("main/feedback/", FeedbackCreateAPIView.as_view(),
+         name="feedback_create"),
 ]
