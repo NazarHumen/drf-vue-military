@@ -1,15 +1,11 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import TemplateView, CreateView
-from django.http import JsonResponse
-from apps.goods.models import Categories
-from main.models import Feedback
-from main.forms import FeedbackForm
-from django.urls import reverse
 from django.utils.translation import gettext as _
+from django.views.generic import TemplateView
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from main.serializers import FeedbackSerializer
 
 
 # Create your views here.
@@ -19,7 +15,6 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = _("Home - Головна")
-        # context['content'] = "Магазин військового спорядження"
         return context
 
 
@@ -29,8 +24,6 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = _("Home - Про нас")
-        # context['content'] = "Про нас"
-        # context['text_on_page'] = "Ми спеціалізуємося на продажу військового спорядження, включаючи одяг, рюкзаки, обладнання для тактичних операцій та інші необхідні аксесуари. У нас ви знайдете все, що потрібно для активного відпочинку, туризму або служби."
         return context
 
 
@@ -43,43 +36,24 @@ class DeliveryAndPaymentView(TemplateView):
         return context
 
 
+class ContactView(TemplateView):
+    template_name = "main/contact.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Home - Зв'яжіться з нами")
+        return context
 
 
+class FeedbackCreateAPIView(APIView):
+    permission_classes = [AllowAny]
 
-def contact(request):
-    if request.method == "POST":
-        # Якщо користувач не авторизований
-        if not request.user.is_authenticated:
-            # Зберігаємо дані форми в сесію
-            request.session["form_data"] = request.POST
-            messages.error(
-                request,
-                _("Ви повинні увійти в систему, щоб надіслати відгук.")
+    def post(self, request):
+        serializer = FeedbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": _("Дякуємо за ваш відгук!")},
+                status=status.HTTP_201_CREATED,
             )
-            # Додаємо параметр next для перенаправлення після авторизації
-            login_url = f"/user/login/?next={reverse('main:contact')}"
-            return redirect(login_url)
-
-        # Якщо користувач авторизований, обробляємо форму
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()  # Зберігаємо дані в базу
-            messages.success(
-                request,
-                _("Дякуємо за ваш відгук! Ваше повідомлення було успішно надіслано."),
-            )
-            return redirect("main:contact")  # Перенаправлення після успіху
-
-    else:
-        # Якщо у сесії є дані форми, попередньо заповнюємо її
-        form_data = request.session.pop("form_data", None)
-        if form_data:
-            form = FeedbackForm(form_data)
-        else:
-            form = FeedbackForm()
-    context = {
-        "form": form,
-        "title": _("Home - Зв'яжіться з нами"),
-    }
-
-    return render(request, "main/contact.html",  context)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
