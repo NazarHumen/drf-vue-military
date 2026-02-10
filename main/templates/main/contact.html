@@ -1,155 +1,125 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+
 {% block css %}
-    <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/contact.css' %}">
 {% endblock %}
+
 {% block content %}
-    <div class="container mt-5 pt-5 bg-white custom-shadow rounded">
-        <h2>{% translate "Контакти" %}</h2>
-        <div class="row">
-            <!-- Текстова інформація -->
-            <div class="col-md-6">
-                <p>
-                    <strong>{% translate "Наші менеджери завжди на зв'язку!" %}</strong><br>
-                    {% translate "Дзвоніть, пишіть, відправляйте голосові повідомлення." %}
-                    <br>
-                    {% translate "Спілкуємось у будь-яких зручних для вас месенджерах. А також із задоволенням надамо консультацію по телефону." %}
-                </p>
-                <h3>{% translate "Контакти для зв'язку:" %}</h3>
-                <p>
-                    <strong>{% translate "Пишіть:" %}</strong> <a
-                        href="mailto:hello@ukrarmor.com.ua">hello@gmail.com.ua</a><br>
-                    <strong>{% translate "Дзвоніть:" %}</strong> <br>
-                    <a href="tel:+380732799616" id="phone1">+38 (073) 279 96
-                        16</a><br>
-                    <a href="tel:+380674981224" id="phone2">+38 (067) 498 12
-                        24</a><br>
-                    <a href="tel:+380503601633" id="phone3">+38 (050) 360 16
-                        33</a>
-                </p>
-                <p>
-                    <a href="https://t.me/ukrarmorcomua_bot"><img
-                            src="{% static 'deps/images/telega.jpg' %}"
-                            alt="Telegram" class="icon"></a>
-                    <a href="https://www.viber.com/ukrarmor"><img
-                            src="{% static 'deps/images/viber.png' %}"
-                            alt="Viber" class="icon"></a>
-                    <a href="https://www.whatsapp.com/"><img
-                            src="{% static 'deps/images/app.jpg' %}"
-                            alt="Phone" class="icon"></a>
-                </p>
-                <p>
-                    <strong>{% translate "А якщо ви знаходитеся в Києві і хочете забрати замовлення особисто" %}</strong><br>
-                    <em>{% translate "*Можна приміряти його або подивитися у дзеркалі наскільки ви круті в броніку" %}</em><br>
-                    {% translate "Це можна зробити за адресою:" %}<br>
-                    {% translate "Київ, м.Вокзальна (пл.Вокзальна, 2, Food Plaza)." %}<br>
-                    {% translate "Київ, м.Лівобережна (вул.Раїси Окіпної, 8)." %}
-                </p>
+<div id="contact-app" class="contact-page">
+    <h1 class="contact-page-title">{% translate "Зв'яжіться" %} <span>{% translate "з нами" %}</span></h1>
+
+    <div class="contact-wrapper">
+        <!-- Контактна інформація -->
+        <div class="contact-info">
+            <h2>{% translate "Контакти" %}</h2>
+            <p>
+                <strong>{% translate "Наші менеджери завжди на зв'язку!" %}</strong><br>
+                {% translate "Дзвоніть, пишіть, відправляйте голосові повідомлення." %}<br>
+                {% translate "Спілкуємось у будь-яких зручних для вас месенджерах. А також із задоволенням надамо консультацію по телефону." %}
+            </p>
+
+            <h3>{% translate "Контакти для зв'язку:" %}</h3>
+            <p>
+                <strong>{% translate "Пишіть:" %}</strong>
+                <a href="mailto:hello@ukrarmor.com.ua">hello@gmail.com.ua</a><br>
+                <strong>{% translate "Дзвоніть:" %}</strong><br>
+                <a href="tel:+380732799616">+38 (073) 279 96 16</a><br>
+                <a href="tel:+380674981224">+38 (067) 498 12 24</a><br>
+                <a href="tel:+380503601633">+38 (050) 360 16 33</a>
+            </p>
+
+            <div class="contact-messengers">
+                <a href="https://t.me/ukrarmorcomua_bot">
+                    <img src="{% static 'deps/images/telega.jpg' %}" alt="Telegram" class="icon">
+                </a>
+                <a href="https://www.viber.com/ukrarmor">
+                    <img src="{% static 'deps/images/viber.png' %}" alt="Viber" class="icon">
+                </a>
+                <a href="https://www.whatsapp.com/">
+                    <img src="{% static 'deps/images/app.jpg' %}" alt="Phone" class="icon">
+                </a>
             </div>
-            <!-- Фотографія -->
-            <div class="col-md-6">
-                <img src="{% static 'deps/images/v30_534.png' %}"
-                     alt="Фото військового спорядження"
-                     class="img-fluid rounded">
-            </div>
+
+            <p>
+                <strong>{% translate "А якщо ви знаходитеся в Києві і хочете забрати замовлення особисто" %}</strong><br>
+                <em>{% translate "*Можна приміряти його або подивитися у дзеркалі наскільки ви круті в броніку" %}</em><br>
+                {% translate "Це можна зробити за адресою:" %}<br>
+                {% translate "Київ, м.Вокзальна (пл.Вокзальна, 2, Food Plaza)." %}<br>
+                {% translate "Київ, м.Лівобережна (вул.Раїси Окіпної, 8)." %}
+            </p>
         </div>
-        <!-- Форма зворотного зв'язку -->
-        <div class="row mt-4">
-            <div class="col-12">
 
-                {% load form_filters %}
-                <h3 class="mb-4"><span
-                        class="arrow">→</span> {% translate "Форма зворотного зв'язку" %}
-                </h3>
-                <form id="feedbackForm" method="post"
-                      class="p-5 border rounded shadow-sm">
-                    {% csrf_token %}
-
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="id_last_name"
-                                   class="form-label">{% translate "Прізвище*" %}</label>
-                            {{ form.last_name|add_class:"form-control" }}
-                            {% if form.last_name.errors %}
-                                <div class="alert alert-danger mt-2">{{ form.last_name.errors }}</div>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-6">
-                            <label for="id_first_name"
-                                   class="form-label">{% translate "Ім'я*" %}</label>
-                            {{ form.first_name|add_class:"form-control" }}
-                            {% if form.first_name.errors %}
-                                <div class="alert alert-danger mt-2">{{ form.first_name.errors }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mt-3">
-                        {#                        <div class="col-md-6">#}
-                        {#                            <label for="id_phone"#}
-                        {#                                   class="form-label">{% translate "Телефон*" %}</label>#}
-                        {#                            {{ form.phone|add_class:"form-control" }}#}
-                        {#                            {% if form.phone.errors %}#}
-                        {#                                <div class="alert alert-danger mt-2">{{ form.phone.errors }}</div>#}
-                        {#                            {% endif %}#}
-                        {#                        </div>#}
-                        <div class="col-md-6">
-                            <label for="id_phone"
-                                   class="form-label">{% translate "Телефон*" %}</label>
-                            {{ form.phone|add_class:"form-control" }}
-                            {% if form.phone.errors %}
-                                <div class="alert alert-danger mt-2">{{ form.phone.errors }}</div>
-                            {% endif %}
-                            <div class="alert alert-danger mt-2"
-                                 id="phone_error" style="display:none;">
-
-                                {% translate "Невірний формат номера. Приклад: +380931234567 або +46701234567" %}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="id_email"
-                                   class="form-label">{% translate "E-mail*" %}</label>
-                            {{ form.email|add_class:"form-control" }}
-                            {% if form.email.errors %}
-                                <div class="alert alert-danger mt-2">{{ form.email.errors }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="mt-3">
-                        <label for="id_comment"
-                               class="form-label">{% translate "Коментар*" %}</label>
-                        {{ form.comment|add_class:"form-control" }}
-                        {% if form.comment.errors %}
-                            <div class="alert alert-danger mt-2">{{ form.comment.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    <button type="submit"
-                            class="btn btn-dark btn-block mt-4">{% translate "Відправити" %}</button>
-                </form>
-
-            </div>
+        <!-- Фото -->
+        <div class="contact-image">
+            <img src="{% static 'deps/images/v30_534.png' %}"
+                 alt="{% translate 'Військове спорядження' %}">
         </div>
     </div>
 
+    <!-- Форма зворотного зв'язку -->
+    <div class="feedback-form-section">
+        <h3><span class="arrow">&rarr;</span> {% translate "Форма зворотного зв'язку" %}</h3>
+        {% csrf_token %}
+        <form @submit.prevent="submitForm" class="feedback-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="last_name">{% translate "Прізвище" %}*</label>
+                    <input type="text" id="last_name" v-model="form.last_name"
+                           @input="filterName($event, 'last_name')"
+                           :class="{'input-error': errors.last_name}"
+                           placeholder="{% translate 'Введіть прізвище' %}">
+                    <span v-if="errors.last_name" class="error-text">[[ errors.last_name[0] ]]</span>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">{% translate "Ім'я" %}*</label>
+                    <input type="text" id="first_name" v-model="form.first_name"
+                           @input="filterName($event, 'first_name')"
+                           :class="{'input-error': errors.first_name}"
+                           placeholder="{% translate 'Введіть імʼя' %}">
+                    <span v-if="errors.first_name" class="error-text">[[ errors.first_name[0] ]]</span>
+                </div>
+            </div>
 
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">{% translate "Телефон" %}*</label>
+                    <input type="tel" id="phone" v-model="form.phone"
+                           @input="filterPhone($event)"
+                           :class="{'input-error': errors.phone}"
+                           placeholder="+380XXXXXXXXX">
+                    <span v-if="errors.phone" class="error-text">[[ errors.phone[0] ]]</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">{% translate "E-mail" %}*</label>
+                    <input type="email" id="email" v-model="form.email"
+                           @input="filterEmail($event)"
+                           :class="{'input-error': errors.email}"
+                           placeholder="{% translate 'Введіть email' %}">
+                    <span v-if="errors.email" class="error-text">[[ errors.email[0] ]]</span>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="comment">{% translate "Коментар" %}*</label>
+                <textarea id="comment" v-model="form.comment" rows="4"
+                          @input="clearFieldError('comment')"
+                          :class="{'input-error': errors.comment}"
+                          placeholder="{% translate 'Введіть коментар' %}"></textarea>
+                <span v-if="errors.comment" class="error-text">[[ errors.comment[0] ]]</span>
+            </div>
 
-
-
-
+            <button type="submit" class="btn-submit" :disabled="isSubmitting">
+                <span v-if="!isSubmitting">{% translate "Відправити" %}</span>
+                <span v-else>{% translate "Відправляємо..." %}</span>
+            </button>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
-
-
-
-{% block footer %}
-    <footer class="py-4 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Nazarii
-                Humen 2024</p>
-        </div>
-    </footer>
+{% block scripts %}
+<script>document.body.classList.add('contact-page-body');</script>
+<script src="{% static 'deps/js/main/contact.js' %}"></script>
 {% endblock %}
