@@ -199,7 +199,6 @@ const FavoritesHandler = {
         if (badge) {
             const displayCount = count !== null ? count : this._favoriteIds.size;
             badge.textContent = displayCount;
-            badge.style.display = displayCount > 0 ? 'flex' : 'none';
         }
     },
 
