@@ -77,7 +77,9 @@ createApp({
                 console.error('Error fetching categories:', error);
             }
         },
-        async fetchProducts(updatePriceRange = false) {
+        async fetchProducts(updatePriceRange) {
+            // Захист від Event об'єкта з @change="fetchProducts"
+            if (updatePriceRange !== true) updatePriceRange = false;
             this.loading = true;
             try {
                 let url = '/api/v1/catalog/all/';
