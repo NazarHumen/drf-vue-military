@@ -222,7 +222,7 @@
                                 <!-- Delivery Method -->
                                 <div class="field-group">
                                     <span class="field-group-title">
-                                        <i class='bx bx-truck'></i> {% translate "Спосіб доставки" %}
+                                        <i class='bx bxs-truck'></i> {% translate "Спосіб доставки" %}
                                     </span>
                                     <div class="delivery-option">
                                         <label class="radio-card">
@@ -251,7 +251,7 @@
 
                                     <div class="mb-3" v-show="showDeliveryAddress">
                                         <label for="id_delivery_address" class="form-label">
-                                            {% translate "Адреса доставки" %} *
+                                            <i class='bx bx-map'></i> {% translate "Адреса доставки" %} *
                                         </label>
                                         <textarea class="form-control"
                                                   :class="{ 'is-invalid': errors.delivery_address }"
