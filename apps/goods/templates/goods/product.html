@@ -20,7 +20,7 @@
         <nav class="breadcrumb">
             <a href="/api/v1/catalog/all/">{% translate "Каталог" %}</a>
             <span>/</span>
-            <a :href="'/api/v1/catalog/' + product.category?.slug + '/'" v-if="product.category">
+            <a :href="'/api/v1/catalog/all/?categories=' + product.category?.slug" v-if="product.category">
                 [[ product.category.name ]]
             </a>
             <span v-if="product.category">/</span>
