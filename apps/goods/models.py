@@ -274,6 +274,14 @@ class Products(models.Model):
             # Якщо ціна вже в USD
             self.price_in_usd = self.discounted_price
 
+        # Автоматичне оновлення статусу наявності
+        if self.quantity == 0:
+            self.availability_status = "out_of_stock"
+        elif self.quantity <= 5:
+            self.availability_status = "last_item"
+        else:
+            self.availability_status = "ready_to_ship"
+
         super().save(*args, **kwargs)
 
 
