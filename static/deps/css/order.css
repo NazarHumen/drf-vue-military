@@ -96,6 +96,12 @@ main {
     margin-bottom: 0.5rem;
 }
 
+.order-form .form-label i.bx {
+    font-size: 1rem;
+    vertical-align: middle;
+    color: #8B9A46;
+}
+
 .order-form .form-control {
     border: 1px solid #2a2a2a;
     border-radius: 4px;
@@ -193,7 +199,8 @@ main {
 
 .radio-card-icon {
     font-size: 1.5rem;
-    color: #666;
+    color: #8B9A46;
+    display: inline-flex;
     transition: color 0.3s ease;
 }
 
