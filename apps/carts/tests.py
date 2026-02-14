@@ -373,9 +373,8 @@ class CartMixinTestCase(TestCase):
         self.assertEqual(item["max_quantity"], self.product.quantity)
 
     def test_get_cart_data_max_quantity_last_item(self):
-        """Test max_quantity for last_item products"""
-        self.product.availability_status = "last_item"
-        self.product.quantity = 10
+        """Test max_quantity for last_item products (quantity <= 5)"""
+        self.product.quantity = 5
         self.product.save()
 
         request = self._get_authenticated_request()
@@ -384,8 +383,8 @@ class CartMixinTestCase(TestCase):
         self.assertEqual(item["max_quantity"], 5)
 
     def test_get_cart_data_max_quantity_out_of_stock(self):
-        """Test max_quantity for out_of_stock products"""
-        self.product.availability_status = "out_of_stock"
+        """Test max_quantity for out_of_stock products (quantity = 0)"""
+        self.product.quantity = 0
         self.product.save()
 
         request = self._get_authenticated_request()
@@ -462,7 +461,7 @@ class CartAddAPIViewTestCase(APITestCase):
 
     def test_add_out_of_stock_product(self):
         """Test adding out of stock product returns error"""
-        self.product.availability_status = "out_of_stock"
+        self.product.quantity = 0
         self.product.save()
 
         self.client.force_authenticate(user=self.user)
@@ -515,9 +514,8 @@ class CartAddAPIViewTestCase(APITestCase):
         self.assertEqual(cart.quantity, 1)
 
     def test_add_last_item_max_quantity(self):
-        """Test last_item product respects max 5 limit"""
-        self.product.availability_status = "last_item"
-        self.product.quantity = 10
+        """Test last_item product respects max 5 limit (quantity <= 5)"""
+        self.product.quantity = 5
         self.product.save()
 
         self.client.force_authenticate(user=self.user)
@@ -608,8 +606,8 @@ class CartChangeAPIViewTestCase(APITestCase):
         self.assertIn("max_quantity", response.data)
 
     def test_change_out_of_stock_product(self):
-        """Test changing quantity of out_of_stock product"""
-        self.product.availability_status = "out_of_stock"
+        """Test changing quantity of out_of_stock product (quantity = 0)"""
+        self.product.quantity = 0
         self.product.save()
 
         self.client.force_authenticate(user=self.user)
