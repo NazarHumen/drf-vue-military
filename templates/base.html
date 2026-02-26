@@ -33,7 +33,7 @@
     <title>{{ title }}</title>
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
 <header>
     <nav class="navbar-main">
         <div class="navbar-container">
@@ -68,12 +68,16 @@
             <!-- Right side: Icons -->
             <div class="navbar-right">
                 <a href="/api/v1/favorites/" class="navbar-icon favorites-icon" title="{% translate 'Обране' %}">
-                    <i class='bx bx-heart'></i>
-                    <span id="favorites-count" class="favorites-badge">0</span>
+                    <span class="icon-wrapper">
+                        <i class='bx bx-heart'></i>
+                        <span id="favorites-count" class="favorites-badge">0</span>
+                    </span>
                 </a>
                 <a href="/api/v1/cart/basket/" class="navbar-icon cart-icon" title="{% translate 'Кошик' %}">
-                    <i class='bx bx-cart'></i>
-                    <span id="cart-count" class="cart-badge">0</span>
+                    <span class="icon-wrapper">
+                        <i class='bx bx-cart'></i>
+                        <span id="cart-count" class="cart-badge">0</span>
+                    </span>
                 </a>
                 <!-- Mobile menu toggle -->
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% translate 'Меню' %}">
