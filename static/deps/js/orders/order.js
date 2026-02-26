@@ -20,7 +20,7 @@ createApp({
                 email: '',
                 requires_delivery: '1',
                 delivery_address: '',
-                payment_on_get: '0'
+                payment_on_get: '1'
             },
 
             // Form validation errors
@@ -268,10 +268,33 @@ createApp({
                     throw new Error(data.error || 'Помилка при створенні замовлення');
                 }
 
+                // Card payment — redirect to Stripe checkout
+                if (this.form.payment_on_get === '0') {
+                    const checkoutResponse = await fetch('/api/v1/payments/checkout/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRFToken': CartHandler.getCSRFToken()
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({ order_id: data.id })
+                    });
+
+                    const checkoutData = await checkoutResponse.json();
+
+                    if (!checkoutResponse.ok) {
+                        throw new Error(checkoutData.error || 'Помилка при створенні сесії оплати');
+                    }
+
+                    window.location.href = checkoutData.checkout_url;
+                    return;
+                }
+
+                // Cash on delivery
                 this.submitSuccess = true;
                 CartHandler.showNotification('Замовлення успішно створено!', 'success');
 
-                // Redirect to profile after success
                 setTimeout(() => {
                     window.location.href = '/api/v1/users/orders/';
                 }, 1500);
