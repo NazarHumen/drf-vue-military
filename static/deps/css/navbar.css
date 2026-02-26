@@ -163,16 +163,17 @@ header {
 }
 
 /* Cart and Favorites icons with badge */
-.cart-icon,
-.favorites-icon {
+.icon-wrapper {
     position: relative;
+    display: inline-flex;
 }
 
 .cart-badge,
 .favorites-badge {
     position: absolute;
-    top: -2px;
-    right: -9px;
+    top: 4px;
+    right: 0;
+    transform: translate(50%, -50%);
     background: #8B9A46;
     color: #0d0d0d;
     font-family: 'Oswald', sans-serif;
@@ -237,53 +238,10 @@ header {
     color: #8B9A46;
 }
 
-/* Large screens */
-@media (min-width: 1201px) and (max-width: 1439px) {
-    .cart-badge,
-    .favorites-badge {
-        top: 4px;
-        right: 1px;
-    }
-}
-
-@media (min-width: 1440px) and (max-width: 1599px) {
-    .cart-badge,
-    .favorites-badge {
-        top: 4px;
-        right: 1px;
-    }
-}
-
-@media (min-width: 1600px) and (max-width: 1919px) {
-    .cart-badge,
-    .favorites-badge {
-        top: 4px;
-        right: 1px;
-    }
-}
-
-@media (min-width: 1921px) and (max-width: 2559px) {
-    .cart-badge,
-    .favorites-badge {
-        top: 4px;
-        right: 1px;
-    }
-}
-
-@media (min-width: 2560px) {
-    .cart-badge,
-    .favorites-badge {
-        top: 4px;
-        right: 1px;
-    }
-}
-
-/* Mobile responsive */
+/* Mobile: smaller badge size */
 @media (max-width: 1200px) {
     .cart-badge,
     .favorites-badge {
-        top: 8px;
-        right: 4px;
         min-width: 18px;
         height: 18px;
         font-size: 0.7rem;
@@ -301,15 +259,6 @@ header {
 
     .navbar-right {
         gap: 1.25rem;
-    }
-
-    .cart-badge,
-    .favorites-badge {
-        top: 8px;
-        right: 4px;
-        min-width: 18px;
-        height: 18px;
-        font-size: 0.7rem;
     }
 }
 
@@ -341,15 +290,6 @@ header {
 
     .navbar-icon {
         font-size: 1.25rem;
-    }
-
-    .cart-badge,
-    .favorites-badge {
-        top: 8px;
-        right: 4px;
-        min-width: 18px;
-        height: 18px;
-        font-size: 0.7rem;
     }
 
     .navbar-lang i {
@@ -406,15 +346,6 @@ header {
     /* Keep cart and favorites icons visible */
     .navbar-icon {
         font-size: 1.25rem;
-    }
-
-    .cart-badge,
-    .favorites-badge {
-        top: 8px;
-        right: 4px;
-        min-width: 18px;
-        height: 18px;
-        font-size: 0.7rem;
     }
 
     /* Show mobile menu toggle */
@@ -536,4 +467,3 @@ header {
         min-height: 44px;
     }
 }
-
