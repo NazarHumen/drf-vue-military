@@ -153,6 +153,7 @@ class PaymentSuccessAPIView(APIView):
                     payment.order.save()
                     try:
                         from apps.orders.utils import send_receipt_email
+
                         send_receipt_email(payment.order)
                     except Exception:
                         pass
@@ -251,6 +252,7 @@ class StripeWebhookAPIView(APIView):
             payment.order.save()
             try:
                 from apps.orders.utils import send_receipt_email
+
                 send_receipt_email(payment.order)
             except Exception:
                 pass
