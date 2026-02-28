@@ -151,6 +151,11 @@ class PaymentSuccessAPIView(APIView):
                     payment.save()
                     payment.order.is_paid = True
                     payment.order.save()
+                    try:
+                        from apps.orders.utils import send_receipt_email
+                        send_receipt_email(payment.order)
+                    except Exception:
+                        pass
             except stripe.error.StripeError:
                 pass
 
@@ -244,6 +249,11 @@ class StripeWebhookAPIView(APIView):
 
             payment.order.is_paid = True
             payment.order.save()
+            try:
+                from apps.orders.utils import send_receipt_email
+                send_receipt_email(payment.order)
+            except Exception:
+                pass
         except Payment.DoesNotExist:
             pass
 
