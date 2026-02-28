@@ -169,11 +169,21 @@
                                             <p class="mb-2" style="color: #aaa;">
                                                 <i class="bx bx-credit-card me-2" style="color: #8B9A46;"></i>
                                                 <strong style="color: #fff;">{% translate "Оплата:" %}</strong>
-                                                <span v-if="order.payment_on_get" class="ms-1">{% translate "При отриманні" %}</span>
-                                                <span v-else class="ms-1">{% translate "Онлайн" %}</span>
-                                                <span v-if="order.is_paid" class="badge bg-success ms-2">{% translate "Сплачено" %}</span>
+                                                <span v-if="order.payment_on_get" class="ms-1" style="color: #7EB8C9;"><strong>{% translate "При отриманні" %}</strong></span>
+                                                <span v-else-if="order.is_paid" class="ms-1" style="color: #8B9A46;">
+                                                    <strong>{% translate "Сплачено" %}</strong>
+                                                </span>
                                             </p>
                                         </div>
+                                    </div>
+
+                                    <!-- Download Receipt -->
+                                    <div v-if="order.is_paid" class="mt-3">
+                                        <a :href="'/api/v1/orders/' + order.id + '/receipt/'"
+                                           style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background-color: transparent; color: #8B9A46; border: 1px solid #8B9A46; text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;">
+                                            <i class="bx bx-download"></i>
+                                            {% translate "Завантажити чек" %}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
