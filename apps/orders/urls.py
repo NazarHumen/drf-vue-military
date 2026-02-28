@@ -10,4 +10,9 @@ urlpatterns = [
         views.CreateOrderAPIView.as_view(),
         name="create_order",
     ),
+    path(
+        "<int:order_id>/receipt/",
+        views.OrderReceiptView.as_view(),
+        name="receipt",
+    ),
 ]

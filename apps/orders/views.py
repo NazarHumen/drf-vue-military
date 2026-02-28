@@ -1,7 +1,10 @@
 from django.db import transaction
 from django.forms import ValidationError
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -200,3 +203,27 @@ class CreateOrderAPIView(APIView):
 
             cart_items.delete()
             return order
+
+
+class OrderReceiptView(APIView):
+    """Генерація PDF чеку для оплаченого замовлення"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, order_id):
+        from apps.orders.utils import generate_receipt_pdf
+
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+
+        if not order.is_paid:
+            return Response(
+                {"error": _("Замовлення ще не оплачено")},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        buffer = generate_receipt_pdf(order)
+        response = HttpResponse(buffer, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            f'attachment; filename="receipt_{order_id}.pdf"'
+        )
+        return response
