@@ -91,7 +91,7 @@ createApp({
         },
 
         getStatusDisplay(status) {
-            const statusMap = {
+            const statusMap = window.ORDER_STATUS_LABELS || {
                 'processing': 'В обробці',
                 'shipped': 'Відправлено',
                 'delivered': 'Доставлено'
