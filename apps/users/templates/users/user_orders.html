@@ -205,5 +205,12 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+window.ORDER_STATUS_LABELS = {
+    'processing': '{% translate "В обробці" %}',
+    'shipped': '{% translate "Відправлено" %}',
+    'delivered': '{% translate "Доставлено" %}'
+};
+</script>
 <script src="{% static 'deps/js/users/user_orders.js' %}"></script>
 {% endblock %}
