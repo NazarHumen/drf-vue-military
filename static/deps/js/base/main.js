@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Language switcher: preserve current URL (with query params) after language switch
+    function updateLanguageNextInputs() {
+        const currentUrl = window.location.pathname + window.location.search;
+        document.querySelectorAll('#languageForm input[name="next"], .mobile-nav-lang input[name="next"]').forEach(function(input) {
+            input.value = currentUrl;
+        });
+    }
+
+    // Desktop select: onchange="this.form.submit()" bypasses the submit event,
+    // so we override it with a proper change listener
+    const langSelect = document.getElementById('languageSelect');
+    if (langSelect) {
+        langSelect.onchange = function() {
+            updateLanguageNextInputs();
+            this.form.submit();
+        };
+    }
+
+    // Mobile buttons: submit event fires normally on button click
+    document.querySelectorAll('.mobile-nav-lang form').forEach(function(form) {
+        form.addEventListener('submit', function() {
+            updateLanguageNextInputs();
+        });
+    });
+
     // Dropdown toggle for navbar
     document.querySelectorAll('.navbar-dropdown').forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
