@@ -256,4 +256,5 @@ cython_debug/
 media/
 
 # CLAUDE config file
-#.claude/
+.claude/
+.docs/
