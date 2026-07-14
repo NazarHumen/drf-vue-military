@@ -11,15 +11,17 @@
     <!-- Google Fonts - Military Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet"
           href="{% static "deps/css/bootstrap/bootstrap.min.css" %}">
-{#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
+    {#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
     <link rel="stylesheet" href="{% static "deps/css/navbar.css" %}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet">
     <!-- iziToast -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     {% block css %}
     {% endblock %}
     <!-- Favicons -->
@@ -39,67 +41,103 @@
         <div class="navbar-container">
             <!-- Left side: Logo and navigation -->
             <div class="navbar-left">
-                <a href="{% url 'main:index' %}" class="navbar-logo">MILITARY</a>
-                <a href="/api/v1/catalog/all/" class="navbar-link">{% translate "Каталог" %}</a>
-                <a href="{% url 'main:contact' %}" class="navbar-link">{% translate "Контакти" %}</a>
+                <a href="{% url 'main:index' %}"
+                   class="navbar-logo">MILITARY</a>
+                <a href="/api/v1/catalog/all/"
+                   class="navbar-link">{% translate "Каталог" %}</a>
+                <a href="{% url 'main:contact' %}"
+                   class="navbar-link">{% translate "Контакти" %}</a>
                 {% if user.is_authenticated %}
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-link dropdown-toggle">{% translate "Профіль" %}</a>
+                        <a href="#"
+                           class="navbar-link dropdown-toggle">{% translate "Профіль" %}</a>
                         <div class="dropdown-menu">
-                            <a href="{% url 'users:profile' %}" class="dropdown-item">
+                            <a href="{% url 'users:profile' %}"
+                               class="dropdown-item">
                                 <i class='bx bx-user'></i> {% translate "Мій профіль" %}
                             </a>
                             {% if user.is_admin or user.is_staff %}
-                                <a href="{% url 'admin:index' %}" class="dropdown-item">
+                                <a href="{% url 'admin:index' %}"
+                                   class="dropdown-item">
                                     <i class='bx bx-cog'></i> {% translate "Адмін панель" %}
                                 </a>
                             {% endif %}
                             <div class="dropdown-divider"></div>
-                            <a href="{% url 'users:logout' %}" class="dropdown-item">
+                            <a href="{% url 'users:logout' %}"
+                               class="dropdown-item">
                                 <i class='bx bx-log-out'></i> {% translate "Вийти" %}
                             </a>
                         </div>
                     </div>
                 {% else %}
-                    <a href="{% url 'users:login' %}" class="navbar-link">{% translate "Увійти" %}</a>
+                    <a href="{% url 'users:login' %}"
+                       class="navbar-link">{% translate "Увійти" %}</a>
                 {% endif %}
             </div>
 
             <!-- Right side: Icons -->
             <div class="navbar-right">
-                <a href="/api/v1/favorites/" class="navbar-icon favorites-icon" title="{% translate 'Обране' %}">
+                <a href="/api/v1/favorites/" class="navbar-icon favorites-icon"
+                   title="{% translate 'Обране' %}">
                     <span class="icon-wrapper">
                         <i class='bx bx-heart'></i>
-                        <span id="favorites-count" class="favorites-badge">0</span>
+                        <span id="favorites-count"
+                              class="favorites-badge">0</span>
                     </span>
                 </a>
-                <a href="/api/v1/cart/basket/" class="navbar-icon cart-icon" title="{% translate 'Кошик' %}">
+                <a href="/api/v1/cart/basket/" class="navbar-icon cart-icon"
+                   title="{% translate 'Кошик' %}">
                     <span class="icon-wrapper">
                         <i class='bx bx-cart'></i>
                         <span id="cart-count" class="cart-badge">0</span>
                     </span>
                 </a>
                 <!-- Mobile menu toggle -->
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% translate 'Меню' %}">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle"
+                        aria-label="{% translate 'Меню' %}">
                     <i class='bx bx-menu'></i>
                 </button>
                 <div class="navbar-lang">
-                    <i class='bx bx-globe'></i>
-                    <form action="{% url 'set_language' %}" method="post" id="languageForm">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+
+                    <!-- Hidden Django set_language form (POST + CSRF) -->
+                    <form action="{% url 'set_language' %}" method="post"
+                          id="languageForm">
                         {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ request.path }}">
-                        <select name="language" id="languageSelect" class="lang-select" onchange="this.form.submit()">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"
-                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                                    {{ language.code|upper }}
-                                </option>
-                            {% endfor %}
-                        </select>
+                        <input name="next" type="hidden"
+                               value="{{ request.path }}">
+                        <input name="language" type="hidden" id="languageInput"
+                               value="{{ LANGUAGE_CODE }}">
                     </form>
+
+                    <div class="lang-switch" id="langSwitch">
+                        <button class="lang-trigger" id="langBtn"
+                                type="button">
+                            <svg width="22" height="22" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor"
+                                 stroke-width="1.6">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/>
+                            </svg>
+                            <span class="lang-code">{{ LANGUAGE_CODE|upper }}</span>
+                        </button>
+                        <div class="lang-menu" id="langMenu">
+                            {% for language in languages %}
+                                <a href="#" data-code="{{ language.code }}"
+                                   class="{% if language.code == LANGUAGE_CODE %}active{% endif %}">
+                                    <span class="code">{{ language.code|upper }}</span>
+                                    <span class="name">{{ language.name_local|upper }}</span>
+                                    <svg class="check" width="14" height="14"
+                                         viewBox="0 0 24 24" fill="none"
+                                         stroke="#8B9A46" stroke-width="2.4">
+                                        <path d="M20 6 9 17l-5-5"/>
+                                    </svg>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,19 +156,26 @@
 
 <!-- Mobile Navigation Menu -->
 <div class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" id="mobileNavClose" aria-label="{% translate 'Закрити' %}">
+    <button class="mobile-nav-close" id="mobileNavClose"
+            aria-label="{% translate 'Закрити' %}">
         <i class='bx bx-x'></i>
     </button>
-    <a href="/api/v1/catalog/all/" class="navbar-link">{% translate "Каталог" %}</a>
-    <a href="{% url 'main:contact' %}" class="navbar-link">{% translate "Контакти" %}</a>
+    <a href="/api/v1/catalog/all/"
+       class="navbar-link">{% translate "Каталог" %}</a>
+    <a href="{% url 'main:contact' %}"
+       class="navbar-link">{% translate "Контакти" %}</a>
     {% if user.is_authenticated %}
-        <a href="{% url 'users:profile' %}" class="navbar-link">{% translate "Профіль" %}</a>
+        <a href="{% url 'users:profile' %}"
+           class="navbar-link">{% translate "Профіль" %}</a>
         {% if user.is_admin or user.is_staff %}
-            <a href="{% url 'admin:index' %}" class="navbar-link">{% translate "Адмін панель" %}</a>
+            <a href="{% url 'admin:index' %}"
+               class="navbar-link">{% translate "Адмін панель" %}</a>
         {% endif %}
-        <a href="{% url 'users:logout' %}" class="navbar-link">{% translate "Вийти" %}</a>
+        <a href="{% url 'users:logout' %}"
+           class="navbar-link">{% translate "Вийти" %}</a>
     {% else %}
-        <a href="{% url 'users:login' %}" class="navbar-link">{% translate "Увійти" %}</a>
+        <a href="{% url 'users:login' %}"
+           class="navbar-link">{% translate "Увійти" %}</a>
     {% endif %}
     <!-- Language selector in mobile menu -->
     <div class="mobile-nav-lang">
@@ -139,13 +184,19 @@
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ request.path }}">
             <input name="language" type="hidden" value="en">
-            <button type="submit" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+            <button type="submit"
+                    class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">
+                EN
+            </button>
         </form>
         <form action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ request.path }}">
             <input name="language" type="hidden" value="uk">
-            <button type="submit" class="lang-btn {% if LANGUAGE_CODE == 'uk' %}active{% endif %}">UA</button>
+            <button type="submit"
+                    class="lang-btn {% if LANGUAGE_CODE == 'uk' %}active{% endif %}">
+                UA
+            </button>
         </form>
     </div>
 </div>
