@@ -193,26 +193,105 @@ header {
 .navbar-lang {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     color: #ffffff;
 }
 
-.navbar-lang i {
-    font-size: 1.25rem;
+/* Language switcher (custom dropdown) */
+.lang-switch {
+    position: relative;
+    font-family: 'Barlow', sans-serif;
 }
 
-.lang-select {
-    background: transparent;
+.lang-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
     border: none;
-    color: #ffffff;
-    font-size: 0.875rem;
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0;
+    color: #ffffff;
+    transition: color 0.3s ease;
 }
 
-.lang-select option {
-    background-color: #1a1a1a;
-    color: #ffffff;
+.lang-trigger:hover {
+    color: #8B9A46;
+}
+
+.lang-trigger svg {
+    display: block;
+}
+
+.lang-code {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    line-height: 1;
+}
+
+.lang-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    min-width: 172px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .65);
+    display: none;
+    z-index: 1100;
+}
+
+.lang-switch.open .lang-menu {
+    display: block;
+}
+
+.lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: background .12s ease;
+}
+
+.lang-menu a .code {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #dddddd;
+}
+
+.lang-menu a .name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #888888;
+}
+
+.lang-menu a .check {
+    margin-left: auto;
+    display: none;
+}
+
+.lang-menu a:hover {
+    background: rgba(139, 154, 70, .08);
+}
+
+.lang-menu a.active {
+    background: rgba(139, 154, 70, .14);
+    border-left-color: #8B9A46;
+}
+
+.lang-menu a.active .code {
+    color: #a4b455;
+}
+
+.lang-menu a.active .check {
+    display: block;
 }
 
 /* Main content */
@@ -296,8 +375,8 @@ header {
         font-size: 1rem;
     }
 
-    .lang-select {
-        font-size: 0.75rem;
+    .lang-trigger .lang-code {
+        font-size: 0.8rem;
     }
 
     .navbar-dropdown .dropdown-menu {
