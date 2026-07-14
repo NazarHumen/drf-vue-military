@@ -1,26 +1,47 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // Language switcher: preserve current URL (with query params) after language switch
     function updateLanguageNextInputs() {
         const currentUrl = window.location.pathname + window.location.search;
-        document.querySelectorAll('#languageForm input[name="next"], .mobile-nav-lang input[name="next"]').forEach(function(input) {
+        document.querySelectorAll('#languageForm input[name="next"], .mobile-nav-lang input[name="next"]').forEach(function (input) {
             input.value = currentUrl;
         });
     }
 
-    // Desktop select: onchange="this.form.submit()" bypasses the submit event,
-    // so we override it with a proper change listener
-    const langSelect = document.getElementById('languageSelect');
-    if (langSelect) {
-        langSelect.onchange = function() {
-            updateLanguageNextInputs();
-            this.form.submit();
-        };
+    // Desktop language dropdown
+    const langSwitch = document.getElementById('langSwitch');
+    if (langSwitch) {
+        const langBtn = document.getElementById('langBtn');
+
+        // Відкрити/закрити меню
+        langBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            langSwitch.classList.toggle('open');
+        });
+
+        // Language selection -> submit Django set_language form
+        langSwitch.querySelectorAll('.lang-menu a').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                const input = document.getElementById('languageInput');
+                const form = document.getElementById('languageForm');
+                if (input && form) {
+                    updateLanguageNextInputs();
+                    input.value = this.dataset.code;
+                    form.submit();
+                }
+            });
+        });
+
+        // Close when clicking outside the menu
+        document.addEventListener('click', function () {
+            langSwitch.classList.remove('open');
+        });
     }
 
     // Mobile buttons: submit event fires normally on button click
-    document.querySelectorAll('.mobile-nav-lang form').forEach(function(form) {
-        form.addEventListener('submit', function() {
+    document.querySelectorAll('.mobile-nav-lang form').forEach(function (form) {
+        form.addEventListener('submit', function () {
             updateLanguageNextInputs();
         });
     });
