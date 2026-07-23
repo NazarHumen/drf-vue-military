@@ -258,3 +258,6 @@ media/
 # CLAUDE config file
 .claude/
 .docs/
+
+#  Nginx config files
+nginx/conf.d/
