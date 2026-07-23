@@ -28,6 +28,7 @@ executing==2.1.0
 flake8==7.1.1
 freetype-py==2.5.1
 googletrans==4.0.0rc1
+gunicorn==26.0.0
 h11==0.9.0
 h2==3.2.0
 hpack==3.0.0
@@ -56,6 +57,7 @@ pillow==11.0.0
 platformdirs==4.3.6
 prompt_toolkit==3.0.48
 psycopg2==2.9.10
+psycopg2-binary==2.9.12
 pure_eval==0.2.3
 pycairo==1.29.0
 pycodestyle==2.12.1
