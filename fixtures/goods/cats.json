@@ -4,6 +4,8 @@
   "pk": 13,
   "fields": {
     "name": "Бронеплити",
+    "name_uk": "Бронеплити",
+    "name_en": "Armor plates",
     "slug": "bronepliti"
   }
 },
@@ -12,6 +14,8 @@
   "pk": 15,
   "fields": {
     "name": "Тактичні плитоноски",
+    "name_uk": "Тактичні плитоноски",
+    "name_en": "Tactical plate carriers",
     "slug": "taktichni-plitonoski"
   }
 },
@@ -20,6 +24,8 @@
   "pk": 16,
   "fields": {
     "name": "Шоломи військові",
+    "name_uk": "Шоломи військові",
+    "name_en": "Military helmets",
     "slug": "sholomi-vijskovi"
   }
 }

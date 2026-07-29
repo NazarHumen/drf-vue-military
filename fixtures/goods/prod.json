@@ -1,30 +1,25 @@
 [
 {
   "model": "goods.products",
-  "pk": 26,
-  "fields": {
-    "name": "Плитоноска покращена PRO Піксель (мм-14)",
-    "slug": "plitonoska-pokrashena-pro-piksel-mm-14",
-    "description": "Легка та зручна плитоноска від Ukrarmor, виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
-    "image": "goods_images/Плітоноска_покращена_Pro.jpg",
-    "price": "5450.00",
-    "discount": 10,
-    "quantity": 13,
-    "category": 15
-  }
-},
-{
-  "model": "goods.products",
   "pk": 27,
   "fields": {
     "name": "Плитоноска покращена PRO Мультикам",
+    "name_uk": "Плитоноска покращена PRO Мультикам",
+    "name_en": "Improved PRO Multicam plate carrier",
     "slug": "plitonoska-pokrashena-pro-multikam",
     "description": "Легка та зручна плитоноска від Ukrarmor. Виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами PALS вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
-    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам1.jpg",
-    "price": "6450.00",
+    "description_uk": "Легка та зручна плитоноска від Ukrarmor. Виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами PALS вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
+    "description_en": "Lightweight and comfortable plate carrier from Ukrarmor. Made of durable Cordura® 1000D, equipped with soft removable shoulder straps, a high-quality quick-release system and PALS slings along the entire product for attaching additional equipment.\r\n\r\nProfessional combat military personnel from the US, France, and Britain participated in its creation, we also received thousands of reviews from the Ukrainian military from the hottest spots, and based on this, we created our plate carrier. We are 100% confident in its reliability, it will be a great addition to the equipment and will become an indispensable combat comrade in performing the assigned tasks.\r\n\r\nWater resistance, camouflage from night vision devices, removable shoulder pads (which you can replace and wash) are just a few of the main advantages of our plate carrier.",
+    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам_0.png",
+    "price": "25000.00",
     "discount": 5,
-    "quantity": 5,
-    "category": 15
+    "quantity": 0,
+    "availability_status": "out_of_stock",
+    "category": 15,
+    "currency": "UAH",
+    "price_in_usd": "549.13",
+    "exchange_rate": "43.2500",
+    "discounted_price": "23750.00"
   }
 },
 {
@@ -32,13 +27,22 @@
   "pk": 28,
   "fields": {
     "name": "Плитоноска покращена PRO Койот Cordura UkrArmor",
+    "name_uk": "Плитоноска покращена PRO Койот Cordura UkrArmor",
+    "name_en": "Plate carrier improved PRO Coyote Cordura UkrArmor",
     "slug": "plitonoska-pokrashena-pro-kojot",
     "description": "Збільшена модель легкої та зручно плитоноски від Ukrarmor виготовлена з міцної Cordura® 1000D, що розрахована на бронеплити 270 х 350 мм та на 270 на 330 мм, а також оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення екіпу.\r\n\r\nПлитоноска XL покращена (PRO) розроблена на основі бойового досвіду військових армії США, Франції, Британії та відгуків наших військових із зони бойових дій.\r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімні підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
-    "image": "goods_images/Плитоноска_покращена_PRO_Койот.jpg",
+    "description_uk": "Збільшена модель легкої та зручно плитоноски від Ukrarmor виготовлена з міцної Cordura® 1000D, що розрахована на бронеплити 270 х 350 мм та на 270 на 330 мм, а також оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення екіпу.\r\n\r\nПлитоноска XL покращена (PRO) розроблена на основі бойового досвіду військових армії США, Франції, Британії та відгуків наших військових із зони бойових дій.\r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімні підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
+    "description_en": "The enlarged model of the lightweight and comfortable plate carrier from Ukrarmor is made of durable Cordura® 1000D, designed for armor plates 270 x 350 mm and 270 x 330 mm, and is also equipped with soft removable shoulders, a high-quality quick-release system and Molle slings along the entire product for attaching equipment.\r\n\r\nThe XL improved (PRO) plate carrier was developed based on the combat experience of the US, French, and British armies and feedback from our soldiers from the combat zone.\r\n\r\nWater resistance, camouflage from night vision devices, removable shoulder pads (which you can replace and wash) are just a few of the main advantages of our plate carrier.",
+    "image": "goods_images/Плитоноска_покращена_PRO_Койот_0.png",
     "price": "5450.00",
     "discount": 20,
-    "quantity": 10,
-    "category": 15
+    "quantity": 0,
+    "availability_status": "out_of_stock",
+    "category": 15,
+    "currency": "UAH",
+    "price_in_usd": "100.81",
+    "exchange_rate": "43.2500",
+    "discounted_price": "4360.00"
   }
 },
 {
@@ -46,13 +50,22 @@
   "pk": 29,
   "fields": {
     "name": "Плитоноска покращена PRO Олива",
+    "name_uk": "Плитоноска покращена PRO Олива",
+    "name_en": "Improved PRO Olive Plate Carrier",
     "slug": "plitonoska-pokrashena-pro-oliva",
     "description": "Легка та зручна плитоноска від Ukrarmor, виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
-    "image": "goods_images/Плитоноска_покращена_PRO_Олива.jpg",
+    "description_uk": "Легка та зручна плитоноска від Ukrarmor, виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
+    "description_en": "Lightweight and comfortable plate carrier from Ukrarmor, made of durable Cordura® 1000D, equipped with soft removable shoulder straps, a high-quality quick-release system and Molle slings along the entire product for attaching additional equipment.\r\n\r\nProfessional combat soldiers of the US, French, British armies participated in its creation, we also received thousands of reviews from the Ukrainian military from the hottest spots, and based on this, we created our plate carrier. We are 100% confident in its reliability, it will be a great addition to the equipment and will become an indispensable combat comrade in performing the assigned tasks.\r\n\r\nWater resistance, camouflage from night vision devices, removable shoulder pads (which you can replace and wash) are just a few of the main advantages of our plate carrier.",
+    "image": "goods_images/Плитоноска_покращена_PRO_Олива_0.png",
     "price": "5450.00",
     "discount": 0,
-    "quantity": 7,
-    "category": 15
+    "quantity": 0,
+    "availability_status": "out_of_stock",
+    "category": 15,
+    "currency": "UAH",
+    "price_in_usd": "126.01",
+    "exchange_rate": "43.2500",
+    "discounted_price": "5450.00"
   }
 },
 {
@@ -60,13 +73,22 @@
   "pk": 30,
   "fields": {
     "name": "Плитоноска покращена PRO Чорна",
+    "name_uk": "Плитоноска покращена PRO Чорна",
+    "name_en": "Improved PRO Black Plate Carrier",
     "slug": "plitonoska-pokrashena-pro-chorna",
     "description": "Легка та зручна плитоноска від Ukrarmor, виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
-    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_jObvafa.jpg",
+    "description_uk": "Легка та зручна плитоноска від Ukrarmor, виготовлена з міцної Cordura® 1000D, оснащена м'якими знімними плечиками, якісною системою швидкого скидання та стропами Molle вздовж всього виробу для кріплення додаткового екіпу.\r\n\r\nВ її створені брали участь професійні бойові військові армії США, Франції, Британії, також ми отримали тисячі відгуків від Українських військових із найгарячіших точок, і на основі цього, створили нашу плитоноску. Ми на 100% впевнені в її надійності, вона буде чудовим доповненням спорядження та стане незамінним бойовим товаришем у виконанні поставлених задач. \r\n\r\nВодостійкість, маскування від приладів нічного бачення, знімну підплічники (які ви можете замінити та випрати) — це лише декілька основних переваг нашої плитоноски.",
+    "description_en": "Lightweight and comfortable plate carrier from Ukrarmor, made of durable Cordura® 1000D, equipped with soft removable shoulder straps, a high-quality quick-release system and Molle slings along the entire product for attaching additional equipment.\r\n\r\nProfessional combat soldiers of the US, French, British armies participated in its creation, we also received thousands of reviews from the Ukrainian military from the hottest spots, and based on this, we created our plate carrier. We are 100% confident in its reliability, it will be a great addition to the equipment and will become an indispensable combat comrade in performing the assigned tasks.\r\n\r\nWater resistance, camouflage from night vision devices, removable shoulder pads (which you can replace and wash) are just a few of the main advantages of our plate carrier.",
+    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_0.png",
     "price": "5450.00",
     "discount": 7,
-    "quantity": 4,
-    "category": 15
+    "quantity": 0,
+    "availability_status": "out_of_stock",
+    "category": 15,
+    "currency": "UAH",
+    "price_in_usd": "117.19",
+    "exchange_rate": "43.2500",
+    "discounted_price": "5068.50"
   }
 },
 {
@@ -74,13 +96,22 @@
   "pk": 31,
   "fields": {
     "name": "Плитоноска IBV Збільшена площа захисту Олива",
+    "name_uk": "Плитоноска IBV Збільшена площа захисту Олива",
+    "name_en": "IBV Plate Carrier Increased Protection Area Olive",
     "slug": "plitonoska-ibv-zbilshena-plosha-zahistu-oliva",
     "description": "Армійська плитоноска збільшеного типу створена із надміного матеріалу CORDURA 1000 та оснащена системою швидкого скидання і зйомними м’якими  підплічниками. Розроблена на основі легендарного бойового бронежилету армії США — IOTV 3, саме в ньому виконують свої бойові завдання сухопутні війська США.\r\n\r\nОсобливість плитоноски – це її збільшена бічна частина, саме за рахунок цього збільшення (його ще називають вуха) та подовженої верхньої частини, плитоноска, що укомплектована балістичними пакетами, покриває майже весь тулуб, закриваючи його з усіх сторін від уламків та різноманітних балістичних уражень\r\n*підходять повнорозмірні балістичні пакети розміром 620 на 470 мм., в комплекті з плитоноскою балістичні пакети не йдуть!!!",
-    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива.jpg",
+    "description_uk": "Армійська плитоноска збільшеного типу створена із надміного матеріалу CORDURA 1000 та оснащена системою швидкого скидання і зйомними м’якими  підплічниками. Розроблена на основі легендарного бойового бронежилету армії США — IOTV 3, саме в ньому виконують свої бойові завдання сухопутні війська США.\r\n\r\nОсобливість плитоноски – це її збільшена бічна частина, саме за рахунок цього збільшення (його ще називають вуха) та подовженої верхньої частини, плитоноска, що укомплектована балістичними пакетами, покриває майже весь тулуб, закриваючи його з усіх сторін від уламків та різноманітних балістичних уражень\r\n*підходять повнорозмірні балістичні пакети розміром 620 на 470 мм., в комплекті з плитоноскою балістичні пакети не йдуть!!!",
+    "description_en": "The enlarged army plate carrier is made of super-strong CORDURA 1000 material and is equipped with a quick-release system and removable soft shoulder pads. It was developed based on the legendary US Army combat body armor - IOTV 3, in which the US ground forces perform their combat missions.\r\n\r\nThe peculiarity of the plate carrier is its enlarged side part, due to this enlargement (also called ears) and the elongated upper part, the plate carrier, equipped with ballistic bags, covers almost the entire torso, closing it from all sides from fragments and various ballistic damage\r\n*full-size ballistic bags measuring 620 by 470 mm are suitable, ballistic bags do not come with the plate carrier!!!",
+    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива_0.png",
     "price": "6900.00",
     "discount": 20,
-    "quantity": 8,
-    "category": 15
+    "quantity": 0,
+    "availability_status": "out_of_stock",
+    "category": 15,
+    "currency": "UAH",
+    "price_in_usd": "127.63",
+    "exchange_rate": "43.2500",
+    "discounted_price": "5520.00"
   }
 },
 {
@@ -88,13 +119,22 @@
   "pk": 33,
   "fields": {
     "name": "Бронеплити надлегкі 3-го класу M 25",
+    "name_uk": "Бронеплити надлегкі 3-го класу M 25",
+    "name_en": "Ultralight armor plates of the 3rd class M 25",
     "slug": "bronepliti-nadlegki-3-go-klasu-m-25",
     "description": "Один з найлегших варіантів  бронезахисту (це важко уявити, але вага всього 1.38 кг. однієї плити). Він захистити вас від найбільш розповсюдженого ушкодження — від ураження уламками різної величини, хвиль вибухів та рикошетів, він ще в змозі ще захистити вас від кулі 5.45 (якщо бути точним, то від 5,45 х 39 мм. ПС та 7,62 х 39 мм. ПС.)",
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25.jpg",
+    "description_uk": "Один з найлегших варіантів  бронезахисту (це важко уявити, але вага всього 1.38 кг. однієї плити). Він захистити вас від найбільш розповсюдженого ушкодження — від ураження уламками різної величини, хвиль вибухів та рикошетів, він ще в змозі ще захистити вас від кулі 5.45 (якщо бути точним, то від 5,45 х 39 мм. ПС та 7,62 х 39 мм. ПС.)",
+    "description_en": "One of the lightest options for body armor (it's hard to imagine, but the weight of one plate is only 1.38 kg). It will protect you from the most common damage - from being hit by fragments of various sizes, blast waves and ricochets, it is also able to protect you from a 5.45 bullet (to be precise, from 5.45 x 39 mm. PS and 7.62 x 39 mm. PS.)",
+    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25_0.png",
     "price": "13400.00",
     "discount": 5,
-    "quantity": 5,
-    "category": 13
+    "quantity": 27,
+    "availability_status": "ready_to_ship",
+    "category": 13,
+    "currency": "UAH",
+    "price_in_usd": "294.34",
+    "exchange_rate": "43.2500",
+    "discounted_price": "12730.00"
   }
 },
 {
@@ -102,13 +142,22 @@
   "pk": 34,
   "fields": {
     "name": "Бронеплити надлегкі 3-го класу L 26",
+    "name_uk": "Бронеплити надлегкі 3-го класу L 26",
+    "name_en": "Ultralight armor plates of the 3rd class L 26",
     "slug": "bronepliti-nadlegki-3-go-klasu-l-26",
     "description": "Неймовірно легкі, ергономічно зручні та надійні плити здатні захистити Вас від найбільш розповсюдженого ушкодження — від ураження уламками різної величини, хвиль вибухів та рикошетів, він ще в змозі ще захистити вас від кулі 5.45 (якщо бути точним, то від 5,45 х 39 мм. ПС та 7,62 х 39 мм. ПС.)",
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_L_26.jpg",
+    "description_uk": "Неймовірно легкі, ергономічно зручні та надійні плити здатні захистити Вас від найбільш розповсюдженого ушкодження — від ураження уламками різної величини, хвиль вибухів та рикошетів, він ще в змозі ще захистити вас від кулі 5.45 (якщо бути точним, то від 5,45 х 39 мм. ПС та 7,62 х 39 мм. ПС.)",
+    "description_en": "Incredibly light, ergonomically comfortable and reliable plates are able to protect you from the most common damage - from being hit by fragments of various sizes, blast waves and ricochets, it is even able to protect you from a 5.45 bullet (to be precise, from 5.45 x 39 mm. PS and 7.62 x 39 mm. PS.)",
+    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_0.png",
     "price": "15650.00",
     "discount": 30,
-    "quantity": 9,
-    "category": 13
+    "quantity": 37,
+    "availability_status": "ready_to_ship",
+    "category": 13,
+    "currency": "UAH",
+    "price_in_usd": "253.29",
+    "exchange_rate": "43.2500",
+    "discounted_price": "10955.00"
   }
 },
 {
@@ -116,13 +165,22 @@
   "pk": 35,
   "fields": {
     "name": "Бронеплити керамічні 6-го класу 25",
+    "name_uk": "Бронеплити керамічні 6-го класу 25",
+    "name_en": "Ceramic armor plates of the 6th class 25",
     "slug": "bronepliti-keramichni-6-go-klasu-25",
     "description": "Наразі, це найміцніші бронеплити у світі. Саме в керамічних бронеплитах 6-го класу захисту виконують свої завдання найкращі військові США, Франції, Британії та ін. Лише вони в змозі витримати три влучання кулі Б-32 із снайперської гвинтівки СВД (це все з відстані 10 м. по стандартам випробувань лабораторій ДСТУ) при вазі всього 2.8 кг.",
-    "image": "goods_images/Бронеплити_керамічні_6-го_класу_25.jpg",
+    "description_uk": "Наразі, це найміцніші бронеплити у світі. Саме в керамічних бронеплитах 6-го класу захисту виконують свої завдання найкращі військові США, Франції, Британії та ін. Лише вони в змозі витримати три влучання кулі Б-32 із снайперської гвинтівки СВД (це все з відстані 10 м. по стандартам випробувань лабораторій ДСТУ) при вазі всього 2.8 кг.",
+    "description_en": "Currently, these are the strongest armor plates in the world. It is in ceramic armor plates of the 6th protection class that the best military personnel of the USA, France, Britain, etc. perform their tasks. Only they are able to withstand three hits of a B-32 bullet from an SVD sniper rifle (all this from a distance of 10 m according to the testing standards of DSTU laboratories) with a weight of only 2.8 kg.",
+    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_2_MIJx05S.png",
     "price": "14900.00",
     "discount": 0,
-    "quantity": 10,
-    "category": 13
+    "quantity": 39,
+    "availability_status": "ready_to_ship",
+    "category": 13,
+    "currency": "UAH",
+    "price_in_usd": "344.51",
+    "exchange_rate": "43.2500",
+    "discounted_price": "14900.00"
   }
 },
 {
@@ -130,13 +188,22 @@
   "pk": 36,
   "fields": {
     "name": "Кевларовий Шолом FAST Захист NIJ IIIA Олива",
+    "name_uk": "Кевларовий Шолом FAST Захист NIJ IIIA Олива",
+    "name_en": "Kevlar Helmet FAST Protection NIJ IIIA Olive",
     "slug": "kevlarovij-sholom-fast-zahist-nij-iiia-oliva",
-    "description": "Це бойовий військовий шолом, що використовується різними видами військ, для виконання тактичних задач. Його особливістю є характерний виріз під вуха, за рахунок цього, більший захист потилиці та трішечки довший лобовий захист. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії.",
-    "image": "goods_images/Кевларовий_Шолом_FAST_Захист_NIJ_IIIA_Олива.jpg",
+    "description": "Це бойовий військовий шолом, що використовується різними видами військ, для виконання тактичних задач. Його особливістю є характерний виріз під вуха, за рахунок цього, більший захист потилиці та трішечки довший лобовий захист. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії.",
+    "description_uk": "Це бойовий військовий шолом, що використовується різними видами військ, для виконання тактичних задач. Його особливістю є характерний виріз під вуха, за рахунок цього, більший захист потилиці та трішечки довший лобовий захист. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії.",
+    "description_en": "This is a combat military helmet used by various types of troops to perform tactical tasks. Its feature is a characteristic cutout under the ears, due to this, greater protection of the back of the head and a slightly longer frontal protection. The NIJ IIIA protection class protects against shrapnel, ricochets and small arms fire, which allows you to perform assault tasks without fear, shoot back at the enemy from trenches and not be afraid of artillery fire.The NIJ IIIA protection class protects against shrapnel, ricochets and small arms fire, which allows you to perform assault tasks without fear, shoot back at the enemy from trenches and not be afraid of artillery fire.",
+    "image": "goods_images/product_36/Шолом_кевларовий_TOR-D_Олива_XL_q5sVJJp.png",
     "price": "13685.00",
     "discount": 0,
-    "quantity": 10,
-    "category": 16
+    "quantity": 39,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "316.42",
+    "exchange_rate": "43.2500",
+    "discounted_price": "13685.00"
   }
 },
 {
@@ -144,27 +211,45 @@
   "pk": 37,
   "fields": {
     "name": "Маскувальний кавер на шолом (універсальний).",
+    "name_uk": "Маскувальний кавер на шолом (універсальний).",
+    "name_en": "Camouflage helmet cover (universal).",
     "slug": "maskuvalnij-kaver-na-sholom-universalnij-piksel-mm-14",
     "description": "Це незамінний елемент маскувального спорядження, що допоможе бути непомітним для ворога та захистить шолом від відблисків на сонці.\r\n\r\nКавер, створений брендом UkrArmor, призначений для шоломів FAST, ТОR-D та їх еквівалентів. Його основна функція - маскування в пересіченій місцевості та надійний захист від зовнішніх факторів. Крім того, цей кавер має вирізи для доступу до кріплення приладу нічного бачення (ПНВ).",
-    "image": "goods_images/Маскувальний_кавер_на_шолом_універсальний._Піксель_мм-14..jpg",
+    "description_uk": "Це незамінний елемент маскувального спорядження, що допоможе бути непомітним для ворога та захистить шолом від відблисків на сонці.\r\n\r\nКавер, створений брендом UkrArmor, призначений для шоломів FAST, ТОR-D та їх еквівалентів. Його основна функція - маскування в пересіченій місцевості та надійний захист від зовнішніх факторів. Крім того, цей кавер має вирізи для доступу до кріплення приладу нічного бачення (ПНВ).",
+    "description_en": "This is an indispensable element of camouflage equipment, which will help to be invisible to the enemy and protect the helmet from glare in the sun.\r\n\r\nThe cover, created by the UkrArmor brand, is designed for FAST, TOR-D helmets and their equivalents. Its main function is camouflage in rough terrain and reliable protection from external factors. In addition, this cover has cutouts for access to the night vision device (NVD) mount.",
+    "image": "goods_images/product_37/Маскувальний_кавер_на_шолом_універсальний._Піксель_мм-14..png",
     "price": "760.00",
     "discount": 0,
-    "quantity": 5,
-    "category": 16
+    "quantity": 40,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "17.57",
+    "exchange_rate": "43.2500",
+    "discounted_price": "760.00"
   }
 },
 {
   "model": "goods.products",
   "pk": 38,
   "fields": {
-    "name": "Кавер маскувальний Мультикам L",
+    "name": "Кавер маскувальний Мультикам L Pro",
+    "name_uk": "Кавер маскувальний Мультикам L Pro",
+    "name_en": "Camouflage cover Multicam L PRO",
     "slug": "kaver-maskuvalnij-multikam-l",
     "description": "Це необхідний елемент маскувального спорядження, він допоможе бути непомітним для ворога та захистить шолом від відблисків на сонці.\r\n\r\n\r\nКавер, створений брендом UkrArmor, призначений для шоломів FAST, ТОR-D та їх еквівалентів. Його основна функція - маскування в пересіченій місцевості та надійний захист від зовнішніх факторів. Крім того, цей кавер має вирізи для доступу до кріплення приладу нічного бачення (ПНВ).",
-    "image": "goods_images/Кавер_маскувальний_Мультикам_L.jpg",
+    "description_uk": "Це необхідний елемент маскувального спорядження, він допоможе бути непомітним для ворога та захистить шолом від відблисків на сонці.\r\n\r\n\r\nКавер, створений брендом UkrArmor, призначений для шоломів FAST, ТОR-D та їх еквівалентів. Його основна функція - маскування в пересіченій місцевості та надійний захист від зовнішніх факторів. Крім того, цей кавер має вирізи для доступу до кріплення приладу нічного бачення (ПНВ).",
+    "description_en": "This is a necessary element of camouflage equipment, it will help to be invisible to the enemy and protect the helmet from glare in the sun.\r\n\r\nThe cover, created by the UkrArmor brand, is designed for FAST, TOR-D helmets and their equivalents. Its main function is camouflage in rough terrain and reliable protection from external factors. In addition, this cover has cutouts for access to the night vision device (NVD) mount.",
+    "image": "goods_images/product_38/Кавер_маскувальний_Мультикам_L.png",
     "price": "810.00",
     "discount": 5,
-    "quantity": 10,
-    "category": 16
+    "quantity": 40,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "17.79",
+    "exchange_rate": "43.2500",
+    "discounted_price": "769.50"
   }
 },
 {
@@ -172,13 +257,22 @@
   "pk": 39,
   "fields": {
     "name": "Шлом FAST Койот TOR-X  PRO XL",
+    "name_uk": "Шлом FAST Койот TOR-X  PRO XL",
+    "name_en": "Helmet FAST Coyote TOR-X PRO XL",
     "slug": "shlom-fast-kojot",
     "description": "Це бойовий військовий шолом, що використовується різними видами військ, для виконання тактичних задач. Його особливістю є характерний виріз під вуха, за рахунок цього, більший захист потилиці та трішечки довший лобовий захист. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії.\r\n\r\nВідповідає держстандарту ДСТУ 78-41-004-97\r\nЗагальна площа захисту: 1210 кв.см.\r\nМожливість встановлення ПНБ, каверу, ліхтарика\r\nСертифікат в наявності (разом з шоломом надсилаємо копію балістичних випробувань з лабораторії)\r\nРік виробництва: 2023",
-    "image": "goods_images/Шлом_FAST_Койот.jpg",
+    "description_uk": "Це бойовий військовий шолом, що використовується різними видами військ, для виконання тактичних задач. Його особливістю є характерний виріз під вуха, за рахунок цього, більший захист потилиці та трішечки довший лобовий захист. Клас захисту NIJ IIIA захищає від уражень уламками, рикошетів та вистрілів з невеликої зброї, що дозволяє без остраху виконувати штурмові задачі, відстрілюватися від ворога з окопів та не боятися обстрілів артилерії.\r\n\r\nВідповідає держстандарту ДСТУ 78-41-004-97\r\nЗагальна площа захисту: 1210 кв.см.\r\nМожливість встановлення ПНБ, каверу, ліхтарика\r\nСертифікат в наявності (разом з шоломом надсилаємо копію балістичних випробувань з лабораторії)\r\nРік виробництва: 2023",
+    "description_en": "This is a combat military helmet used by various types of troops to perform tactical tasks. Its feature is a characteristic cutout under the ears, due to this, greater protection of the back of the head and a slightly longer frontal protection. The NIJ IIIA protection class protects against shrapnel, ricochets and small arms fire, which allows you to perform assault missions without fear, shoot back at the enemy from trenches and not be afraid of artillery fire.\r\n\r\nComplies with the state standard DSTU 78-41-004-97\r\nTotal protection area: 1210 sq.cm.\r\nThe ability to install PNB, cover, flashlight\r\nCertificate available (together with the helmet we send a copy of ballistic tests from the laboratory)\r\nYear of production: 2023",
+    "image": "goods_images/product_39/Шлом_FAST_Койот.png",
     "price": "10900.00",
     "discount": 10,
-    "quantity": 5,
-    "category": 16
+    "quantity": 39,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "226.82",
+    "exchange_rate": "43.2500",
+    "discounted_price": "9810.00"
   }
 },
 {
@@ -186,27 +280,45 @@
   "pk": 40,
   "fields": {
     "name": "Шолом кевларовий TOR-D Койот XL",
+    "name_uk": "Шолом кевларовий TOR-D Койот XL",
+    "name_en": "Kevlar helmet TOR-D Coyote XL",
     "slug": "sholom-kevlarovij-tor-d-kojot-xl",
     "description": "Забезпечує індивідуальний захист голови від уражень дрібними уламками, впливу вибухових хвиль, куль легкої стрілецької зброї, при падіннях, рикошетів, а також від потрапляння пістолетних куль.\r\n*одразу проговоримо TOR-D (стандарт) – це молодший брат шолома TOR-D-VN, він не має велкро панелей на куполі шолома, а кріплення попереду для ПНБ виготовлено саме з високоякісного пластику (замість металевого кріплення у TOR-D-VN)",
-    "image": "goods_images/Шолом_кевларовий_TOR-D_Койот_XL.jpg",
+    "description_uk": "Забезпечує індивідуальний захист голови від уражень дрібними уламками, впливу вибухових хвиль, куль легкої стрілецької зброї, при падіннях, рикошетів, а також від потрапляння пістолетних куль.\r\n*одразу проговоримо TOR-D (стандарт) – це молодший брат шолома TOR-D-VN, він не має велкро панелей на куполі шолома, а кріплення попереду для ПНБ виготовлено саме з високоякісного пластику (замість металевого кріплення у TOR-D-VN)",
+    "description_en": "Provides individual head protection from small fragments, blast waves, small arms bullets, falls, ricochets, and pistol bullets.\r\n*Let's talk about TOR-D (standard) right away - this is the younger brother of the TOR-D-VN helmet, it does not have Velcro panels on the helmet dome, and the front attachment for the PNB is made of high-quality plastic (instead of the metal attachment in TOR-D-VN)",
+    "image": "goods_images/product_40/Шолом_кевларовий_TOR-D_Койот_XL.png",
     "price": "15290.00",
     "discount": 0,
-    "quantity": 5,
-    "category": 16
+    "quantity": 33,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "353.53",
+    "exchange_rate": "43.2500",
+    "discounted_price": "15290.00"
   }
 },
 {
   "model": "goods.products",
   "pk": 41,
   "fields": {
-    "name": "Шолом кевларовий TOR-D Олива XL",
+    "name": "Шолом кевларовий TOR-D Олива PRO XL",
+    "name_uk": "Шолом кевларовий TOR-D Олива PRO XL",
+    "name_en": "Kevlar helmet TOR-D Olive PRO XL",
     "slug": "sholom-kevlarovij-tor-d-oliva-xl",
     "description": "Забезпечує індивідуальний захист голови від уражень дрібними уламками, впливу вибухових хвиль, куль легкої стрілецької зброї, при падіннях, рикошетів, а також від потрапляння пістолетних куль.\r\n*одразу проговоримо TOR-D (стандарт) – це молодший брат шолома TOR-D-VN, він не має велкро панелей на куполі шолома, а кріплення попереду для ПНБ виготовлено саме з високоякісного пластику (замість металевого кріплення у TOR-D-VN)",
-    "image": "goods_images/Шолом_кевларовий_TOR-D_Олива_XL.jpg",
+    "description_uk": "Забезпечує індивідуальний захист голови від уражень дрібними уламками, впливу вибухових хвиль, куль легкої стрілецької зброї, при падіннях, рикошетів, а також від потрапляння пістолетних куль.\r\n*одразу проговоримо TOR-D (стандарт) – це молодший брат шолома TOR-D-VN, він не має велкро панелей на куполі шолома, а кріплення попереду для ПНБ виготовлено саме з високоякісного пластику (замість металевого кріплення у TOR-D-VN)",
+    "description_en": "Provides individual head protection from small fragments, blast waves, small arms bullets, falls, ricochets, and pistol bullets.\r\n*Let's talk about TOR-D (standard) right away - this is the younger brother of the TOR-D-VN helmet, it does not have Velcro panels on the helmet dome, and the front attachment for the PNB is made of high-quality plastic (instead of the metal attachment in TOR-D-VN)",
+    "image": "goods_images/product_41/Шолом_кевларовий_TOR-D_Олива_XL.png",
     "price": "15290.00",
     "discount": 0,
-    "quantity": 7,
-    "category": 16
+    "quantity": 36,
+    "availability_status": "ready_to_ship",
+    "category": 16,
+    "currency": "UAH",
+    "price_in_usd": "353.53",
+    "exchange_rate": "43.2500",
+    "discounted_price": "15290.00"
   }
 }
 ]

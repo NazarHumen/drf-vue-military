@@ -1,0 +1,22 @@
+[
+{
+  "model": "goods.exchangerate",
+  "pk": 1,
+  "fields": {
+    "base_currency": "UAH",
+    "target_currency": "USD",
+    "rate": "0.0241",
+    "updated_at": "2025-05-20T10:04:18.425Z"
+  }
+},
+{
+  "model": "goods.exchangerate",
+  "pk": 5,
+  "fields": {
+    "base_currency": "USD",
+    "target_currency": "UAH",
+    "rate": "43.2500",
+    "updated_at": "2026-01-14T18:36:32.646Z"
+  }
+}
+]

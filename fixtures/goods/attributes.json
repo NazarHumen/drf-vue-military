@@ -1,56 +1,15 @@
 [
 {
   "model": "goods.productattribute",
-  "pk": 4,
-  "fields": {
-    "product": 26,
-    "key": "Виробник",
-    "value": "UkrArmor"
-  }
-},
-{
-  "model": "goods.productattribute",
-  "pk": 5,
-  "fields": {
-    "product": 26,
-    "key": "Країна виробник",
-    "value": "Україна"
-  }
-},
-{
-  "model": "goods.productattribute",
-  "pk": 6,
-  "fields": {
-    "product": 26,
-    "key": "Стан",
-    "value": "Новий"
-  }
-},
-{
-  "model": "goods.productattribute",
-  "pk": 7,
-  "fields": {
-    "product": 26,
-    "key": "Матеріал",
-    "value": "Cordura"
-  }
-},
-{
-  "model": "goods.productattribute",
-  "pk": 8,
-  "fields": {
-    "product": 26,
-    "key": "Колір",
-    "value": "Хакі"
-  }
-},
-{
-  "model": "goods.productattribute",
   "pk": 9,
   "fields": {
     "product": 27,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -59,7 +18,11 @@
   "fields": {
     "product": 27,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -68,7 +31,11 @@
   "fields": {
     "product": 27,
     "key": "Стан",
-    "value": "Новий"
+    "key_uk": "Стан",
+    "key_en": "State",
+    "value": "Новий",
+    "value_uk": "Новий",
+    "value_en": "New"
   }
 },
 {
@@ -77,7 +44,11 @@
   "fields": {
     "product": 27,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -86,7 +57,11 @@
   "fields": {
     "product": 27,
     "key": "Колір",
-    "value": "Мультикам"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Мультикам",
+    "value_uk": "Мультикам",
+    "value_en": "Multicam"
   }
 },
 {
@@ -95,7 +70,11 @@
   "fields": {
     "product": 28,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -104,7 +83,11 @@
   "fields": {
     "product": 28,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -113,7 +96,11 @@
   "fields": {
     "product": 28,
     "key": "Стан",
-    "value": "Новий"
+    "key_uk": "Стан",
+    "key_en": "State",
+    "value": "Новий",
+    "value_uk": "Новий",
+    "value_en": "New"
   }
 },
 {
@@ -122,7 +109,11 @@
   "fields": {
     "product": 28,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -131,7 +122,11 @@
   "fields": {
     "product": 28,
     "key": "Колір",
-    "value": "Койот"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Койот",
+    "value_uk": "Койот",
+    "value_en": "Coyote"
   }
 },
 {
@@ -140,7 +135,11 @@
   "fields": {
     "product": 29,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -149,7 +148,11 @@
   "fields": {
     "product": 29,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -158,7 +161,11 @@
   "fields": {
     "product": 29,
     "key": "Стан",
-    "value": "Новий"
+    "key_uk": "Стан",
+    "key_en": "State",
+    "value": "Новий",
+    "value_uk": "Новий",
+    "value_en": "New"
   }
 },
 {
@@ -167,7 +174,11 @@
   "fields": {
     "product": 29,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -176,7 +187,11 @@
   "fields": {
     "product": 29,
     "key": "Колір",
-    "value": "Олива"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Олива",
+    "value_uk": "Олива",
+    "value_en": "Olive"
   }
 },
 {
@@ -185,7 +200,11 @@
   "fields": {
     "product": 30,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -194,7 +213,11 @@
   "fields": {
     "product": 30,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -203,7 +226,11 @@
   "fields": {
     "product": 30,
     "key": "Стан",
-    "value": "Новий"
+    "key_uk": "Стан",
+    "key_en": "State",
+    "value": "Новий",
+    "value_uk": "Новий",
+    "value_en": "New"
   }
 },
 {
@@ -212,7 +239,11 @@
   "fields": {
     "product": 30,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -221,7 +252,11 @@
   "fields": {
     "product": 30,
     "key": "Колір",
-    "value": "Чорний"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Чорний",
+    "value_uk": "Чорний",
+    "value_en": "Black"
   }
 },
 {
@@ -230,7 +265,11 @@
   "fields": {
     "product": 31,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -239,7 +278,11 @@
   "fields": {
     "product": 31,
     "key": "Стан",
-    "value": "Новий"
+    "key_uk": "Стан",
+    "key_en": "Country of manufacture",
+    "value": "Новий",
+    "value_uk": "Новий",
+    "value_en": "New"
   }
 },
 {
@@ -248,7 +291,11 @@
   "fields": {
     "product": 31,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "State",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -257,7 +304,11 @@
   "fields": {
     "product": 31,
     "key": "Колір",
-    "value": "Олива"
+    "key_uk": "Колір",
+    "key_en": "Material",
+    "value": "Олива",
+    "value_uk": "Олива",
+    "value_en": "Olive"
   }
 },
 {
@@ -266,7 +317,11 @@
   "fields": {
     "product": 31,
     "key": "Система кріплення спорядження",
-    "value": "MOLLE"
+    "key_uk": "Система кріплення спорядження",
+    "key_en": "Equipment attachment system",
+    "value": "MOLLE",
+    "value_uk": "MOLLE",
+    "value_en": "MOLLE"
   }
 },
 {
@@ -275,7 +330,11 @@
   "fields": {
     "product": 33,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -284,7 +343,11 @@
   "fields": {
     "product": 33,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -293,7 +356,11 @@
   "fields": {
     "product": 33,
     "key": "Тип",
-    "value": "Бронеплита"
+    "key_uk": "Тип",
+    "key_en": "Type",
+    "value": "Бронеплита",
+    "value_uk": "Бронеплита",
+    "value_en": "Armor plate"
   }
 },
 {
@@ -302,7 +369,11 @@
   "fields": {
     "product": 33,
     "key": "Місце захисту",
-    "value": "Груди, Живіт"
+    "key_uk": "Місце захисту",
+    "key_en": "Place of protection",
+    "value": "Груди, Живіт",
+    "value_uk": "Груди, Живіт",
+    "value_en": "Chest, Abdomen"
   }
 },
 {
@@ -311,7 +382,11 @@
   "fields": {
     "product": 33,
     "key": "Клас захисту",
-    "value": "3"
+    "key_uk": "Клас захисту",
+    "key_en": "Protection class",
+    "value": "3",
+    "value_uk": "3",
+    "value_en": "3"
   }
 },
 {
@@ -320,7 +395,11 @@
   "fields": {
     "product": 34,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -329,7 +408,11 @@
   "fields": {
     "product": 34,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -338,7 +421,11 @@
   "fields": {
     "product": 34,
     "key": "Тип",
-    "value": "Бронеплита"
+    "key_uk": "Тип",
+    "key_en": "Type",
+    "value": "Бронеплита",
+    "value_uk": "Бронеплита",
+    "value_en": "Armor plate"
   }
 },
 {
@@ -347,7 +434,11 @@
   "fields": {
     "product": 34,
     "key": "Місце захисту",
-    "value": "Груди, Живіт"
+    "key_uk": "Місце захисту",
+    "key_en": "Place of protection",
+    "value": "Груди, Живіт",
+    "value_uk": "Груди, Живіт",
+    "value_en": "Chest, Abdomen"
   }
 },
 {
@@ -356,7 +447,11 @@
   "fields": {
     "product": 34,
     "key": "Клас захисту",
-    "value": "3"
+    "key_uk": "Клас захисту",
+    "key_en": "Protection class",
+    "value": "3",
+    "value_uk": "3",
+    "value_en": "3"
   }
 },
 {
@@ -365,7 +460,11 @@
   "fields": {
     "product": 36,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -374,7 +473,11 @@
   "fields": {
     "product": 36,
     "key": "Тип",
-    "value": "Бронешлем"
+    "key_uk": "Тип",
+    "key_en": "Type",
+    "value": "Бронешлем",
+    "value_uk": "Бронешлем",
+    "value_en": "Armored helmet"
   }
 },
 {
@@ -383,7 +486,11 @@
   "fields": {
     "product": 36,
     "key": "Клас захисту",
-    "value": "3А"
+    "key_uk": "Клас захисту",
+    "key_en": "Protection class",
+    "value": "3А",
+    "value_uk": "3А",
+    "value_en": "3A"
   }
 },
 {
@@ -392,7 +499,11 @@
   "fields": {
     "product": 36,
     "key": "Матеріал",
-    "value": "Кевлар"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Кевлар",
+    "value_uk": "Кевлар",
+    "value_en": "Kevlar"
   }
 },
 {
@@ -401,7 +512,11 @@
   "fields": {
     "product": 36,
     "key": "Колір",
-    "value": "Оливковий"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Оливковий",
+    "value_uk": "Оливковий",
+    "value_en": "Olive"
   }
 },
 {
@@ -410,7 +525,11 @@
   "fields": {
     "product": 37,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -419,7 +538,11 @@
   "fields": {
     "product": 37,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -428,7 +551,11 @@
   "fields": {
     "product": 37,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -437,7 +564,11 @@
   "fields": {
     "product": 37,
     "key": "Міжнародний розмір",
-    "value": "Універсальний"
+    "key_uk": "Міжнародний розмір",
+    "key_en": "International size",
+    "value": "Універсальний",
+    "value_uk": "Універсальний",
+    "value_en": "Universal"
   }
 },
 {
@@ -446,7 +577,11 @@
   "fields": {
     "product": 37,
     "key": "Візерунки і принти",
-    "value": "Піксель"
+    "key_uk": "Візерунки і принти",
+    "key_en": "Patterns and prints",
+    "value": "Піксель",
+    "value_uk": "Піксель",
+    "value_en": "Pixel"
   }
 },
 {
@@ -455,7 +590,11 @@
   "fields": {
     "product": 38,
     "key": "Виробник",
-    "value": "UkrArmor"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "UkrArmor",
+    "value_uk": "UkrArmor",
+    "value_en": "UkrArmor"
   }
 },
 {
@@ -464,7 +603,11 @@
   "fields": {
     "product": 38,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -473,7 +616,11 @@
   "fields": {
     "product": 38,
     "key": "Матеріал",
-    "value": "Cordura"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Cordura",
+    "value_uk": "Cordura",
+    "value_en": "Cordura"
   }
 },
 {
@@ -482,7 +629,11 @@
   "fields": {
     "product": 38,
     "key": "Міжнародний розмір",
-    "value": "Універсальний"
+    "key_uk": "Міжнародний розмір",
+    "key_en": "International size",
+    "value": "Універсальний",
+    "value_uk": "Універсальний",
+    "value_en": "Universal"
   }
 },
 {
@@ -491,7 +642,11 @@
   "fields": {
     "product": 38,
     "key": "Візерунки і принти",
-    "value": "Мультикам"
+    "key_uk": "Візерунки і принти",
+    "key_en": "Patterns and prints",
+    "value": "Мультикам",
+    "value_uk": "Мультикам",
+    "value_en": "Multicam"
   }
 },
 {
@@ -500,7 +655,11 @@
   "fields": {
     "product": 39,
     "key": "Колір",
-    "value": "Койот"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Койот",
+    "value_uk": "Койот",
+    "value_en": "Coyote"
   }
 },
 {
@@ -509,7 +668,11 @@
   "fields": {
     "product": 39,
     "key": "Міжнародний розмір",
-    "value": "M/L"
+    "key_uk": "Міжнародний розмір",
+    "key_en": "International size",
+    "value": "M/L",
+    "value_uk": "M/L",
+    "value_en": "M/L"
   }
 },
 {
@@ -518,7 +681,11 @@
   "fields": {
     "product": 39,
     "key": "Матеріал",
-    "value": "Поліетиленові пластини"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Поліетиленові пластини",
+    "value_uk": "Поліетиленові пластини",
+    "value_en": "Polyethylene plates"
   }
 },
 {
@@ -527,7 +694,11 @@
   "fields": {
     "product": 39,
     "key": "Тип",
-    "value": "Броньошолом"
+    "key_uk": "Тип",
+    "key_en": "Type",
+    "value": "Броньошолом",
+    "value_uk": "Броньошолом",
+    "value_en": "Armored helmet"
   }
 },
 {
@@ -536,7 +707,11 @@
   "fields": {
     "product": 39,
     "key": "Вага",
-    "value": "1.5"
+    "key_uk": "Вага",
+    "key_en": "Weight",
+    "value": "1.5",
+    "value_uk": "1.5",
+    "value_en": "1.5"
   }
 },
 {
@@ -545,7 +720,11 @@
   "fields": {
     "product": 40,
     "key": "Колір",
-    "value": "Койот"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Койот",
+    "value_uk": "Койот",
+    "value_en": "Coyote"
   }
 },
 {
@@ -554,7 +733,11 @@
   "fields": {
     "product": 40,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -563,7 +746,11 @@
   "fields": {
     "product": 40,
     "key": "Виробник",
-    "value": "Ranger"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "Ranger",
+    "value_uk": "Ranger",
+    "value_en": "Ranger"
   }
 },
 {
@@ -572,7 +759,11 @@
   "fields": {
     "product": 40,
     "key": "Розмір",
-    "value": "XL"
+    "key_uk": "Розмір",
+    "key_en": "Size",
+    "value": "XL",
+    "value_uk": "XL",
+    "value_en": "XL"
   }
 },
 {
@@ -581,7 +772,11 @@
   "fields": {
     "product": 40,
     "key": "Матеріал",
-    "value": "Кевлар"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Кевлар",
+    "value_uk": "Кевлар",
+    "value_en": "Kevlar"
   }
 },
 {
@@ -590,7 +785,11 @@
   "fields": {
     "product": 41,
     "key": "Країна виробник",
-    "value": "Україна"
+    "key_uk": "Країна виробник",
+    "key_en": "Country of manufacture",
+    "value": "Україна",
+    "value_uk": "Україна",
+    "value_en": "Ukraine"
   }
 },
 {
@@ -599,7 +798,11 @@
   "fields": {
     "product": 41,
     "key": "Колір",
-    "value": "Зелений"
+    "key_uk": "Колір",
+    "key_en": "Color",
+    "value": "Зелений",
+    "value_uk": "Зелений",
+    "value_en": "Green"
   }
 },
 {
@@ -608,7 +811,11 @@
   "fields": {
     "product": 41,
     "key": "Виробник",
-    "value": "Ranger"
+    "key_uk": "Виробник",
+    "key_en": "Producer",
+    "value": "Ranger",
+    "value_uk": "Ranger",
+    "value_en": "Ranger"
   }
 },
 {
@@ -617,7 +824,11 @@
   "fields": {
     "product": 41,
     "key": "Розмір",
-    "value": "XL"
+    "key_uk": "Розмір",
+    "key_en": "Size",
+    "value": "XL",
+    "value_uk": "XL",
+    "value_en": "XL"
   }
 },
 {
@@ -626,7 +837,11 @@
   "fields": {
     "product": 41,
     "key": "Матеріал",
-    "value": "Кевлар"
+    "key_uk": "Матеріал",
+    "key_en": "Material",
+    "value": "Кевлар",
+    "value_uk": "Кевлар",
+    "value_en": "Kevlar"
   }
 }
 ]
