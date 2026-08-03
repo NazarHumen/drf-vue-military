@@ -4,8 +4,13 @@ cd "$(dirname "$0")"
 
 git pull origin main
 
+echo "Building web image..."
 docker compose -f docker-compose.prod.yml build web
+
+echo "Starting containers..."
 docker compose -f docker-compose.prod.yml up -d
+
+echo "Collecting static files..."
 docker compose -f docker-compose.prod.yml exec web python manage.py collectstatic --noinput
 
 echo ""
