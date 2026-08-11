@@ -242,7 +242,7 @@ SOCIALACCOUNT_ADAPTER = "apps.tools.adapters.CustomSocialAccountAdapter"
 ACCOUNT_LOGIN_METHOD = {"email"}
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
-SITE_ID = 3
+SITE_ID = int(os.getenv("SITE_ID", 2))
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
