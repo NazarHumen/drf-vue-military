@@ -261,3 +261,5 @@ media/
 
 #  Nginx config files
 nginx/conf.d/
+
+media_backup/
