@@ -2,9 +2,17 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+def user_image_path(instance, filename):
+    """Build the path: users_images/user_<id>/<filename>"""
+    return f"users_images/user_{instance.pk or 'new'}/{filename}"
+
+
 class User(AbstractUser):
     image = models.ImageField(
-        upload_to="users_images", blank=True, null=True, verbose_name="Аватар"
+        upload_to=user_image_path,
+        blank=True,
+        null=True,
+        verbose_name="Аватар"
     )
     phone_number = models.CharField(max_length=20, blank=True, null=True)
 
