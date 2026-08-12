@@ -17,5 +17,7 @@ class ForceLanguageMiddleware:
         response = self.get_response(request)
         # Set default cookie if not present
         if "django_language" not in request.COOKIES:
-            response.set_cookie("django_language", "uk", max_age=365 * 24 * 60 * 60)
+            response.set_cookie(
+                "django_language", "uk", max_age=365 * 24 * 60 * 60
+            )
         return response
