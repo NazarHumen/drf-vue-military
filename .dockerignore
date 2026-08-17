@@ -244,3 +244,10 @@ cython_debug/
 .claude/
 staticfiles/
 nginx/conf.d/
+
+# Media: mounted as a volume in prod, bind-mounted locally
+media/
+media_backup/
+screenshots/
+
+.git/
