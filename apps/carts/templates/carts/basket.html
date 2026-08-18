@@ -38,7 +38,10 @@
                     <div class="cart-item-image">
                         <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'">
                             <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
-                                 :alt="item.product_name">
+                                 :alt="item.product_name"
+                                 width="120" height="120"
+                                 loading="lazy"
+                                 decoding="async">
                         </a>
                     </div>
 
