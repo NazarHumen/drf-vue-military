@@ -4,17 +4,41 @@ server {
 
     client_max_body_size 10M;
 
+    # fewer syscalls per file - matters on t3.micro
+    open_file_cache          max=2000 inactive=5m;
+    open_file_cache_valid    2m;
+    open_file_cache_min_uses 1;
+    open_file_cache_errors   on;
+
+    # images are already compressed, but API JSON / CSS / JS are not
+    gzip on;
+    gzip_vary on;
+    gzip_comp_level 5;
+    gzip_min_length 1024;
+    gzip_proxied any;
+    gzip_types
+        text/css
+        text/javascript
+        application/javascript
+        application/json
+        image/svg+xml;
 
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
 
+    # static filenames are not hashed, so keep the cache short -
+    # otherwise a CSS change never reaches returning visitors
     location /static/ {
         alias /app/staticfiles/;
+        add_header Cache-Control "public, max-age=3600";
+        access_log off;
     }
 
     location /media/ {
         alias /app/media/;
+        add_header Cache-Control "public, max-age=2592000";
+        access_log off;
     }
 
     location / {
