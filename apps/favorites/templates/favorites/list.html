@@ -16,7 +16,7 @@
     <div class="catalog-content no-sidebar">
         <!-- Products grid -->
         <div class="products-grid" v-if="!loading && paginatedItems.length > 0">
-            <div class="product-card" v-for="item in paginatedItems" :key="item.id">
+            <div class="product-card" v-for="(item, index) in paginatedItems" :key="item.id">
                 <!-- Remove button (X) -->
                 <button class="remove-btn" @click="removeItem(item)" title="{% translate 'Видалити з обраного' %}">
                     <i class='bx bx-x'></i>
@@ -26,7 +26,11 @@
                 <a :href="'/api/v1/catalog/product/' + item.product_slug + '/'" class="product-image-link">
                     <img :src="item.product_image || '{% static 'deps/images/Not found image.png' %}'"
                          :alt="item.product_name"
-                         class="product-image">
+                         class="product-image"
+                         width="600" height="600"
+                         :loading="index < 4 ? 'eager' : 'lazy'"
+                         :fetchpriority="index < 4 ? 'high' : 'auto'"
+                         decoding="async">
                 </a>
 
                 <!-- Product info -->

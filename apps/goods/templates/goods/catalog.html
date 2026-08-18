@@ -7,243 +7,262 @@
 {% endblock %}
 
 {% block content %}
-<div id="catalog-app">
-    <div class="catalog-header">
-        <h1 class="catalog-title">{% translate "КАТАЛОГ" %}</h1>
-        <div class="catalog-controls">
-            <div class="search-box">
-                <i class='bx bx-search'></i>
-                <input type="text"
-                       v-model="searchQuery"
-                       @input="debouncedSearch"
-                       placeholder="{% translate 'Пошук...' %}">
-            </div>
-            <div class="sort-dropdown">
-                <label>{% translate "СОРТУВАННЯ:" %}</label>
-                <select v-model="sortBy" @change="fetchProducts">
-                    <option value="default">{% translate "За замовчуванням" %}</option>
-                    <option value="on_sale">{% translate "Зі знижкою" %}</option>
-                    <option value="price">{% translate "Ціна: від низької до високої" %}</option>
-                    <option value="-price">{% translate "Ціна: від високої до низької" %}</option>
-                </select>
+    <div id="catalog-app">
+        <div class="catalog-header">
+            <h1 class="catalog-title">{% translate "КАТАЛОГ" %}</h1>
+            <div class="catalog-controls">
+                <div class="search-box">
+                    <i class='bx bx-search'></i>
+                    <input type="text"
+                           v-model="searchQuery"
+                           @input="debouncedSearch"
+                           placeholder="{% translate 'Пошук...' %}">
+                </div>
+                <div class="sort-dropdown">
+                    <label>{% translate "СОРТУВАННЯ:" %}</label>
+                    <select v-model="sortBy" @change="fetchProducts">
+                        <option value="default">{% translate "За замовчуванням" %}</option>
+                        <option value="on_sale">{% translate "Зі знижкою" %}</option>
+                        <option value="price">{% translate "Ціна: від низької до високої" %}</option>
+                        <option value="-price">{% translate "Ціна: від високої до низької" %}</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="catalog-content">
-        <!-- Sidebar Filters -->
-        <aside class="catalog-sidebar">
-            <div class="filters-section">
-                <h3 class="filters-title">
-                    <i class='bx bx-slider-alt'></i>
-                    {% translate "ФІЛЬТРИ" %}
-                </h3>
+        <div class="catalog-content">
+            <!-- Sidebar Filters -->
+            <aside class="catalog-sidebar">
+                <div class="filters-section">
+                    <h3 class="filters-title">
+                        <i class='bx bx-slider-alt'></i>
+                        {% translate "ФІЛЬТРИ" %}
+                    </h3>
 
-                <div class="filter-group">
-                    <h4 class="filter-label">{% translate "КАТЕГОРІЇ" %}</h4>
-                    <div class="filter-options categories-list">
-                        <label class="filter-option">
-                            <input type="checkbox"
-                                   :checked="allSelected"
-                                   @change="selectAll">
-                            <span>{% translate "Всі" %}</span>
-                            <span class="category-count">([[ totalProductsCount ]])</span>
-                        </label>
-                        <label class="filter-option" v-for="category in visibleCategories" :key="category.id">
-                            <input type="checkbox"
-                                   :checked="isCategorySelected(category.slug)"
-                                   @change="toggleCategory(category.slug)">
-                            <span>[[ category.name ]]</span>
-                            <span class="category-count">([[ category.products_count ]])</span>
-                        </label>
-                    </div>
-                    <button class="show-more-btn"
-                            v-if="hasMoreCategories"
-                            @click="toggleShowAllCategories">
+                    <div class="filter-group">
+                        <h4 class="filter-label">{% translate "КАТЕГОРІЇ" %}</h4>
+                        <div class="filter-options categories-list">
+                            <label class="filter-option">
+                                <input type="checkbox"
+                                       :checked="allSelected"
+                                       @change="selectAll">
+                                <span>{% translate "Всі" %}</span>
+                                <span class="category-count">([[ totalProductsCount ]])</span>
+                            </label>
+                            <label class="filter-option"
+                                   v-for="category in visibleCategories"
+                                   :key="category.id">
+                                <input type="checkbox"
+                                       :checked="isCategorySelected(category.slug)"
+                                       @change="toggleCategory(category.slug)">
+                                <span>[[ category.name ]]</span>
+                                <span class="category-count">([[ category.products_count ]])</span>
+                            </label>
+                        </div>
+                        <button class="show-more-btn"
+                                v-if="hasMoreCategories"
+                                @click="toggleShowAllCategories">
                         <span v-if="!showAllCategories">
                             {% translate "Показати ще" %} ([[ hiddenCategoriesCount ]])
                             <i class='bx bx-chevron-down'></i>
                         </span>
-                        <span v-else>
+                            <span v-else>
                             {% translate "Сховати" %}
                             <i class='bx bx-chevron-up'></i>
                         </span>
-                    </button>
-                </div>
-
-                <!-- Фільтр ціни -->
-                <div class="filter-group price-filter">
-                    <h4 class="filter-label">{% translate "ЦІНА" %}</h4>
-
-                    <!-- Поля від/до -->
-                    <div class="price-inputs">
-                        <div class="price-input-group">
-                            <label>{% translate "Від" %}</label>
-                            <input type="number"
-                                   :value="priceMin"
-                                   @input="onPriceMinInput"
-                                   :min="priceRange.min"
-                                   :max="priceRange.max">
-                            <span class="currency-label">₴</span>
-                        </div>
-                        <div class="price-input-group">
-                            <label>{% translate "До" %}</label>
-                            <input type="number"
-                                   :value="priceMax"
-                                   @input="onPriceMaxInput"
-                                   :min="priceRange.min"
-                                   :max="priceRange.max">
-                            <span class="currency-label">₴</span>
-                        </div>
+                        </button>
                     </div>
 
-                    <!-- Подвійний слайдер -->
-                    <div class="price-slider">
-                        <div class="slider-track"></div>
-                        <div class="slider-range"
-                             :style="{
+                    <!-- Filter for price range -->
+                    <div class="filter-group price-filter">
+                        <h4 class="filter-label">{% translate "ЦІНА" %}</h4>
+
+                        <!-- Поля від/до -->
+                        <div class="price-inputs">
+                            <div class="price-input-group">
+                                <label>{% translate "Від" %}</label>
+                                <input type="number"
+                                       :value="priceMin"
+                                       @input="onPriceMinInput"
+                                       :min="priceRange.min"
+                                       :max="priceRange.max">
+                                <span class="currency-label">₴</span>
+                            </div>
+                            <div class="price-input-group">
+                                <label>{% translate "До" %}</label>
+                                <input type="number"
+                                       :value="priceMax"
+                                       @input="onPriceMaxInput"
+                                       :min="priceRange.min"
+                                       :max="priceRange.max">
+                                <span class="currency-label">₴</span>
+                            </div>
+                        </div>
+
+                        <!-- Price slider -->
+                        <div class="price-slider">
+                            <div class="slider-track"></div>
+                            <div class="slider-range"
+                                 :style="{
                                  left: sliderMinPercent + '%',
                                  width: (sliderMaxPercent - sliderMinPercent) + '%'
                              }"></div>
-                        <input type="range"
-                               class="slider-min"
-                               :min="priceRange.min"
-                               :max="priceRange.max"
-                               :value="priceMin"
-                               @input="onSliderMinInput">
-                        <input type="range"
-                               class="slider-max"
-                               :min="priceRange.min"
-                               :max="priceRange.max"
-                               :value="priceMax"
-                               @input="onSliderMaxInput">
+                            <input type="range"
+                                   class="slider-min"
+                                   :min="priceRange.min"
+                                   :max="priceRange.max"
+                                   :value="priceMin"
+                                   @input="onSliderMinInput">
+                            <input type="range"
+                                   class="slider-max"
+                                   :min="priceRange.min"
+                                   :max="priceRange.max"
+                                   :value="priceMax"
+                                   @input="onSliderMaxInput">
+                        </div>
+
+                        <!-- Filter info -->
+                        <div class="price-filter-info">
+                            <span>{% translate "Знайдено:" %} [[ filteredCount ]] {% translate "товарів" %}</span>
+                        </div>
+
+                        <!-- Apply/Reset buttons -->
+                        <div class="price-filter-actions">
+                            <button class="apply-filter-btn"
+                                    @click="applyPriceFilter">
+                                {% translate "Застосувати" %}
+                            </button>
+                            <button class="clear-filter-btn"
+                                    v-if="priceFilterActive"
+                                    @click="clearPriceFilter"
+                                    title="{% translate 'Скинути фільтр' %}">
+                                <i class='bx bx-trash'></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Кількість знайдених товарів -->
-                    <div class="price-filter-info">
-                        <span>{% translate "Знайдено:" %} [[ filteredCount ]] {% translate "товарів" %}</span>
-                    </div>
-
-                    <!-- Кнопки застосувати/скинути -->
-                    <div class="price-filter-actions">
-                        <button class="apply-filter-btn" @click="applyPriceFilter">
-                            {% translate "Застосувати" %}
-                        </button>
-                        <button class="clear-filter-btn"
-                                v-if="priceFilterActive"
-                                @click="clearPriceFilter"
-                                title="{% translate 'Скинути фільтр' %}">
-                            <i class='bx bx-trash'></i>
-                        </button>
-                    </div>
                 </div>
+            </aside>
 
-            </div>
-        </aside>
+            <!-- Products Grid -->
+            <div class="catalog-main">
+                <div class="products-grid" v-if="products.length > 0">
+                    <div class="product-card"
+                         v-for="(product, index) in products"
+                         :key="product.id">
+                        <!-- Favorite button -->
+                        <button class="favorite-btn"
+                                @click="toggleFavorite(product.id)"
+                                :class="{ active: isFavorite(product.id) }">
+                            <i class='bx'
+                               :class="isFavorite(product.id) ? 'bxs-heart' : 'bx-heart'"></i>
+                        </button>
 
-        <!-- Products Grid -->
-        <div class="catalog-main">
-            <div class="products-grid" v-if="products.length > 0">
-                <div class="product-card" v-for="product in products" :key="product.id">
-                    <!-- Favorite button -->
-                    <button class="favorite-btn" @click="toggleFavorite(product.id)"
-                            :class="{ active: isFavorite(product.id) }">
-                        <i class='bx' :class="isFavorite(product.id) ? 'bxs-heart' : 'bx-heart'"></i>
-                    </button>
-
-                    <!-- Discount badge -->
-                    <span class="discount-badge" v-if="product.discount">
+                        <!-- Discount badge -->
+                        <span class="discount-badge" v-if="product.discount">
                         -[[ product.discount ]]%
                     </span>
 
-                    <!-- Product image -->
-                    <a :href="'/api/v1/catalog/product/' + product.slug + '/'" class="product-image-link">
-                        <img :src="product.image || '{% static "deps/images/Not found image.png" %}'"
-                             :alt="product.name"
-                             class="product-image">
-                    </a>
-
-                    <!-- Product info -->
-                    <div class="product-info">
-                        <a :href="'/api/v1/catalog/product/' + product.slug + '/'" class="product-name">
-                            [[ product.name ]]
+                        <!-- Product image -->
+                        <a :href="'/api/v1/catalog/product/' + product.slug + '/'"
+                           class="product-image-link">
+                            <img :src="product.image || '{% static "deps/images/Not found image.png" %}'"
+                                 :alt="product.name"
+                                 class="product-image"
+                                 width="600" height="600"
+                                 :loading="index < 4 ? 'eager' : 'lazy'"
+                                 :fetchpriority="index < 4 ? 'high' : 'auto'"
+                                 decoding="async">
                         </a>
-                        <p class="product-id">ID: [[ formatId(product.id) ]]</p>
-                        <p class="availability-status"
-                           :class="{
+
+                        <!-- Product info -->
+                        <div class="product-info">
+                            <a :href="'/api/v1/catalog/product/' + product.slug + '/'"
+                               class="product-name">
+                                [[ product.name ]]
+                            </a>
+                            <p class="product-id">ID: [[ formatId(product.id)
+                                ]]</p>
+                            <p class="availability-status"
+                               :class="{
                                'status-ready': product.availability_status === 'ready_to_ship',
                                'status-last': product.availability_status === 'last_item',
                                'status-out': product.availability_status === 'out_of_stock'
                            }">
-                            <i class='bx bx-package' v-if="product.availability_status === 'ready_to_ship'"></i>
-                            <i class='bx bxs-error' v-else-if="product.availability_status === 'last_item'"></i>
-                            <i class='bx bx-box' v-else></i>
-                            [[ product.availability_status_display ]]
-                        </p>
+                                <i class='bx bx-package'
+                                   v-if="product.availability_status === 'ready_to_ship'"></i>
+                                <i class='bx bxs-error'
+                                   v-else-if="product.availability_status === 'last_item'"></i>
+                                <i class='bx bx-box' v-else></i>
+                                [[ product.availability_status_display ]]
+                            </p>
 
-                        <!-- Price -->
-                        <div class="product-price-row">
-                            <div class="price-info">
-                                <span class="old-price" v-if="product.discount">[[ product.price ]] ₴</span>
-                                <span class="current-price">[[ product.sell_price ]] <span class="currency">₴</span></span>
-                                <span class="usd-price">/ [[ product.price_in_usd ]] $</span>
+                            <!-- Price -->
+                            <div class="product-price-row">
+                                <div class="price-info">
+                                    <span class="old-price"
+                                          v-if="product.discount">[[ product.price ]] ₴</span>
+                                    <span class="current-price">[[ product.sell_price ]] <span
+                                            class="currency">₴</span></span>
+                                    <span class="usd-price">/ [[ product.price_in_usd ]] $</span>
+                                </div>
+                                <button class="add-to-cart-btn"
+                                        @click="addToCart(product.id)"
+                                        :disabled="product.availability_status === 'out_of_stock'"
+                                        :class="{ 'disabled': product.availability_status === 'out_of_stock' }">
+                                    <i class='bx bx-cart-add'></i>
+                                </button>
                             </div>
-                            <button class="add-to-cart-btn"
-                                    @click="addToCart(product.id)"
-                                    :disabled="product.availability_status === 'out_of_stock'"
-                                    :class="{ 'disabled': product.availability_status === 'out_of_stock' }">
-                                <i class='bx bx-cart-add'></i>
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Loading state -->
-            <div class="loading-state" v-if="loading">
-                <i class='bx bx-loader-alt bx-spin'></i>
-                <p>{% translate "Завантаження..." %}</p>
-            </div>
+                <!-- Loading state -->
+                <div class="loading-state" v-if="loading">
+                    <i class='bx bx-loader-alt bx-spin'></i>
+                    <p>{% translate "Завантаження..." %}</p>
+                </div>
 
-            <!-- Empty state -->
-            <div class="empty-state" v-if="!loading && products.length === 0">
-                <i class='bx bx-package'></i>
-                <p>{% translate "Товари не знайдено" %}</p>
-            </div>
+                <!-- Empty state -->
+                <div class="empty-state"
+                     v-if="!loading && products.length === 0">
+                    <i class='bx bx-package'></i>
+                    <p>{% translate "Товари не знайдено" %}</p>
+                </div>
 
-            <!-- Pagination -->
-            <div class="pagination" v-if="!loading && products.length > 0">
-                <button class="page-btn"
-                        :disabled="currentPage === 1"
-                        @click="goToPage(currentPage - 1)">
-                    <i class='bx bx-chevron-left'></i>
-                </button>
-                <button class="page-btn"
-                        v-for="page in visiblePages"
-                        :key="page"
-                        :class="{ active: page === currentPage }"
-                        @click="goToPage(page)">
-                    [[ page ]]
-                </button>
-                <button class="page-btn"
-                        :disabled="currentPage === totalPages"
-                        @click="goToPage(currentPage + 1)">
-                    <i class='bx bx-chevron-right'></i>
-                </button>
+                <!-- Pagination -->
+                <div class="pagination" v-if="!loading && products.length > 0">
+                    <button class="page-btn"
+                            :disabled="currentPage === 1"
+                            @click="goToPage(currentPage - 1)">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+                    <button class="page-btn"
+                            v-for="page in visiblePages"
+                            :key="page"
+                            :class="{ active: page === currentPage }"
+                            @click="goToPage(page)">
+                        [[ page ]]
+                    </button>
+                    <button class="page-btn"
+                            :disabled="currentPage === totalPages"
+                            @click="goToPage(currentPage + 1)">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block footer %}
-<footer class="site-footer">
-    <div class="footer-container">
-        <p>Copyright &copy; Nazarii Humen 2024</p>
-    </div>
-</footer>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>Copyright &copy; Nazarii Humen 2024</p>
+        </div>
+    </footer>
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'deps/js/goods/catalog.js' %}"></script>
+    <script src="{% static 'deps/js/goods/catalog.js' %}"></script>
 {% endblock %}

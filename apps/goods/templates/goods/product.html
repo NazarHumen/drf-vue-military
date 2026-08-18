@@ -32,7 +32,9 @@
             <div class="product-gallery">
                 <div class="main-image">
                     <img :src="currentImage || product.image || '{% static "deps/images/Not found image.png" %}'"
-                         :alt="product.name">
+                         :alt="product.name"
+                         fetchpriority="high"
+                         decoding="async">
                     <span class="discount-badge" v-if="product.discount">
                         -[[ product.discount ]]%
                     </span>
@@ -43,7 +45,10 @@
                     <div class="thumbnail"
                          :class="{ active: currentImage === product.image }"
                          @click="setCurrentImage(product.image)">
-                        <img :src="product.image || '{% static "deps/images/Not found image.png" %}'" :alt="product.name">
+                        <img :src="product.image || '{% static "deps/images/Not found image.png" %}'"
+                             :alt="product.name"
+                             width="120" height="120"
+                             decoding="async">
                     </div>
                     <!-- Additional images (up to 4) -->
                     <div class="thumbnail"
@@ -51,7 +56,11 @@
                          :key="index"
                          :class="{ active: currentImage === img.image, placeholder: !img.image }"
                          @click="img.image && setCurrentImage(img.image)">
-                        <img :src="img.image || '{% static "deps/images/tactical_gear_with_not_found_text.png" %}'" :alt="product.name + ' ' + (index + 1)">
+                        <img :src="img.image || '{% static "deps/images/tactical_gear_with_not_found_text.png" %}'"
+                             :alt="product.name + ' ' + (index + 1)"
+                             width="120" height="120"
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
             </div>

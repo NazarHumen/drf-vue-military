@@ -69,7 +69,10 @@
                                 <div v-for="item in items" :key="item.id" class="order-cart-item">
                                     <div class="order-cart-item-image">
                                         <img :src="item.product_image || '{% static "deps/images/Not found image.png" %}'"
-                                             :alt="item.product_name">
+                                             :alt="item.product_name"
+                                             width="70" height="70"
+                                             loading="lazy"
+                                             decoding="async">
                                     </div>
                                     <div class="order-cart-item-info">
                                         <div class="order-cart-item-name">[[ item.product_name ]]</div>
