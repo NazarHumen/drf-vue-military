@@ -4,7 +4,7 @@
   "pk": 7,
   "fields": {
     "product": 27,
-    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам_1.png",
+    "image": "goods_images/product_27/Плитоноска_покращена_PRO_Мультикам_1.webp",
     "order": 3
   }
 },
@@ -13,7 +13,7 @@
   "pk": 11,
   "fields": {
     "product": 27,
-    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам_2_SU1sESb.png",
+    "image": "goods_images/product_27/Плитоноска_покращена_PRO_Мультикам_2_SU1sESb.webp",
     "order": 0
   }
 },
@@ -22,7 +22,7 @@
   "pk": 12,
   "fields": {
     "product": 27,
-    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам_3_AYVUtNu.png",
+    "image": "goods_images/product_27/Плитоноска_покращена_PRO_Мультикам_3_AYVUtNu.webp",
     "order": 2
   }
 },
@@ -31,7 +31,7 @@
   "pk": 13,
   "fields": {
     "product": 27,
-    "image": "goods_images/Плитоноска_покращена_PRO_Мультикам_4_gc8MnHY.png",
+    "image": "goods_images/product_27/Плитоноска_покращена_PRO_Мультикам_4_gc8MnHY.webp",
     "order": 1
   }
 },
@@ -40,7 +40,7 @@
   "pk": 14,
   "fields": {
     "product": 28,
-    "image": "goods_images/Плитоноска_покращена_PRO_Койот_1_Its2kdg.png",
+    "image": "goods_images/product_28/Плитоноска_покращена_PRO_Койот_1_Its2kdg.webp",
     "order": 0
   }
 },
@@ -49,7 +49,7 @@
   "pk": 15,
   "fields": {
     "product": 28,
-    "image": "goods_images/Плитоноска_покращена_PRO_Койот_2.png",
+    "image": "goods_images/product_28/Плитоноска_покращена_PRO_Койот_2.webp",
     "order": 2
   }
 },
@@ -58,7 +58,7 @@
   "pk": 16,
   "fields": {
     "product": 28,
-    "image": "goods_images/Плитоноска_покращена_PRO_Койот_3.png",
+    "image": "goods_images/product_28/Плитоноска_покращена_PRO_Койот_3.webp",
     "order": 3
   }
 },
@@ -67,7 +67,7 @@
   "pk": 17,
   "fields": {
     "product": 28,
-    "image": "goods_images/Плитоноска_покращена_PRO_Койот_4.png",
+    "image": "goods_images/product_28/Плитоноска_покращена_PRO_Койот_4.webp",
     "order": 1
   }
 },
@@ -76,7 +76,7 @@
   "pk": 18,
   "fields": {
     "product": 29,
-    "image": "goods_images/Плитоноска_покращена_PRO_Олива_1.png",
+    "image": "goods_images/product_29/Плитоноска_покращена_PRO_Олива_1.webp",
     "order": 0
   }
 },
@@ -85,7 +85,7 @@
   "pk": 19,
   "fields": {
     "product": 29,
-    "image": "goods_images/Плитоноска_покращена_PRO_Олива_2.png",
+    "image": "goods_images/product_29/Плитоноска_покращена_PRO_Олива_2.webp",
     "order": 1
   }
 },
@@ -94,7 +94,7 @@
   "pk": 20,
   "fields": {
     "product": 29,
-    "image": "goods_images/Плитоноска_покращена_PRO_Олива_3.png",
+    "image": "goods_images/product_29/Плитоноска_покращена_PRO_Олива_3.webp",
     "order": 2
   }
 },
@@ -103,7 +103,7 @@
   "pk": 21,
   "fields": {
     "product": 29,
-    "image": "goods_images/Плитоноска_покращена_PRO_Олива_4.png",
+    "image": "goods_images/product_29/Плитоноска_покращена_PRO_Олива_4.webp",
     "order": 3
   }
 },
@@ -112,7 +112,7 @@
   "pk": 22,
   "fields": {
     "product": 30,
-    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_1.png",
+    "image": "goods_images/product_30/Плитоноска_покращена_PRO_Чорна_1.webp",
     "order": 0
   }
 },
@@ -121,7 +121,7 @@
   "pk": 23,
   "fields": {
     "product": 30,
-    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_2.png",
+    "image": "goods_images/product_30/Плитоноска_покращена_PRO_Чорна_2.webp",
     "order": 1
   }
 },
@@ -130,7 +130,7 @@
   "pk": 24,
   "fields": {
     "product": 30,
-    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_3.png",
+    "image": "goods_images/product_30/Плитоноска_покращена_PRO_Чорна_3.webp",
     "order": 2
   }
 },
@@ -139,7 +139,7 @@
   "pk": 25,
   "fields": {
     "product": 30,
-    "image": "goods_images/Плитоноска_покращена_PRO_Чорна_4.png",
+    "image": "goods_images/product_30/Плитоноска_покращена_PRO_Чорна_4.webp",
     "order": 3
   }
 },
@@ -148,7 +148,7 @@
   "pk": 26,
   "fields": {
     "product": 31,
-    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива_1.png",
+    "image": "goods_images/product_31/Плитоноска_IBV_Збільшена_площа_захисту_Олива_1.webp",
     "order": 0
   }
 },
@@ -157,7 +157,7 @@
   "pk": 27,
   "fields": {
     "product": 31,
-    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива_2.png",
+    "image": "goods_images/product_31/Плитоноска_IBV_Збільшена_площа_захисту_Олива_2.webp",
     "order": 1
   }
 },
@@ -166,7 +166,7 @@
   "pk": 28,
   "fields": {
     "product": 31,
-    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива_3.png",
+    "image": "goods_images/product_31/Плитоноска_IBV_Збільшена_площа_захисту_Олива_3.webp",
     "order": 2
   }
 },
@@ -175,7 +175,7 @@
   "pk": 29,
   "fields": {
     "product": 31,
-    "image": "goods_images/Плитоноска_IBV_Збільшена_площа_захисту_Олива_4.png",
+    "image": "goods_images/product_31/Плитоноска_IBV_Збільшена_площа_захисту_Олива_4.webp",
     "order": 3
   }
 },
@@ -184,7 +184,7 @@
   "pk": 30,
   "fields": {
     "product": 33,
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25_1.png",
+    "image": "goods_images/product_33/Бронеплити_надлегкі_3-го_класу_M_25_1.webp",
     "order": 0
   }
 },
@@ -193,7 +193,7 @@
   "pk": 31,
   "fields": {
     "product": 33,
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25_2.png",
+    "image": "goods_images/product_33/Бронеплити_надлегкі_3-го_класу_M_25_2.webp",
     "order": 1
   }
 },
@@ -202,7 +202,7 @@
   "pk": 32,
   "fields": {
     "product": 33,
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25_3.png",
+    "image": "goods_images/product_33/Бронеплити_надлегкі_3-го_класу_M_25_3.webp",
     "order": 2
   }
 },
@@ -211,7 +211,7 @@
   "pk": 33,
   "fields": {
     "product": 33,
-    "image": "goods_images/Бронеплити_надлегкі_3-го_класу_M_25_4.png",
+    "image": "goods_images/product_33/Бронеплити_надлегкі_3-го_класу_M_25_4.webp",
     "order": 3
   }
 },
@@ -220,7 +220,7 @@
   "pk": 34,
   "fields": {
     "product": 34,
-    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_1.png",
+    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_1.webp",
     "order": 0
   }
 },
@@ -229,7 +229,7 @@
   "pk": 35,
   "fields": {
     "product": 34,
-    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_2.png",
+    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_2.webp",
     "order": 1
   }
 },
@@ -238,7 +238,7 @@
   "pk": 36,
   "fields": {
     "product": 34,
-    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_3.png",
+    "image": "goods_images/product_34/Бронеплити_надлегкі_3-го_класу_L_26_3.webp",
     "order": 2
   }
 },
@@ -247,7 +247,7 @@
   "pk": 38,
   "fields": {
     "product": 35,
-    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_1.png",
+    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_1.webp",
     "order": 0
   }
 },
@@ -256,7 +256,7 @@
   "pk": 39,
   "fields": {
     "product": 35,
-    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_2.png",
+    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_2.webp",
     "order": 3
   }
 },
@@ -265,7 +265,7 @@
   "pk": 40,
   "fields": {
     "product": 35,
-    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_0_PnzNXzK.png",
+    "image": "goods_images/product_35/Бронеплити_керамічні_6-го_класу_25_0_PnzNXzK.webp",
     "order": 2
   }
 },
@@ -274,7 +274,7 @@
   "pk": 41,
   "fields": {
     "product": 36,
-    "image": "goods_images/product_36/Шолом_кевларовий_TOR-D_Олива_XL.png",
+    "image": "goods_images/product_36/Шолом_кевларовий_TOR-D_Олива_XL.webp",
     "order": 0
   }
 }
