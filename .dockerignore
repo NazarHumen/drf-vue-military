@@ -245,6 +245,10 @@ cython_debug/
 staticfiles/
 nginx/conf.d/
 
+# graphify knowledge graph output
+graphify-out/
+.graphifyignore
+
 # Media: mounted as a volume in prod, bind-mounted locally
 media/
 media_backup/
