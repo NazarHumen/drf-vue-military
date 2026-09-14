@@ -259,6 +259,10 @@ media/
 .claude/
 .docs/
 
+# graphify knowledge graph output (regenerate with /graphify)
+graphify-out/
+.graphifyignore
+
 #  Nginx config files
 nginx/conf.d/
 
