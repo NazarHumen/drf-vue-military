@@ -14,25 +14,25 @@
                 <div class="row text-center">
                     <div class="col p-0">
                         <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <button type="button"
-                                                                        class="btn btn-dark btn-sm decrement"
-                                                                        data-cart-id="{{ cart.id }}"
-                                                                        data-cart-change-url="{% url "cart:cart_change" %}">
-                                                                    {% csrf_token %}
-                                                                    -</button>
-                                                            </span>
+                            <span class="input-group-btn">
+                                <button type="button"
+                                        class="btn btn-dark btn-sm decrement"
+                                        data-cart-id="{{ cart.id }}"
+                                        data-cart-change-url="{% url "cart:cart_change" %}">
+                                    {% csrf_token %}
+                                    -</button>
+                            </span>
                             <input type="text" class="form-control number"
                                    value="{{ cart.quantity }}"
                                    readonly>
                             <span class="input-group-btn">
-                                                                <button type="button"
-                                                                        class="btn btn-dark btn-sm increment"
-                                                                        data-cart-id="{{ cart.id }}"
-                                                                        data-cart-change-url="{% url "cart:cart_change" %}">
-                                                                    {% csrf_token %}
-                                                                    +</button>
-                                                            </span>
+                                <button type="button"
+                                        class="btn btn-dark btn-sm increment"
+                                        data-cart-id="{{ cart.id }}"
+                                        data-cart-change-url="{% url "cart:cart_change" %}">
+                                    {% csrf_token %}
+                                    +</button>
+                            </span>
                         </div>
                     </div>
                     <div class="col p-0">
@@ -59,8 +59,9 @@
 </div>
 <div class="card mb-3 shadow-lg">
     <div class="card-footer">
-        <p class="float-left">{% translate "Разом" %} <strong>{{ carts.total_quantity }}</strong>
-            {% translate "товар(а) у суммі"  %}</p>
+        <p class="float-left">{% translate "Разом" %}
+            <strong>{{ carts.total_quantity }}</strong>
+            {% translate "товар(а) у суммі" %}</p>
         <h4 class="float-left"><strong>{{ carts.total_price }} ₴
             / {{ carts.total_price_usd|floatformat:2 }} $ </strong></h4>
     </div>
