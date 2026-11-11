@@ -244,6 +244,7 @@ cython_debug/
 .claude/
 staticfiles/
 nginx/conf.d/
+.junie/
 
 # graphify knowledge graph output
 graphify-out/
