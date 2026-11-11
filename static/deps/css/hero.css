@@ -144,8 +144,10 @@ body.hero-page .main-container > .container {
 .hero-content {
     position: relative;
     z-index: 10;
-    padding: 80px 80px 0 300px;
-    max-width: 900px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 2rem 0;
 }
 
 .hero-subtitle {
@@ -264,7 +266,7 @@ body.hero-page .main-container > .container {
 .hero-indicators {
     position: absolute;
     bottom: 40px;
-    left: 300px;
+    left: max(2rem, calc((100% - 1400px) / 2 + 2rem));
     z-index: 20;
     display: flex;
     gap: 12px;
@@ -328,48 +330,6 @@ body.hero-page .main-container > .container {
 }
 
 /* ==================== RESPONSIVE ==================== */
-
-/* Extra large screens 2560px */
-@media (min-width: 2000px) {
-    .hero-content {
-        padding: 160px 120px 0;
-        max-width: 1200px;
-    }
-
-    .hero-buttons {
-        margin-bottom: 180px;
-    }
-
-    .hero-indicators {
-        left: 120px;
-        bottom: 60px;
-    }
-
-    .hero-title {
-        font-size: clamp(100px, 10vw, 180px);
-    }
-
-    .hero-description {
-        font-size: 22px;
-        max-width: 600px;
-    }
-}
-
-/* 1440px screens */
-@media (max-width: 1600px) and (min-width: 1201px) {
-    .hero-content {
-        padding: 200px 80px 0 80px;
-    }
-
-    .hero-buttons {
-        margin-bottom: 200px;
-    }
-
-    .hero-indicators {
-        left: 80px;
-        bottom: 60px;
-    }
-}
 
 /* Large screens */
 @media (max-width: 1200px) {
