@@ -1,11 +1,3 @@
-/* styles.css */
-/*.container {*/
-/*    background-color: #ffffff;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*    border-radius: 10px;*/
-/*    padding: 30px;*/
-/*}*/
-
 h2, h3 {
     color: #2c3e50;
     font-weight: bold;
@@ -59,7 +51,6 @@ ul {
     font-weight: bold;
     margin-bottom: 20px;
     color: #2c3e50;
-
 
 
 }
@@ -118,6 +109,7 @@ ul {
 .section:last-child p {
     margin-bottom: 0;
 }
+
 h3 {
     margin-top: 10px; /* або інше значення для коригування відступу */
 }
@@ -126,50 +118,46 @@ h3 {
 /*контакт*/
 /* Загальний стиль для секції */
 .section {
-  padding: 20px;
-  background-color: #f9f9f9;
+    padding: 20px;
+    background-color: #f9f9f9;
 
 }
 
 /* Заголовки */
 .section h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #2c3e50;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
 }
 
 .section h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #34495e;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #34495e;
 }
 
 /* Текст */
 .section p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
 }
 
 /* Іконки */
 .icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
 
 /* Зображення */
 .custom-image {
-  max-height: 300px;
-  object-fit: cover;
+    max-height: 300px;
+    object-fit: cover;
 }
-/*.btn-block {*/
-/*    width: 40%;*/
-/*    margin: 0 auto; !* Центрування по горизонталі *!*/
-/*    display: block; !* Забезпечує блоковий контекст *!*/
-/*}*/
+
 
 .btn-block {
     width: 40%;
@@ -179,8 +167,5 @@ h3 {
 }
 
 footer {
-  margin-top: 50px; /* Додає відступ між футером і контентом */
+    margin-top: 50px; /* Додає відступ між футером і контентом */
 }
-
-
-
