@@ -9,92 +9,92 @@
 {% endblock %}
 
 {% block content %}
-<div id="hero-app">
-    <section class="hero-section">
-        <!-- Carousel Background -->
-        <div class="hero-carousel">
-            <div v-for="(slide, index) in slides"
-                 :key="index"
-                 class="carousel-slide"
-                 :class="{ active: index === currentSlide }">
-                <img :src="slide.image" :alt="slide.title">
-            </div>
-        </div>
-
-        <!-- Overlays -->
-        <div class="hero-overlay hero-overlay-gradient"></div>
-        <div class="hero-overlay hero-overlay-bottom"></div>
-        <div class="hero-grid-pattern"></div>
-
-        <!-- Hero Content -->
-        <div class="hero-content">
-            <div class="hero-subtitle" :key="'subtitle-' + currentSlide">
-                <div class="hero-subtitle-line"></div>
-                <span class="hero-subtitle-text">[[ currentSubtitle ]]</span>
+    <div id="hero-app">
+        <section class="hero-section">
+            <!-- Carousel Background -->
+            <div class="hero-carousel">
+                <div v-for="(slide, index) in slides"
+                     :key="index"
+                     class="carousel-slide"
+                     :class="{ active: index === currentSlide }">
+                    <img :src="slide.image" :alt="slide.title">
+                </div>
             </div>
 
-            <h1 class="hero-title" :key="'title-' + currentSlide">
-                [[ currentTitleFirst ]]<br>
-                <span class="hero-title-accent">[[ currentTitleSecond ]]</span>
-            </h1>
+            <!-- Overlays -->
+            <div class="hero-overlay hero-overlay-gradient"></div>
+            <div class="hero-overlay hero-overlay-bottom"></div>
+            <div class="hero-grid-pattern"></div>
 
-            <p class="hero-description">
-                {% translate "Тактичне спорядження преміум класу для професіоналів. Надійне обладнання, коли невдача неприпустима." %}
-            </p>
+            <!-- Hero Content -->
+            <div class="hero-content">
+                <div class="hero-subtitle" :key="'subtitle-' + currentSlide">
+                    <div class="hero-subtitle-line"></div>
+                    <span class="hero-subtitle-text">[[ currentSubtitle ]]</span>
+                </div>
 
-            <div class="hero-buttons">
-                <a href="/api/v1/catalog/all/" class="btn-hero-secondary">
-                    {% translate "Переглянути каталог" %}
-                </a>
+                <h1 class="hero-title" :key="'title-' + currentSlide">
+                    [[ currentTitleFirst ]]<br>
+                    <span class="hero-title-accent">[[ currentTitleSecond ]]</span>
+                </h1>
+
+                <p class="hero-description">
+                    {% translate "Тактичне спорядження преміум класу для професіоналів. Надійне обладнання, коли невдача неприпустима." %}
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/api/v1/catalog/all/" class="btn-hero-secondary">
+                        {% translate "Переглянути каталог" %}
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Slide Indicators -->
-        <div class="hero-indicators">
-            <button v-for="(slide, index) in slides"
-                    :key="index"
-                    class="indicator"
-                    :class="{ active: index === currentSlide }"
-                    @click="goToSlide(index)">
-            </button>
-        </div>
+            <!-- Slide Indicators -->
+            <div class="hero-indicators">
+                <button v-for="(slide, index) in slides"
+                        :key="index"
+                        class="indicator"
+                        :class="{ active: index === currentSlide }"
+                        @click="goToSlide(index)">
+                </button>
+            </div>
 
-    </section>
-</div>
+        </section>
+    </div>
 {% endblock %}
 
 {% block footer %}
-<footer class="footer-hero">
-    <p>Copyright &copy; Nazarii Humen 2024</p>
-</footer>
+    <footer class="footer-hero">
+        <p>Copyright &copy; Nazarii Humen 2024</p>
+    </footer>
 {% endblock %}
 
 {% block scripts %}
-<script>
-    document.body.classList.add('hero-page');
+    <script>
+        document.body.classList.add('hero-page');
 
-    window.HERO_SLIDES = [
-        {
-            image: "{% static 'deps/images/carousel/tactical_plate_carrier_vest.png' %}",
-            title: "{% translate 'ТАКТИЧНА ПЛИТОНОСКА' %}",
-            subtitle: "{% translate 'ПРОФЕСІЙНИЙ КЛАС' %}"
-        },
-        {
-            image: "{% static 'deps/images/carousel/tactical_backpack.png' %}",
-            title: "{% translate 'ТАКТИЧНИЙ РЮКЗАК' %}",
-            subtitle: "{% translate 'МАКСИМАЛЬНА ЄМКІСТЬ' %}"
-        },
-        {
-            image: "{% static 'deps/images/carousel/tactical_combat_boots.png' %}",
-            title: "{% translate 'ТАКТИЧНЕ ВЗУТТЯ' %}",
-            subtitle: "{% translate 'НАДІЙНІСТЬ У БОЮ' %}"
-        },
-        {
-            image: "{% static 'deps/images/carousel/ballistic_helmet.png' %}",
-            title: "{% translate 'БАЛІСТИЧНИЙ ШОЛОМ' %}",
-            subtitle: "{% translate 'СЕРТИФІКОВАНИЙ ЗАХИСТ' %}"
-        }
-    ];
-</script>
-<script src="{% static 'deps/js/main/hero.js' %}"></script>
+        window.HERO_SLIDES = [
+            {
+                image: "{% static 'deps/images/carousel/tactical_plate_carrier_vest.png' %}",
+                title: "{% translate 'ТАКТИЧНА ПЛИТОНОСКА' %}",
+                subtitle: "{% translate 'ПРОФЕСІЙНИЙ КЛАС' %}"
+            },
+            {
+                image: "{% static 'deps/images/carousel/tactical_backpack.png' %}",
+                title: "{% translate 'ТАКТИЧНИЙ РЮКЗАК' %}",
+                subtitle: "{% translate 'МАКСИМАЛЬНА ЄМКІСТЬ' %}"
+            },
+            {
+                image: "{% static 'deps/images/carousel/tactical_combat_boots.png' %}",
+                title: "{% translate 'ТАКТИЧНЕ ВЗУТТЯ' %}",
+                subtitle: "{% translate 'НАДІЙНІСТЬ У БОЮ' %}"
+            },
+            {
+                image: "{% static 'deps/images/carousel/ballistic_helmet.png' %}",
+                title: "{% translate 'БАЛІСТИЧНИЙ ШОЛОМ' %}",
+                subtitle: "{% translate 'СЕРТИФІКОВАНИЙ ЗАХИСТ' %}"
+            }
+        ];
+    </script>
+    <script src="{% static 'deps/js/main/hero.js' %}"></script>
 {% endblock %}
