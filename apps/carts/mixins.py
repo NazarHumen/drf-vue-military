@@ -4,7 +4,7 @@ from apps.carts.utils import get_user_carts
 
 class CartMixin:
     def get_cart(self, request, product=None, cart_id=None):
-        # Якщо користувач авторизований, шукаємо за user, інакше за session_key
+        # If user is authenticated, search by user, otherwise by session_key
         query_kwargs = (
             {"user": request.user}
             if request.user.is_authenticated
@@ -16,7 +16,7 @@ class CartMixin:
         if cart_id:
             query_kwargs["id"] = cart_id
 
-        # Повертаємо перший знайдений кошик або None, якщо його немає
+        # Return the first found cart or None if it doesn't exist
         return Cart.objects.filter(**query_kwargs).first()
 
     def get_cart_totals(self, request):
@@ -26,7 +26,7 @@ class CartMixin:
         return total_price_uah, total_price_usd
 
     def get_cart_data(self, request):
-        # Отримуємо кошики користувача
+        # Get the user's carts
         user_cart = get_user_carts(request)
         cart_data = []
 
@@ -42,12 +42,12 @@ class CartMixin:
                 item.product.price_in_usd * item.quantity
             )
 
-            # Отримуємо URL зображення товару
+            # Get the product image URL
             product_image = None
             if item.product.image:
                 product_image = item.product.image.url
 
-            # Визначаємо максимальну кількість залежно від статусу
+            # Determine the maximum quantity depending on the status
             if item.product.availability_status == "last_item":
                 max_quantity = min(5, item.product.quantity)
             elif item.product.availability_status == "out_of_stock":
