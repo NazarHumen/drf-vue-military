@@ -47,7 +47,7 @@ class CartAddAPIView(CartMixin, APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Валідація quantity
+        # Validate quantity
         try:
             quantity = int(quantity)
             if quantity < 1:
@@ -63,7 +63,7 @@ class CartAddAPIView(CartMixin, APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        # Перевірка статусу наявності
+        # Check availability status
         if product.availability_status == "out_of_stock":
             return Response(
                 {"error": _("Товар відсутній на складі")},
@@ -73,13 +73,13 @@ class CartAddAPIView(CartMixin, APIView):
         cart = self.get_cart(request, product=product)
         current_quantity = cart.quantity if cart else 0
 
-        # Визначаємо максимальну кількість залежно від статусу
+        # Determine the maximum quantity depending on the status
         if product.availability_status == "last_item":
             max_quantity = min(5, product.quantity)
         else:  # ready_to_ship
             max_quantity = product.quantity
 
-        # Перевіряємо чи не перевищуємо ліміт
+        # Check if we are not exceeding the limit
         new_quantity = current_quantity + quantity
         if new_quantity > max_quantity:
             if product.availability_status == "last_item":
@@ -89,7 +89,7 @@ class CartAddAPIView(CartMixin, APIView):
                             "Максимальна кількість "
                             "для цього товару: %(max)s шт."
                         )
-                        % {"max": max_quantity}
+                                 % {"max": max_quantity}
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
@@ -97,7 +97,7 @@ class CartAddAPIView(CartMixin, APIView):
                 return Response(
                     {
                         "error": _("На складі залишилось лише %(max)s шт.")
-                        % {"max": max_quantity}
+                                 % {"max": max_quantity}
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
@@ -154,25 +154,25 @@ class CartChangeAPIView(CartMixin, APIView):
 
         product = cart.product
 
-        # Перевірка статусу наявності
+        # Check availability status
         if product.availability_status == "out_of_stock":
             return Response(
                 {"error": _("Товар відсутній на складі")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Визначаємо максимальну кількість залежно від статусу
+        # Determine the maximum quantity depending on the status
         if product.availability_status == "last_item":
             max_quantity = min(5, product.quantity)
         else:  # ready_to_ship
             max_quantity = product.quantity
 
-        # Перевіряємо чи не перевищуємо ліміт
+        # Check if we are not exceeding the limit
         if quantity > max_quantity:
             return Response(
                 {
                     "error": _("Максимальна кількість: %(max)s шт.")
-                    % {"max": max_quantity},
+                             % {"max": max_quantity},
                     "max_quantity": max_quantity,
                 },
                 status=status.HTTP_400_BAD_REQUEST,
