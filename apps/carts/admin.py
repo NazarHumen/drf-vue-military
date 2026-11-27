@@ -30,7 +30,6 @@ class CartAdmin(admin.ModelAdmin):
         return "Анонімний користувач"
 
     def product_display(self, obj):
-
         return str(obj.product.name)
 
     user_display.short_description = "Користувач"
