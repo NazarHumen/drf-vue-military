@@ -4,7 +4,7 @@ from apps.favorites.utils import get_user_favorites
 
 class FavoriteMixin:
     def get_favorite(self, request, product=None, favorite_id=None):
-        """Отримує конкретний елемент обраного."""
+        """Get a specific favorite item."""
         query_kwargs = (
             {"user": request.user}
             if request.user.is_authenticated
@@ -19,7 +19,7 @@ class FavoriteMixin:
         return Favorite.objects.filter(**query_kwargs).first()
 
     def get_favorites_data(self, request):
-        """Отримує дані про всі обрані товари."""
+        """Get data about all favorite products."""
         user_favorites = get_user_favorites(request)
         favorites_data = []
 
@@ -54,6 +54,6 @@ class FavoriteMixin:
         }
 
     def get_favorite_ids(self, request):
-        """Повертає список ID товарів в обраному."""
+        """Get a list of IDs of favorite products."""
         user_favorites = get_user_favorites(request)
         return list(user_favorites.values_list("product_id", flat=True))
