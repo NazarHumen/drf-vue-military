@@ -10,7 +10,7 @@ from apps.goods.models import Products
 
 
 class FavoritesPageAPIView(FavoriteMixin, APIView):
-    """View для сторінки обраних товарів з Vue.js."""
+    """View for the favorites page with Vue.js."""
 
     renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
 
@@ -31,7 +31,7 @@ class FavoritesPageAPIView(FavoriteMixin, APIView):
 
 
 class FavoritesListAPIView(FavoriteMixin, APIView):
-    """API для отримання списку обраних товарів."""
+    """API for retrieving the list of favorite products."""
 
     def get(self, request):
         data = self.get_favorites_data(request)
@@ -39,7 +39,7 @@ class FavoritesListAPIView(FavoriteMixin, APIView):
 
 
 class FavoriteAddAPIView(FavoriteMixin, APIView):
-    """API для додавання товару до обраного."""
+    """API for adding a product to favorites."""
 
     def post(self, request):
         product_id = request.data.get("product_id")
@@ -58,7 +58,7 @@ class FavoriteAddAPIView(FavoriteMixin, APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        # Перевіряємо чи товар вже в обраному
+        # Check if the product is already in favorites
         existing = self.get_favorite(request, product=product)
         if existing:
             return Response(
@@ -66,10 +66,10 @@ class FavoriteAddAPIView(FavoriteMixin, APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Створюємо сесію якщо її немає
+        # Create a session if it doesn't exist
         if (
-            not request.user.is_authenticated
-            and not request.session.session_key
+                not request.user.is_authenticated
+                and not request.session.session_key
         ):
             request.session.create()
 
@@ -95,7 +95,7 @@ class FavoriteAddAPIView(FavoriteMixin, APIView):
 
 
 class FavoriteRemoveAPIView(FavoriteMixin, APIView):
-    """API для видалення товару з обраного."""
+    """API for removing a product from favorites."""
 
     def post(self, request):
         product_id = request.data.get("product_id")
@@ -139,7 +139,7 @@ class FavoriteRemoveAPIView(FavoriteMixin, APIView):
 
 
 class FavoriteToggleAPIView(FavoriteMixin, APIView):
-    """API для перемикання статусу товару в обраному."""
+    """API for toggling the favorite status of a product."""
 
     def post(self, request):
         product_id = request.data.get("product_id")
@@ -165,10 +165,10 @@ class FavoriteToggleAPIView(FavoriteMixin, APIView):
             is_favorited = False
             message = _("Товар видалено з обраного")
         else:
-            # Створюємо сесію якщо її немає
+            # Create a session if it doesn't exist
             if (
-                not request.user.is_authenticated
-                and not request.session.session_key
+                    not request.user.is_authenticated
+                    and not request.session.session_key
             ):
                 request.session.create()
 
@@ -196,13 +196,13 @@ class FavoriteToggleAPIView(FavoriteMixin, APIView):
 
 
 class FavoriteCheckAPIView(FavoriteMixin, APIView):
-    """API для перевірки чи товар в обраному."""
+    """API for checking if a product is in favorites."""
 
     def get(self, request):
         product_id = request.query_params.get("product_id")
 
         if not product_id:
-            # Повертаємо список всіх ID товарів в обраному
+            # Return a list of all product IDs in favorites
             return Response(
                 {"favorite_ids": self.get_favorite_ids(request)},
                 status=status.HTTP_200_OK,
