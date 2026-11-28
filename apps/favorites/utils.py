@@ -2,7 +2,7 @@ from apps.favorites.models import Favorite
 
 
 def get_user_favorites(request):
-    """Отримує обрані товари для користувача або сесії."""
+    """Get favorite products for the user or session."""
     if request.user.is_authenticated:
         return Favorite.objects.filter(user=request.user).select_related(
             "product"
@@ -18,8 +18,8 @@ def get_user_favorites(request):
 
 def merge_favorites_on_login(request, user):
     """
-    Об'єднує обрані товари з сесії з обраними товарами користувача
-    після авторизації.
+    Merges favorite products from the session with the user's favorite products
+    after login.
     """
     session_key = request.session.session_key
     if not session_key:
@@ -28,16 +28,16 @@ def merge_favorites_on_login(request, user):
     session_favorites = Favorite.objects.filter(session_key=session_key)
 
     for favorite in session_favorites:
-        # Перевіряємо чи товар вже є в обраних користувача
+        # Check if the product is already in the user's favorites
         existing = Favorite.objects.filter(
             user=user, product=favorite.product
         ).first()
 
         if not existing:
-            # Переносимо товар до користувача
+            # Migrate the product to the user
             favorite.user = user
             favorite.session_key = None
             favorite.save()
         else:
-            # Видаляємо дублікат з сесії
+            # Remove duplicate from session
             favorite.delete()
